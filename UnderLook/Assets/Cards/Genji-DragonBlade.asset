@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c663c09b6cf5ffb42b867f80ea9e1826, type: 3}
+  m_Name: Genji-DragonBlade
+  m_EditorClassIdentifier: 
+  cardName: DragonBlade
+  description: Genji can use his dragonblade for an extra second
+  artwork: {fileID: 21300000, guid: 1fe17ea05e4b01c489e8ac44e579dcab, type: 3}
