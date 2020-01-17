@@ -60,8 +60,9 @@ public class Movement : MonoBehaviour
     }
     Sequence Land()
     {
+        gameObject.transform.parent = null;
         launch = 0f;
-        this.GetComponent<CollideWithCannon>().dollycart.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0;
+        gameObject.GetComponent<CollideWithCannon>().dollycart.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0;
         Sequence s = DOTween.Sequence();
         s.Append(transform.DOLocalRotate(new Vector3(0, 0, 0), .5f)); //rotate to 0 0 0
         isOnTrack = false;

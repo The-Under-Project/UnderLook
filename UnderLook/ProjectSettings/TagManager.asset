@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Bullet
   - Cannon
+  - Point
+  - Payload
+  - Red
+  - Blue
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - AVOIDWHENBAKING
   - 
   - 
   - 

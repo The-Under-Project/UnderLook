@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class Human
+    public abstract class Human : MonoBehaviour
     {
         protected int hp;
         protected int speed;
@@ -17,15 +17,15 @@ namespace Player
             this.jump = jump;
         }
         #region get
-        public int getHp
+        public int Hp
         {
             get { return hp; }
         }
-        public int getSpeed
+        public int Speed
         {
             get { return speed; }
         }
-        public int getJump
+        public int Jump
         {
             get { return jump; }
         }

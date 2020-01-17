@@ -26,7 +26,7 @@ Blender: savoir manipuler blender
 Cartes: Intéragir avec les valeurs du personnage
 Règles de jeu: Un cadre
 Animations: Débuts
-IA: Déplacement sur point et visée sur l'enemie le plus proche
+IA: Déplacement sur point et visée sur l'ennemie le plus proche
 Site Web: Noms du projet, compagnie, Images, une rubrique avancement
 Menu, LOBBY: Pouvoir lancer à huit, serveurs, et rooms
 

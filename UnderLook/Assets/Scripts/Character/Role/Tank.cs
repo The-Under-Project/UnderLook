@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player { 
-    public class Tank : Human
+    public abstract class Tank : Human
     {
         protected bool shield;
         protected int shieldLife;
