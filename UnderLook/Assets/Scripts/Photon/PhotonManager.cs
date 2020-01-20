@@ -1,36 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
 
-public class PhotonManager : MonoBehaviourPunCallbacks
+public class PhotonManager : Photon.MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject lobbyCamera;
+    public GameObject spawn;
+
+    // Use this for initialization
     void Start()
     {
-        PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.ConnectUsingSettings("1.0");
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnJoinedLobby() //join lobby in GetRoomField
     {
-        
+    PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(){ MaxPlayers = 8}, TypedLobby.Default); //dev mode
+    Debug.Log("Created a room");
     }
 
-    public override void OnConnectedToMaster()
+    void OnJoinedRoom()
     {
-        PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnJoinedLobby()
-    {
-
-        PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 6 }, TypeLobby.Default);
-    }
-
-    public override void OnJoinedRoom()
-    {
-        PhontonNetwork.instantiate("Player", transform.position, Quaternion.identity);
+        Debug.Log("Joined");
+        //PhotonNetwork.Instantiate("Character/Capsule", spawn.transform.position, Quaternion.identity, 0);
+        //lobbyCamera.SetActive(false);
     }
 }

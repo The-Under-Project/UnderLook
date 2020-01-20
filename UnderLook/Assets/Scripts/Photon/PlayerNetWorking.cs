@@ -1,29 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class PlayerNetWorking : MonoBehaviour
+public class PlayerNetworking : MonoBehaviour
 {
-    public ManoBehaviour[] scriptsToIgnore;
+
+
+    //[SerializeField] private GameObject playerCamera;
+    [SerializeField] private MonoBehaviour[] scriptsToIgnore;
+
 
     private PhotonView photonView;
-    // Start is called before the first frame update
+
+    // Use this for initialization
     void Start()
     {
         photonView = GetComponent<PhotonView>();
-        if (!photonView.IsMine)
+        Initialize();
+    }
+    void Initialize()
+    {
+        if (!PhotonNetwork.isMasterClient)//(photonView.isMine)
         {
-            foreach(var script in scriptsToIgnore)
+
+        }
+        else
+        {
+            //playerCamera.SetActive(false);
+            foreach (MonoBehaviour item in scriptsToIgnore)
             {
-                script.enabled = false;
+                item.enabled = false;
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
