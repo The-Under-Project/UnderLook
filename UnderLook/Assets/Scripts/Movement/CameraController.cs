@@ -1,0 +1,53 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraController : MonoBehaviour
+{
+    [SerializeField] private string InputHorizontalAxis,  InputVerticalAxis;
+    [SerializeField]private float SpeedRotate = 150f;
+    [SerializeField] private Transform BodyPlayer;
+    private float ClampX;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ClampX = 0.0f;
+    }
+
+    private void Update()
+    {
+        CameraMove();
+    }
+
+    // LateUpdate is called once per frame after every other Update
+    void CameraMove()
+    {
+        float mouseX =Input.GetAxis( InputHorizontalAxis )* Time.deltaTime * SpeedRotate;
+        float mouseY = Input.GetAxis(InputVerticalAxis) * Time.deltaTime * SpeedRotate;
+        ClampX += mouseY;
+        if(ClampX>90.0f)
+        {
+            mouseY = 0.0f;
+            ClampX = 90.0f;
+            FixClamping(270.0f);
+
+        }
+        else if (ClampX<-90.0f)
+        {
+            mouseY = 0.0f;
+            ClampX = -90.0f;
+            FixClamping(90.0f);
+        }
+
+        transform.Rotate(Vector3.left * mouseY );
+        BodyPlayer.Rotate(Vector3.up * mouseX );
+        
+    }
+    private void FixClamping (float value)
+    {
+        Vector3 eulerRotation = transform.eulerAngles;
+        eulerRotation.x = value;
+        transform.eulerAngles = eulerRotation;
+    }
+}
