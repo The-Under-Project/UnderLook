@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05a5c3a8b23f4f41a28c7a23cce611c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerName: Tim
+  PlayerName: NaMe
   trigger: 0
 --- !u!4 &364488576
 Transform:

@@ -8,12 +8,18 @@ namespace Basics
     {
         public string PlayerName;
         [SerializeField] private bool trigger;
+        [SerializeField] private bool overwrite;
         public void Update()
         {
             if (trigger)
             {
                 trigger = false;
                 Launch();
+            }
+            if (overwrite)
+            {
+                overwrite = false;
+                OverWrite();
             }
         }
 
@@ -41,8 +47,8 @@ namespace Basics
                         //Debug.Log(path);
                         Debug.Log("created: " + fileName);
                         sw.WriteLine("Name: " + PlayerName);
-                        sw.WriteLine("Game played: 0");
-                        sw.WriteLine("Game won: 0");
+                        sw.WriteLine("Game_played: 0");
+                        sw.WriteLine("Game_won: 0");
                         sw.WriteLine("Kills: 0");
                         sw.WriteLine("Deaths: 0");
                     }
@@ -52,6 +58,22 @@ namespace Basics
             catch 
             {
                 Debug.Log("Wrong input");
+            }
+        }
+
+        public void OverWrite()
+        {
+            string path = System.IO.Directory.GetCurrentDirectory();
+            string fileName = @"TXTstats\stats_"; //..\..\..\..\
+
+
+            fileName += PlayerName + ".txt";
+            fileName = fileName.Replace(" ", "");
+            fileName = fileName.ToLower();
+
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
             }
         }
     }
