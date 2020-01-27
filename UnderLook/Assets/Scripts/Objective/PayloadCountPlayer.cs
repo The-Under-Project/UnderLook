@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PayloadCountPlayer : MonoBehaviour
 {
+    [HideInInspector] public PhotonView photonView;
+
     public string payloadOwner = "";
 
     public float size = 7.5f;
@@ -21,6 +23,8 @@ public class PayloadCountPlayer : MonoBehaviour
 
     void Start()
     {
+
+        photonView = GetComponent<PhotonView>();
         players = GameObject.FindGameObjectsWithTag("Player");
     }
 
@@ -68,6 +72,7 @@ public class PayloadCountPlayer : MonoBehaviour
         if (returnCappingBlue >= 1 && returnCappingRed == 0 && payloadOwner == "Blue")
         {
             this.GetComponent<Cinemachine.CinemachineDollyCart>().m_Speed = speed;
+            
         }
         else if (returnCappingRed >= 1 && returnCappingBlue == 0 && payloadOwner == "Red")
         {
@@ -76,6 +81,12 @@ public class PayloadCountPlayer : MonoBehaviour
         else
         {
             this.GetComponent<Cinemachine.CinemachineDollyCart>().m_Speed = 0;
+        }
+        if (PhotonNetwork.inRoom)
+        {
+            photonView.RPC("PayloadPosition", PhotonTargets.AllBuffered, this.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position);
+            //actualise position convoi autre joueurs
+            photonView.RPC("PayloadSpeed", PhotonTargets.AllBuffered, this.GetComponent<Cinemachine.CinemachineDollyCart>().m_Speed);
         }
     }
 }

@@ -37,4 +37,9 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupItems
   - RequestForPickupTimes
+  - PayloadGetPath
+  - PayloadMovement
+  - PayloadUnlock
+  - PayloadPosition
+  - PayloadSpeed
   DisableAutoOpenWizard: 1

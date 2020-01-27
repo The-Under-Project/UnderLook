@@ -84,7 +84,7 @@ namespace Player
             float d1 = Random.Range(-distance, distance);
             float d2 = Random.Range(-distance, distance); //random pour uin peu plus de mouvement elle sont refresh à la fin du timer
 
-            if (payload.GetComponent<Payload>().run)
+            if (payload.GetComponent<PayloadOwner>().run)
             {
                     agent.SetDestination(payload.transform.position + new Vector3(d1, 0, d2));
                 //move to payload

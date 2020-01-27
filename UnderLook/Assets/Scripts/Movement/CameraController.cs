@@ -15,16 +15,16 @@ public class CameraController : MonoBehaviour
         ClampX = 0.0f;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CameraMove();
     }
 
-    // LateUpdate is called once per frame after every other Update
+    // FixedUpdate is called once per frame after every other Update
     void CameraMove()
     {
-        float mouseX =Input.GetAxis( InputHorizontalAxis )* Time.deltaTime * SpeedRotate;
-        float mouseY = Input.GetAxis(InputVerticalAxis) * Time.deltaTime * SpeedRotate;
+        float mouseX =Input.GetAxis( InputHorizontalAxis )* SpeedRotate;
+        float mouseY = Input.GetAxis(InputVerticalAxis)* SpeedRotate;
         ClampX += mouseY;
         if(ClampX>90.0f)
         {
