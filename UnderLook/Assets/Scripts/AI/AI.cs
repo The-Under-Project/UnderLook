@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace Player
 {
-    public class AI : Human //IA doit hériter à la fin, c'est celle qui n'est pas abstract 
+    public class AI : Base //IA doit hériter à la fin, c'est celle qui n'est pas abstract 
     {
         private NavMeshAgent agent;
         public GameObject player;

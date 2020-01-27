@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Player
 {
-    public abstract class Human : MonoBehaviour
+    public abstract class Base : MonoBehaviour
     {
         protected int hp;
         protected int speed;
         protected int jump;
 
-        public Human(int hp, int speed, int jump)
+        public Base(int hp, int speed, int jump)
         {
             this.hp = hp;
             this.speed = speed;
