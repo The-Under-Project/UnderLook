@@ -42,6 +42,5 @@ namespace Player
             Debug.Log(("current life {0}", hp));
         }
         #endregion DEBUG
-
     }
 }

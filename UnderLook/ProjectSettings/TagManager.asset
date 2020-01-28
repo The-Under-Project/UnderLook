@@ -10,6 +10,7 @@ TagManager:
   - Payload
   - Red
   - Blue
+  - Floor
   layers:
   - Default
   - TransparentFX
