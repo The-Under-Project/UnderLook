@@ -765,6 +765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mine: {fileID: 8171696699039599957, guid: 2e29c9a943a147f4eb0150b026a5f035, type: 3}
   minePos: {fileID: 1310331658}
+  mineStrengh: 300
   isZooming: 0
   cameraFOV: 60
   cam: {fileID: 0}
@@ -909,7 +910,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointShot
   m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

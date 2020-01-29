@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppID: bc3cbcb4-9e73-4dcb-a15c-a7d6aff582c9
   VoiceAppID: 
-  ChatAppID: 
-  HostType: 4
+  ChatAppID: bc3cbcb4-9e73-4dcb-a15c-a7d6aff582c9
+  HostType: 1
   PreferredRegion: 0
-  EnabledRegions: 1
+  EnabledRegions: -1
   Protocol: 0
   ServerAddress: 
   ServerPort: 5055
@@ -31,15 +31,14 @@ MonoBehaviour:
   - Chat
   - DestroyRpc
   - InstantiateRpc
+  - PayloadGetPath
+  - PayloadPosition
+  - PayloadSpeed
+  - PayloadUnlock
   - PickupItemInit
   - PunPickup
   - PunPickupSimple
   - PunRespawn
   - RequestForPickupItems
   - RequestForPickupTimes
-  - PayloadGetPath
-  - PayloadMovement
-  - PayloadUnlock
-  - PayloadPosition
-  - PayloadSpeed
   DisableAutoOpenWizard: 1

@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class Mine : MonoBehaviour
 {
+    public string enemieColor;
+
     public Rigidbody rb;
     public float percentage = 0;
     public float time;
@@ -95,7 +97,7 @@ public class Mine : MonoBehaviour
                 {
                     bool playerNotNull = (player != null);
 
-                    if (playerNotNull)
+                    if (playerNotNull && enemieColor != player.GetComponent<TeamColor>().teamColor) //make sure it's the enemy color
                     {
                         player.GetComponent<Renderer>().material = player.GetComponent<MaterialsApply>().wallHack; //change material
                     }
@@ -144,5 +146,8 @@ public class Mine : MonoBehaviour
         s.Append(DOTween.To(() => percentage, x => percentage = x, 100, time));
         return s;
     }
-
+    void SetColor(string color)
+    {
+        enemieColor = color;
+    }
 }

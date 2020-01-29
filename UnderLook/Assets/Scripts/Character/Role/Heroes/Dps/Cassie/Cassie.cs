@@ -10,6 +10,8 @@ namespace Player
         public GameObject mine;
         public GameObject minePos;
 
+        public float mineStrengh;
+
         public bool isZooming = false;
         public float cameraFOV;
         public Camera cam;
@@ -155,8 +157,18 @@ namespace Player
 
         private void Cap2()
         {
+
             GameObject clone = Instantiate(mine, minePos.transform.position, minePos.transform.rotation);
-            clone.GetComponent<Rigidbody>().AddForce((transform.forward * 2 + transform.up) * 300);
+
+            Vector3 force = transform.forward;
+
+            force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+
+            force *= mineStrengh;
+
+            clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+
+            clone.GetComponent<Rigidbody>().AddForce(force);
         }
 
         private void Ulti()
