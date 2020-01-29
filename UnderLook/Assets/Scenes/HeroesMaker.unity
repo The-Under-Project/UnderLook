@@ -632,6 +632,7 @@ GameObject:
   - component: {fileID: 480527478}
   - component: {fileID: 480527484}
   - component: {fileID: 480527485}
+  - component: {fileID: 480527486}
   m_Layer: 0
   m_Name: Cassie
   m_TagString: Player
@@ -790,6 +791,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basic: {fileID: 2100000, guid: df7748e21795423458413247611222fa, type: 2}
   wallHack: {fileID: 2100000, guid: b164d1e9f990f2b47a41d2fd1d62ed32, type: 2}
+--- !u!114 &480527486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480527477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7127af350deca0944b1f87ba80ab294f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBlue: 1
+  teamColor: 
+  enemieColor: 
 --- !u!1 &813740852
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +957,7 @@ GameObject:
   - component: {fileID: 1998182208}
   - component: {fileID: 1998182207}
   - component: {fileID: 1998182211}
+  - component: {fileID: 1998182212}
   m_Layer: 0
   m_Name: FakePlayer
   m_TagString: Player
@@ -1035,3 +1052,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basic: {fileID: 2100000, guid: df7748e21795423458413247611222fa, type: 2}
   wallHack: {fileID: 2100000, guid: b164d1e9f990f2b47a41d2fd1d62ed32, type: 2}
+--- !u!114 &1998182212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998182206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7127af350deca0944b1f87ba80ab294f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBlue: 0
+  teamColor: 
+  enemieColor: 

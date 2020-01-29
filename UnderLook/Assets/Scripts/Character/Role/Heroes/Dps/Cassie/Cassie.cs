@@ -158,7 +158,9 @@ namespace Player
         private void Cap2()
         {
 
-            GameObject clone = Instantiate(mine, minePos.transform.position, minePos.transform.rotation);
+            GameObject clone = Instantiate(mine, minePos.transform.position, minePos.transform.rotation) as GameObject;
+
+            clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
 
             Vector3 force = transform.forward;
 
@@ -166,9 +168,9 @@ namespace Player
 
             force *= mineStrengh;
 
-            clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
 
             clone.GetComponent<Rigidbody>().AddForce(force);
+
         }
 
         private void Ulti()
