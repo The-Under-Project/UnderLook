@@ -23,8 +23,16 @@ public class PhotonManager : Photon.MonoBehaviour
     void OnJoinedRoom()
     {
         Debug.Log("Joined");
-        //PhotonNetwork.Instantiate("Character/Capsule", spawn.transform.position, Quaternion.identity, 0);
         //lobbyCamera.SetActive(false);
+        //je dois instantier et désactiver les scriptes machins, voir la vidéo
+        SceneManager.LoadScene("HeroesMaker", LoadSceneMode.Additive);
+
+        Vector3 spawn = new Vector3(1, 15, 23);
+            //GameObject.FindGameObjectWithTag("Respawn").transform;
+
+        bool a = PhotonNetwork.Instantiate("Cassie", spawn, Quaternion.identity, 0);
+        Debug.Log(a);
+       
     }
     void OnLeftRoom()
     {

@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         ClampX = 0.0f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
