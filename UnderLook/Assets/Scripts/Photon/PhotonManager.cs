@@ -19,7 +19,7 @@ public class PhotonManager : Photon.MonoBehaviour
     PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(){ MaxPlayers = 8}, TypedLobby.Default); //dev mode
     Debug.Log("Created a room");
     }
-
+    
     void OnJoinedRoom()
     {
         Debug.Log("Joined");
@@ -33,6 +33,10 @@ public class PhotonManager : Photon.MonoBehaviour
         bool a = PhotonNetwork.Instantiate("Cassie", spawn, Quaternion.identity, 0);
         Debug.Log(a);
        
+    }
+    void OnLeftRoom()
+    {
+        Debug.Log("Left");
     }
     void OnLeftRoom()
     {
