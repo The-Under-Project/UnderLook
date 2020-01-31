@@ -38,8 +38,4 @@ public class PhotonManager : Photon.MonoBehaviour
     {
         Debug.Log("Left");
     }
-    void OnLeftRoom()
-    {
-        Debug.Log("Left");
-    }
 }
