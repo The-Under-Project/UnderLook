@@ -21,10 +21,6 @@ namespace Player
         public float distance = 4.5f;
         public GameObject[] players;
 
-        public AI(int hp, int speed, int jump) : base (hp, speed, jump)
-        {
-
-        }
         #region get
         public int Hp
         {

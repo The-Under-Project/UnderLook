@@ -9,13 +9,6 @@ namespace Player
         protected int hp;
         protected int speed;
         protected int jump;
-
-        public Base(int hp, int speed, int jump)
-        {
-            this.hp = hp;
-            this.speed = speed;
-            this.jump = jump;
-        }
         #region get
         public int Hp
         {

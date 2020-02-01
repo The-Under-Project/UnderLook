@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Player
+
+public class SphereColor : MonoBehaviour
 {
-    public class Dps : Base
-    {
-    }
+    public Material[] mat;
 }

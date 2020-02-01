@@ -27,10 +27,6 @@ namespace Player
         public float TimeAfterTP;
         public float percentage;
 
-        public Cassie(int hp, int speed, int jump) : base(hp, speed, jump) //heritage
-        {
-
-        }
 
 
 
@@ -110,7 +106,12 @@ namespace Player
 
         private void M1()
         {
-            if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove)
+            if (!isShadow)
+            {
+                this.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
+                //hitscan shot
+            }
+            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove)
             {
                 if (GetComponentInChildren<TPoverlapCircle>().nbCol == 4)
                 {
@@ -121,11 +122,7 @@ namespace Player
                     tp(false);
                 }
             }
-            else
-            {
-                this.GetComponentInChildren<Weapon.CassieWeapon>().Shoot();
-                //hitscan shot
-            }
+            
         }
         private void M2()
         {
@@ -143,7 +140,7 @@ namespace Player
 
         private void Cap1()
         {
-            Debug.Log("Change");
+            //Debug.Log("Change");
             if (isShadow)
             {
                 sphere.SetActive(false);

@@ -11,6 +11,7 @@ public class TPoverlapCircle : MonoBehaviour
     public Collider[][] top = new Collider[10][];
 
     public bool colAbove;
+    public bool changement;
     void FixedUpdate()
     {
         CountCol();
@@ -104,5 +105,10 @@ public class TPoverlapCircle : MonoBehaviour
             }
         }
         colAbove = t; //si colAbove alor tu peux pas tp
+        if (colAbove || nbCol < 4)
+            GetComponent<Renderer>().material = GetComponent<SphereColor>().mat[0];
+        else
+            GetComponent<Renderer>().material = GetComponent<SphereColor>().mat[1];
+        changement = t;
     }
 }
