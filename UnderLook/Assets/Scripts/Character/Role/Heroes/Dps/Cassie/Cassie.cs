@@ -123,6 +123,7 @@ namespace Player
             }
             else
             {
+                this.GetComponentInChildren<Weapon.CassieWeapon>().Shoot();
                 //hitscan shot
             }
         }

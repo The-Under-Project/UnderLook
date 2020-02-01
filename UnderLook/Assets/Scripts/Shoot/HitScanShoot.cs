@@ -2,61 +2,86 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitScanShoot : MonoBehaviour
+
+namespace Weapon
 {
-
-    public int gunDamage = 100;//Damage of weapon , for the moment it's fixed but we need to redefine it
-    public float fireRate = .10f;//Rate of weapon 
-    public float weaponRange = 100f;//Range of wepon
-    public float hitForce = 0f; //Knockback of weapon
-    public Transform gunPosition;//Position of gun to calculate the line
-
-    private Camera fpscam;
-    private WaitForSeconds shotDuration = new WaitForSeconds(.07f);//Duration of line
-
-    private AudioSource gunAudio; //The audio of gun
-    private LineRenderer gunLine; //The line of shoot 
-    private float nextFire; // Time when you can do a new shot
-    
-    // Start is called before the first frame update
-    void Start()
+    public class HitScanShoot : MonoBehaviour
     {
-        gunLine = GetComponent<LineRenderer>();
-        gunAudio = GetComponent<AudioSource>();
-        fpscam = GetComponentInParent<Camera>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        [HideInInspector] public int gunDamage;//Damage of weapon , for the moment it's fixed but we need to redefine it
+        [HideInInspector] public float fireRate;//Rate of weapon 
+        [HideInInspector] public float weaponRange;//Range of wepon
+        [HideInInspector] public float hitForce; //Knockback of weapon
+
+        public Transform gunPosition;//Position of gun to calculate the line
+
+        public Camera fpscam;
+        private WaitForSeconds shotDuration = new WaitForSeconds(.07f);//Duration of line
+
+        //private AudioSource gunAudio; //The audio of gun
+        [SerializeField] private LineRenderer gunLine; //The line of shoot 
+        private float nextFire; // Time when you can do a new shot
+
+        // Start is called before the first frame update
+        void Start()
         {
-            nextFire = Time.time + fireRate; //Set the time for another shot 
-            StartCoroutine(ShotEffect());
+            //gunLine = GetComponent<LineRenderer>();
+            //gunAudio = GetComponent<AudioSource>();
+            //fpscam = GetComponentInChildren<Camera>();
+        }
 
-            Vector3 lineOrigin = fpscam.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0));//Define center
-            RaycastHit hit;
-            
-            gunLine.SetPosition(0, gunPosition.position);
+        // Update is called once per frame
+        public void Shoot()
+        {
+            if (Time.time > nextFire)  //je ne pense pas que ça marche
+            {
+                nextFire = Time.time + fireRate; //Set the time for another shot 
+                StartCoroutine(ShotEffect());
 
-            if (Physics.Raycast(lineOrigin, fpscam.transform.forward, out hit, weaponRange))
-            {
-                gunLine.SetPosition(1,hit.point);
-                //Here We need the system of box life -> so I can't continue here
-            }
-            else
-            {
-                gunLine.SetPosition(1, lineOrigin +fpscam.transform.forward * weaponRange);
+                //Vector3 lineOrigin = fpscam.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0));//Define center
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                gunLine.SetPosition(0, gunPosition.position);
+
+                if (Physics.Raycast(ray, out hit, weaponRange))
+                {
+                    gunLine.SetPosition(1, hit.point);
+                    //Here We need the system of box life -> so I can't continue here
+                }
+                else
+                {
+                    gunLine.SetPosition(1,  fpscam.transform.forward * weaponRange);
+                }
+
             }
 
         }
-    }
-    
-    private IEnumerator ShotEffect() // Execute effect: Line + Audio
-    {
-        gunAudio.Play();
-        gunLine.enabled = true;
-        yield return shotDuration;
-        gunLine.enabled = false;
+
+
+        private IEnumerator ShotEffect() // Execute effect: Line + Audio
+        {
+            //gunAudio.Play();
+            gunLine.enabled = true;
+            yield return shotDuration;
+            //gunLine.enabled = false;
+        }
+
+        public int setGunDamage
+        {
+            set { gunDamage = value; }
+        }
+        public float setFireRate
+        {
+            set { fireRate = value; }
+        }
+        public float setWeaponRange
+        {
+            set { weaponRange = value; }
+        }
+        public float setHitForce
+        {
+            set { hitForce = value; }
+        }
     }
 }
