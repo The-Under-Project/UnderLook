@@ -8,7 +8,12 @@ public class UI : MonoBehaviour
 {
     [Header("Global")]
     public bool hasThreeCapacities;
+    public bool hasShield;
     [SerializeField] private Color32 orange = new  Color32(255, 165, 0, 1);
+
+    [Header("Name")]
+    [SerializeField] private string NameCharacter;
+    public Text text; 
 
     [Header("Capacity 1")] 
     public float percentageCooldown1;
@@ -37,7 +42,20 @@ public class UI : MonoBehaviour
     [SerializeField] private Sprite capacityImage3;
     [SerializeField] private GameObject Capacity3;
 
-    [SerializeField] private GameObject Capacity3DeactivateObject;
+    [Header("Ultimate")]
+    public Image ultimateBar;
+    [SerializeField] private float CurrentUltimate;
+
+    [Header("Health")]
+    public Image HealthBar;
+    public float CurrentHP;
+    [SerializeField] private float maxHP;
+
+
+    [Header("Shield")]
+    public Image ShieldBar;
+    public float CurrentShield;
+    [SerializeField] private float maxShield;
 
     private void Start()
     {
@@ -47,6 +65,12 @@ public class UI : MonoBehaviour
         Capacity1.GetComponent<Image>().sprite = capacityImage1;
         Capacity2.GetComponent<Image>().sprite = capacityImage2;
 
+
+        CurrentUltimate = 0;
+        CurrentHP = maxHP;
+        text.text = NameCharacter;
+
+
         if (hasThreeCapacities)
         {
             percentageCooldown3 = 1;
@@ -54,13 +78,23 @@ public class UI : MonoBehaviour
         }
         else
         {
-            Capacity3DeactivateObject.SetActive(false);
+            capacityBG3.transform.parent.gameObject.SetActive(false);
+        }
+
+        if(hasShield)
+        {
+            CurrentShield = maxShield;
+        }
+        else
+        {
+            ShieldBar.transform.parent.gameObject.SetActive(false);
         }
        
     }
     void FixedUpdate()
     {
-        if(cdRefresh1)
+        #region hideousCapacityRefresh
+        if (cdRefresh1)
             capacityBG1.fillAmount = percentageCooldown1;
         if (cdRefresh1 && percentageCooldown1 == 1)
         {
@@ -101,6 +135,26 @@ public class UI : MonoBehaviour
                 DOTween.Play(CD3());
             }
         }
+        #endregion hideousCapacityRefresh
+
+        #region shield
+        if (hasShield)
+        {
+            ShieldBar.fillAmount = CurrentShield / maxShield;
+        }
+        #endregion shield
+
+        #region health
+
+        HealthBar.fillAmount = CurrentHP / maxHP;
+
+        #endregion health
+
+        #region ultimate
+
+        ultimateBar.fillAmount = CurrentUltimate;
+
+        #endregion ultimate
     }
 
     Sequence CD1()
