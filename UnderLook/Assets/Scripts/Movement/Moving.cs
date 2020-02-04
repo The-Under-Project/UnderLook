@@ -14,6 +14,7 @@ public class Moving : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         
+        
     }
 
     void Update()
