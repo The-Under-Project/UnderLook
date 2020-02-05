@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class UnlockPayload : MonoBehaviour
 {
+    [HideInInspector] public PhotonView photonView;
     public int timeToUnlock;
-    void Update()
+
+    void Start()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
+        void Update()
     {
         float blue = this.gameObject.GetComponentInParent<PointCountPlayers>().timerBlue;
         float red = this.gameObject.GetComponentInParent<PointCountPlayers>().timerRed;
 
-        if (blue > timeToUnlock)
+        if (blue > timeToUnlock && PhotonNetwork.inRoom)
         {
-            this.GetComponent<Payload>().Color("Blue");
+            photonView.RPC("PayloadUnlock", PhotonTargets.AllBuffered, "Blue"); //donne le propriétaire du convoi au serveur
             Destroy(this);
         }
-        else if (red > timeToUnlock)
+        else if (red > timeToUnlock && PhotonNetwork.inRoom)
         {
-            this.GetComponent<Payload>().Color("Red");
+            photonView.RPC("PayloadUnlock", PhotonTargets.AllBuffered, "Red");
             Destroy(this);
         }
     }

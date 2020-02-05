@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace Player
 {
-    public class AI : Human //IA doit hériter à la fin, c'est celle qui n'est pas abstract 
+    public class AI : Base //IA doit hériter à la fin, c'est celle qui n'est pas abstract 
     {
         private NavMeshAgent agent;
         public GameObject player;
@@ -21,10 +21,6 @@ namespace Player
         public float distance = 4.5f;
         public GameObject[] players;
 
-        public AI(int hp, int speed, int jump) : base (hp, speed, jump)
-        {
-
-        }
         #region get
         public int Hp
         {
@@ -84,7 +80,7 @@ namespace Player
             float d1 = Random.Range(-distance, distance);
             float d2 = Random.Range(-distance, distance); //random pour uin peu plus de mouvement elle sont refresh à la fin du timer
 
-            if (payload.GetComponent<Payload>().run)
+            if (payload.GetComponent<PayloadOwner>().run)
             {
                     agent.SetDestination(payload.transform.position + new Vector3(d1, 0, d2));
                 //move to payload
