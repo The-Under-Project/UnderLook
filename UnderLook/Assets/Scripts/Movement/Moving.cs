@@ -6,7 +6,6 @@ public class Moving : MonoBehaviour
 {
     CharacterController characterController;
 
-
     [SerializeField] private float speed, gravity, jumpspeed;
     private float moveZ;
     public bool canMove = true, gravityApplied = true;
@@ -30,15 +29,14 @@ public class Moving : MonoBehaviour
 
         //float moveZ = 0.0f;
 
-        
-        if ((Input.GetButton ("Jump") && characterController.isGrounded))
+
+        if ((Input.GetButton("Jump") && characterController.isGrounded))
         {
             moveZ = jumpspeed;
         }
-        moveZ -= gravity * Time.deltaTime;
-
-        if (characterController.isGrounded)
+        else if (characterController.isGrounded)
             moveZ = 0;
+        moveZ -= gravity * Time.deltaTime;
 
         if (canMove)
             characterController.Move(transform.forward*moveX + transform.right*moveY); //time multiplié au carré
