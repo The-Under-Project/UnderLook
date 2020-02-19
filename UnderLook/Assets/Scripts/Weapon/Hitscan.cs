@@ -8,8 +8,10 @@ namespace Weapon
     public abstract class Hitscan : MonoBehaviour
     {
 
+        public Transform pointShoot;
+
         public int gunDamage;//Damage of weapon , for the moment it's fixed but we need to redefine it
-        public float fireRate;//Rate of weapon 
+        public float fireRate;//Rate of weapon  
         public float weaponRange;//Range of wepon
         public float hitForce; //Knockback of weapon
 
@@ -51,9 +53,10 @@ namespace Weapon
                     gunLine.SetPosition(1, hit.point);
                     //Here We need the system of box life -> so I can't continue here
                 }
-                else
+                if (Physics.Raycast(ray, out hit,  Mathf.Infinity))
                 {
-                    gunLine.SetPosition(1,  fpscam.transform.forward * weaponRange);
+                    gunLine.SetPosition(1, hit.point);
+                    //Here We need the system of box life -> so I can't continue here
                 }
 
             }

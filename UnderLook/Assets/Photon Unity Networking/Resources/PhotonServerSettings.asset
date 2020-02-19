@@ -41,4 +41,8 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupItems
   - RequestForPickupTimes
+  - ChatMessage
+  - GetMovements
+  - GetString
+  - GetUpdate
   DisableAutoOpenWizard: 1

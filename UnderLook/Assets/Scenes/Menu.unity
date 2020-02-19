@@ -142,6 +142,11 @@ PrefabInstance:
       propertyPath: workingOffline
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5742308023823232018, guid: 6f9604f05e7308a4c815ba54e32925f9,
+        type: 3}
+      propertyPath: destroy
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5742308023823232021, guid: 6f9604f05e7308a4c815ba54e32925f9,
         type: 3}
       propertyPath: m_LocalPosition.x

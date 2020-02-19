@@ -7,6 +7,13 @@ namespace Player
 {
     public class Cassie : Dps
     {
+
+
+        [Header("Cassie")]
+        public bool hasInstantiateAMine = false;
+
+        public GameObject canvasUI;
+
         public GameObject mine;
         public GameObject minePos;
 
@@ -27,20 +34,37 @@ namespace Player
         public float TimeAfterTP;
         public float percentage;
 
+        public Vector3 force;
+        public string enemyColor;
 
 
 
 
         private void Start()
         {
+            this.GetComponent<Moving>().speed = speed;
+            this.GetComponent<Moving>().jumpspeed = jumpspeed;
+
+
             cam = GetComponentInChildren<Camera>();
             cameraFOV = cam.fieldOfView;
 
+            canvasUI.GetComponent<UI>().hasShield = false;
+            canvasUI.GetComponent<UI>().hasThreeCapacities = false;
+            canvasUI.GetComponent<UI>().maxHP = hpmax;
             percentage = TimeTP / (TimeTP + TimeAfterTP) * 100;
 
         }
         void FixedUpdate()
         {
+
+            if (hp <= 0)
+            {
+                //Debug.Log("Dead");
+                //dead();
+            }
+
+            canvasUI.GetComponent<UI>().CurrentHP = hp;
 
             cam.fieldOfView = cameraFOV;
 
@@ -109,10 +133,10 @@ namespace Player
             if (!isShadow)
             {
                 this.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
-                //hitscan shot
             }
-            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove)
+            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
+                canvasUI.GetComponent<UI>().cap("one");
                 if (GetComponentInChildren<TPoverlapCircle>().nbCol == 4)
                 {
                     tp(true);
@@ -122,7 +146,7 @@ namespace Player
                     tp(false);
                 }
             }
-            
+
         }
         private void M2()
         {
@@ -140,7 +164,6 @@ namespace Player
 
         private void Cap1()
         {
-            //Debug.Log("Change");
             if (isShadow)
             {
                 sphere.SetActive(false);
@@ -155,20 +178,21 @@ namespace Player
 
         private void Cap2()
         {
+            if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
+            {
+                canvasUI.GetComponent<UI>().cap("two");
 
-            GameObject clone = Instantiate(mine, minePos.transform.position, minePos.transform.rotation) as GameObject;
+                GameObject clone = Instantiate(mine, minePos.transform.position, minePos.transform.rotation) as GameObject;
+                clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+                clone.SendMessage("DEBUG", DEBUG);
 
-            clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= mineStrengh;
+                clone.GetComponent<Rigidbody>().AddForce(force);
 
-            Vector3 force = transform.forward;
-
-            force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
-
-            force *= mineStrengh;
-
-
-            clone.GetComponent<Rigidbody>().AddForce(force);
-
+                hasInstantiateAMine = true;
+            }
         }
 
         private void Ulti()
@@ -185,6 +209,11 @@ namespace Player
             DOTween.Play(Teleportseq(offset));
         }
 
+        private void dead()
+        {
+            gameObject.GetComponent<Moving>().enabled = false;
+            this.enabled = false;
+        }
 
 
         Sequence ZoomIN()
@@ -215,7 +244,7 @@ namespace Player
                         break;
                     }
                 }
-                switch (e) //switch the value that is false and tp with offset toward the opposite circle 
+                switch (e) 
                 {
                     case 0:
                         offsetValue = new Vector3(-2, 1);
@@ -243,5 +272,11 @@ namespace Player
 
             return s;
         }
+
+
+
     }
+
+
+
 }

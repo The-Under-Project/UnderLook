@@ -6,10 +6,14 @@ using DG.Tweening;
 
 public class UI : MonoBehaviour
 {
+    [Header("Debug")]
+    public bool cd;
+
     [Header("Global")]
     public bool hasThreeCapacities;
     public bool hasShield;
-    [SerializeField] private Color32 orange = new  Color32(255, 165, 0, 1);
+    private Color32 orange = new  Color32(255, 165, 0, 150);
+    private Color32 whiteAlpha = new  Color32(255, 255, 255, 150);
 
     [Header("Name")]
     [SerializeField] private string NameCharacter;
@@ -44,26 +48,35 @@ public class UI : MonoBehaviour
 
     [Header("Ultimate")]
     public Image ultimateBar;
+
+    [Range(0.0f, 1.0f)]
     [SerializeField] private float CurrentUltimate;
 
     [Header("Health")]
     public Image HealthBar;
+    [SerializeField] public float maxHP;
+    [Range(0.0f, 200f)]
     public float CurrentHP;
-    [SerializeField] private float maxHP;
-
 
     [Header("Shield")]
     public Image ShieldBar;
-    public float CurrentShield;
     [SerializeField] private float maxShield;
+    [Range(0.0f, 200f)]
+    public float CurrentShield;
 
     private void Start()
     {
+        
         percentageCooldown1 = 1;
         percentageCooldown2 = 1;
 
         Capacity1.GetComponent<Image>().sprite = capacityImage1;
         Capacity2.GetComponent<Image>().sprite = capacityImage2;
+
+
+        capacityBG1.color = whiteAlpha;
+        capacityBG2.color = whiteAlpha;
+        capacityBG3.color = whiteAlpha;
 
 
         CurrentUltimate = 0;
@@ -94,12 +107,13 @@ public class UI : MonoBehaviour
     void FixedUpdate()
     {
         #region hideousCapacityRefresh
+        
         if (cdRefresh1)
             capacityBG1.fillAmount = percentageCooldown1;
         if (cdRefresh1 && percentageCooldown1 == 1)
         {
             cdRefresh1 = false;
-            capacityBG1.color = Color.white;
+            capacityBG1.color = whiteAlpha;
         }
         if (CoolDown1)
         {
@@ -112,7 +126,7 @@ public class UI : MonoBehaviour
         if (cdRefresh2 && percentageCooldown2 == 1)
         {
             cdRefresh2 = false;
-            capacityBG2.color = Color.white;
+            capacityBG2.color = whiteAlpha;
         }
         if (CoolDown2)
         {
@@ -127,7 +141,7 @@ public class UI : MonoBehaviour
             if (cdRefresh3 && percentageCooldown3 == 1)
             {
                 cdRefresh3 = false;
-                capacityBG3.color = Color.white;
+                capacityBG3.color = whiteAlpha;
             }
             if (CoolDown3)
             {
@@ -163,7 +177,10 @@ public class UI : MonoBehaviour
         percentageCooldown1 = 0;
         cdRefresh1 = true;
         Sequence s = DOTween.Sequence();
-        s.Append(DOTween.To(() => percentageCooldown1, x => percentageCooldown1 = x, 1, time1));
+        if(!cd)
+            s.Append(DOTween.To(() => percentageCooldown1, x => percentageCooldown1 = x, 1, time1));
+        else
+            percentageCooldown1 = 1;
         return s;
     }
     Sequence CD2()
@@ -172,7 +189,10 @@ public class UI : MonoBehaviour
         percentageCooldown2 = 0;
         cdRefresh2 = true;
         Sequence s = DOTween.Sequence();
-        s.Append(DOTween.To(() => percentageCooldown2, x => percentageCooldown2 = x, 1, time2));
+        if (!cd)
+            s.Append(DOTween.To(() => percentageCooldown2, x => percentageCooldown2 = x, 1, time2));
+        else
+            percentageCooldown2 = 1;
         return s;
     }
     Sequence CD3()
@@ -181,7 +201,28 @@ public class UI : MonoBehaviour
         percentageCooldown3 = 0;
         cdRefresh3 = true;
         Sequence s = DOTween.Sequence();
-        s.Append(DOTween.To(() => percentageCooldown3, x => percentageCooldown3 = x, 1, time3));
+        if (!cd)
+            s.Append(DOTween.To(() => percentageCooldown3, x => percentageCooldown3 = x, 1, time3));
+        else
+            percentageCooldown3 = 1;
         return s;
+    }
+
+    public void cap(string capacity)
+    {
+        switch (capacity)
+        {
+            case "one":
+                DOTween.Play(CD1());
+                break;
+            case "two":
+                DOTween.Play(CD2());
+                break;
+            case "three":
+                DOTween.Play(CD3());
+                break;
+            default:
+                break;
+        }
     }
 }

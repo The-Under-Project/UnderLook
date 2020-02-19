@@ -8,6 +8,7 @@ public class PlayerNetworkingDeactivate : MonoBehaviour
 
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private MonoBehaviour[] scriptsToIgnore;
+    [SerializeField] private GameObject[] objectsToIgnore;
 
 
     private PhotonView photonView;
@@ -32,6 +33,11 @@ public class PlayerNetworkingDeactivate : MonoBehaviour
             foreach (MonoBehaviour item in scriptsToIgnore)
             {
                 item.enabled = false;
+            }
+
+            foreach (GameObject item in objectsToIgnore)
+            {
+                item.SetActive(false);
             }
         }
     }

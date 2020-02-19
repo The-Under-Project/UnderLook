@@ -14,10 +14,12 @@ public class LocalInstance : MonoBehaviour
         { workingOffline = true; }
         if (workingOffline)
         {
+            Debug.Log(this.name);
             this.GetComponent<PlayerNetworkingDeactivate>().enabled = false;
         }
         if (destroy && !workingOffline)
         {
+            Debug.Log("Destroyed!");
             Destroy(gameObject);
         }
     }
