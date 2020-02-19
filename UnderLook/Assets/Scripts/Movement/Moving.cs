@@ -18,8 +18,8 @@ public class Moving : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        
-        
+
+
     }
 
     void Update()
