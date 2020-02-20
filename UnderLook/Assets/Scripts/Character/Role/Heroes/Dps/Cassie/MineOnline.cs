@@ -41,6 +41,7 @@ public class MineOnline : MonoBehaviour
             if (mine.GetComponent<Mine>().canYouGetMyColor)
             {
                 enemieColor = mine.GetComponent<Mine>().enemieColor;
+
                 Destroy(mine);
                 break;
             }
@@ -189,7 +190,11 @@ public class MineOnline : MonoBehaviour
                     player.GetComponent<Renderer>().material = player.GetComponent<MaterialsApply>().basic;
                 }
             }
-            Destroy(gameObject);
+            if (PhotonNetwork.isMasterClient)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
+            //Destroy(gameObject);
         }
     }
     Sequence Des()

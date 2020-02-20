@@ -20,14 +20,19 @@ public class MineShadeEffect : MonoBehaviour
     {
         if(percentage == 100)
         {
-            Destroy(gameObject);
+
+            if (PhotonNetwork.isMasterClient)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
+            //Destroy(gameObject);
         }
     }
     Sequence shade()
     {
         Sequence s = DOTween.Sequence();
         s.Append(transform.DOScale(size, time).SetEase(Ease.OutBounce));
-        s.Join(this.GetComponent<MeshRenderer>().material.DOColor(Color.clear, time * 3));
+        //s.Join(this.GetComponent<MeshRenderer>().material.DOColor(Color.clear, time * 3));
         return s;
     }
     Sequence Des()

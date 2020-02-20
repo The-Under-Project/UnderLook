@@ -51,7 +51,10 @@ public class Mine : MonoBehaviour
                 start = false;
                 PhotonNetwork.Instantiate("mine2", this.transform.position, this.transform.rotation, 0);
             }
-            /////Destroy(gameObject);
+
+           
+
+            //Destroy(gameObject);
             //DOTween.Play(Des());
         }
     }
