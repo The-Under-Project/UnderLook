@@ -5,6 +5,7 @@ using UnityEngine;
 public class TeamColor : MonoBehaviour
 {
     [SerializeField ] private bool isBlue;
+    //go faire un debug
     [HideInInspector] public string teamColor;
     [HideInInspector] public string enemieColor;
 

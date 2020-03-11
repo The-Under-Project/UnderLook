@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PhotonManager : Photon.MonoBehaviour
 {
-
+    public bool run = true;
     // Use this for initialization
     void Start()
     {
@@ -15,24 +15,25 @@ public class PhotonManager : Photon.MonoBehaviour
 
     void OnJoinedLobby() //join lobby in GetRoomField
     {
-    //SceneManager.LoadScene("AI", LoadSceneMode.Single);//dev mode
-    PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(){ MaxPlayers = 8}, TypedLobby.Default); //dev mode
-    Debug.Log("Created a room");
+        //SceneManager.LoadScene("AI", LoadSceneMode.Single);//dev mode
+
+        PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions() { MaxPlayers = 8 }, TypedLobby.Default); //dev mode
+        Debug.Log("Created a room");
     }
-    
+
     void OnJoinedRoom()
     {
         Debug.Log("Joined");
-        //lobbyCamera.SetActive(false);
-        //je dois instantier et désactiver les scriptes machins, voir la vidéo
-        SceneManager.LoadScene("HeroesMaker", LoadSceneMode.Additive);
 
-        Vector3 spawn = new Vector3(1, 15, 23);
-            //GameObject.FindGameObjectWithTag("Respawn").transform;
-
-        bool a = PhotonNetwork.Instantiate("Cassie", spawn, Quaternion.identity, 0);
-        Debug.Log(a);
-       
+        if (run)
+        {
+            SceneManager.LoadScene("HeroesMaker", LoadSceneMode.Additive);
+            Vector3 spawn = new Vector3(1, 15, 23);
+            if (PhotonNetwork.countOfPlayers % 2 == 0)
+                PhotonNetwork.Instantiate("Cassie", spawn, Quaternion.identity, 0);
+            else
+                PhotonNetwork.Instantiate("CassieR", spawn, Quaternion.identity, 0);
+        }
     }
     void OnLeftRoom()
     {

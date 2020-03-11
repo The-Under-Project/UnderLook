@@ -11,6 +11,8 @@ TagManager:
   - Red
   - Blue
   - Floor
+  - Canvas
+  - mine
   layers:
   - Default
   - TransparentFX

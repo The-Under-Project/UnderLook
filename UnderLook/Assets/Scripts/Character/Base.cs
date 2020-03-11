@@ -6,34 +6,27 @@ namespace Player
 {
     public abstract class Base : MonoBehaviour
     {
-        protected int hp;
-        protected int speed;
-        protected int jump;
-        #region get
-        public int Hp
+
+        [Header("Online")]
+        [Tooltip("If you want a local version, activate it")]public bool DEBUG;
+        //[HideInInspector]
+        public PhotonView photonView;
+
+        [Header("Base")]
+        public int hpmax;
+        public int hp;
+        public int speed;
+        public int jumpspeed;
+
+        public void Awake()
         {
-            get { return hp; }
+            hp = hpmax;
+
+
+            //PhotonView photonView = PhotonView.Get(this);
+
+            //if (DEBUG)
+            //    gameObject.GetComponent<PhotonView>().enabled = false;
         }
-        public int Speed
-        {
-            get { return speed; }
-        }
-        public int Jump
-        {
-            get { return jump; }
-        }
-        #endregion get
-        #region set
-        public int setHp
-        {
-            set { hp = value; }
-        }
-        #endregion set
-        #region DEBUG
-        public virtual void Life()
-        {
-            Debug.Log(("current life {0}", hp));
-        }
-        #endregion DEBUG
     }
 }
