@@ -12,6 +12,11 @@ public class Mine : MonoBehaviour
 
     [Header("Global")]
 
+    public Vector3 offset;
+    private Vector3 firstPos;
+    private Vector3 normal;
+
+
     public string enemieColor;
 
     [HideInInspector]public Rigidbody rb;
@@ -40,16 +45,22 @@ public class Mine : MonoBehaviour
 
     
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.tag == "Floor")
+        //if (other.tag == "Floor")
         {
             rb.isKinematic = true;
 
             if (start && !DEBUG_LOCAL)
             {
                 start = false;
-                PhotonNetwork.Instantiate("mine2", this.transform.position, this.transform.rotation, 0);
+
+                firstPos = collision.contacts[0].point;
+                rb.isKinematic = true;
+                normal = gameObject.transform.localPosition - firstPos;
+
+                transform.rotation = Quaternion.LookRotation(normal);
+                PhotonNetwork.Instantiate("mine2", this.transform.position + offset, this.transform.rotation, 0);
             }
 
            

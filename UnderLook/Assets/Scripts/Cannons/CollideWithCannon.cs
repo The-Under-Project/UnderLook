@@ -12,6 +12,8 @@ public class CollideWithCannon : MonoBehaviour
             gameObject.transform.SetParent(dollycart.transform);
             gameObject.GetComponent<Moving>().isOnTrack = true;
             gameObject.GetComponent<Moving>().DOLaunch();
+            other.gameObject.GetComponentInChildren<AnimationCannon>().test = true;
+
         }
     }
 }

@@ -45,12 +45,12 @@ public class ThrowController : MonoBehaviour
     {
 
 
-        if (Input.GetMouseButtonDown(1) && hasWeapon)
+        if (Input.GetMouseButtonDown(0) && hasWeapon)
         {
             WeaponThrow();
         }
 
-        else if (Input.GetMouseButtonDown(2) && !hasWeapon)
+        else if (Input.GetMouseButtonDown(1) && !hasWeapon)
         {
             //Reset();
             WeaponStartPull();

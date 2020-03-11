@@ -25,7 +25,10 @@ public class MineShadeEffect : MonoBehaviour
             {
                 PhotonNetwork.Destroy(gameObject);
             }
-            //Destroy(gameObject);
+            
+            
+                Destroy(gameObject);
+            
         }
     }
     Sequence shade()

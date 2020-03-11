@@ -65,7 +65,7 @@ public class MineOnline : MonoBehaviour
             colorBub = "RedBubble";
         else
             Debug.Log("Wtf you re wrong");
-        PhotonNetwork.Instantiate(colorBub, this.transform.position, this.transform.rotation, 0);
+        PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
     }
 
     private void FixedUpdate()
@@ -194,6 +194,8 @@ public class MineOnline : MonoBehaviour
             {
                 PhotonNetwork.Destroy(gameObject);
             }
+                Destroy(gameObject);
+            
             //Destroy(gameObject);
         }
     }

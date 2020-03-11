@@ -182,7 +182,7 @@ namespace Player
             {
                 canvasUI.GetComponent<UI>().cap("two");
 
-                GameObject clone = Instantiate(mine, minePos.transform.position, minePos.transform.rotation) as GameObject;
+                GameObject clone = Instantiate(mine, minePos.transform.position, Quaternion.identity) as GameObject; //minePos.transform.rotation
                 clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
                 clone.SendMessage("DEBUG", DEBUG);
 
