@@ -14,6 +14,7 @@ public class Moving : MonoBehaviour
 
     public bool isOnTrack = false;
     public float launch = 0f;
+    public bool doTP = false;
 
     void Awake()
     {
@@ -25,9 +26,16 @@ public class Moving : MonoBehaviour
     void Update()
     {
         MovementPlayer();
+        if (doTP)
+        {
+            transform.position = new Vector3(0, 0, 0);
+            doTP = false;   
+
+        }
     }
     void MovementPlayer()
     {
+
         if (!isOnTrack)
         {
             float moveX = Input.GetAxis("Vertical") * speed * Time.deltaTime;
@@ -77,5 +85,10 @@ public class Moving : MonoBehaviour
     {
         DOTween.Play(Launch());
     }
-
+    public void TP()
+    {
+        doTP = true;
+        Debug.Log("now tp");
+        gameObject.GetComponent<TeamColor>().enabled = true;
+    }
 }

@@ -21,12 +21,6 @@ namespace Player
         public void Awake()
         {
             hp = hpmax;
-
-
-            //PhotonView photonView = PhotonView.Get(this);
-
-            //if (DEBUG)
-            //    gameObject.GetComponent<PhotonView>().enabled = false;
         }
     }
 }

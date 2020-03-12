@@ -1736,6 +1736,9 @@ GameObject:
   - component: {fileID: 7088980552684143382}
   - component: {fileID: 6000458902098605026}
   - component: {fileID: 834234738872935922}
+  - component: {fileID: -2630653146369684818}
+  - component: {fileID: 8068820512620811864}
+  - component: {fileID: -8698130852999541505}
   m_Layer: 0
   m_Name: Cassie
   m_TagString: Player
@@ -1944,6 +1947,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 7088980552684143382}
+  - {fileID: -2630653146369684818}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -2043,6 +2047,7 @@ MonoBehaviour:
   scriptsToIgnore:
   - {fileID: 6076596817154022559}
   - {fileID: 7895351466926867255}
+  - {fileID: 8068820512620811864}
   objectsToIgnore:
   - {fileID: 2742543696156762657}
 --- !u!114 &834234738872935922
@@ -2059,6 +2064,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   workingOffline: 0
   destroy: 0
+--- !u!114 &-2630653146369684818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399805177525057827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42a7055786ce2c42a4850abb98fd55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 5000
+--- !u!114 &8068820512620811864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399805177525057827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94eccc6e18f4746478a6e56206b619e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  death: {fileID: 2100000, guid: c21f6eb6fe610a54abf708c3a8a1e1f2, type: 2}
+  hpdebug: 0
+--- !u!114 &-8698130852999541505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3399805177525057827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954964200cc878b44aa86fe9029a1588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4418969756917639806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,6 +2482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51869d4654d858a4d9c63cc500981cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
   pointShoot: {fileID: 4501142238868411360}
   gunDamage: 100
   fireRate: 0.7

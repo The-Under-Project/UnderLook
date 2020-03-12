@@ -28,11 +28,17 @@ public class PhotonManager : Photon.MonoBehaviour
         if (run)
         {
             SceneManager.LoadScene("HeroesMaker", LoadSceneMode.Additive);
-            Vector3 spawn = new Vector3(1, 15, 23);
+
+            Vector3 spawn = new Vector3(20, 200, 0);
+
+            PhotonNetwork.Instantiate("CassieMain", spawn, Quaternion.identity, 0);
+
+            /*
+            //Vector3 spawn = new Vector3(1, 15, 23);
             if (PhotonNetwork.countOfPlayers % 2 == 0)
                 PhotonNetwork.Instantiate("Cassie", spawn, Quaternion.identity, 0);
             else
-                PhotonNetwork.Instantiate("CassieR", spawn, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate("CassieR", spawn, Quaternion.identity, 0);*/
         }
     }
     void OnLeftRoom()

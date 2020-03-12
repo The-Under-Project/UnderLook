@@ -5,10 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Menu_Lobby.unity
+    guid: 503651340ea89ba468d1377c3db022aa
+  - enabled: 0
+    path: Assets/Scenes/LobbyAfterJoin.unity
+    guid: d48a61bb1b8bb244d8f5a336306af242
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: bdfa707c1a3f9af42b86a2a9e4eefd65
   - enabled: 1
     path: Assets/Scenes/HeroesMaker.unity
     guid: 00a30b88d658d5a43b0b3e1cc47e38f1
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 38182df31dea59b4493f69ec8096c489
   m_configObjects: {}
