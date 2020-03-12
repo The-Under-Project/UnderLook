@@ -17,7 +17,7 @@ public class GetRoomField : MonoBehaviour
 
             //PhotonNetwork.Disconnect();
             SceneManager.LoadScene(scn);
-            PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
+            //PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
         }
     }
 }

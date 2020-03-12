@@ -16,6 +16,8 @@ public class Moving : MonoBehaviour
     public float launch = 0f;
     public bool doTP = false;
 
+    public Vector3 bluePos, redPos;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -26,12 +28,6 @@ public class Moving : MonoBehaviour
     void Update()
     {
         MovementPlayer();
-        if (doTP)
-        {
-            transform.position = new Vector3(0, 0, 0);
-            doTP = false;   
-
-        }
     }
     void MovementPlayer()
     {
@@ -81,14 +77,27 @@ public class Moving : MonoBehaviour
         return s;
     }
 
+    Sequence Move(Vector3 pos)
+    {
+        Sequence s = DOTween.Sequence();
+        s.Append(transform.DOLocalMove(pos, 0.3f));//.SetEase(Ease.InBounce)) ;
+        return s;
+    }
+
+
     public void DOLaunch()
     {
         DOTween.Play(Launch());
     }
-    public void TP()
+    public void TP(bool isBlue)
     {
-        doTP = true;
-        Debug.Log("now tp");
+
+        bluePos = GameObject.FindGameObjectWithTag("bluePos").transform.position;
+        redPos = GameObject.FindGameObjectWithTag("redPos").transform.position;
+        if (isBlue)
+            DOTween.Play(Move(bluePos));
+        else
+            DOTween.Play(Move(redPos));
         gameObject.GetComponent<TeamColor>().enabled = true;
     }
 }

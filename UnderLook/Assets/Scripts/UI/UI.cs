@@ -66,7 +66,7 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
-        
+        NameCharacter = PhotonNetwork.player.NickName;
         percentageCooldown1 = 1;
         percentageCooldown2 = 1;
 

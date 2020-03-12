@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PhotonManager : Photon.MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class PhotonManager : Photon.MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        PhotonNetwork.ConnectUsingSettings("1.0");
+        //PhotonNetwork.ConnectUsingSettings("1.0");
+        PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions() { MaxPlayers = 8 }, TypedLobby.Default); //dev mode
+        Debug.Log("Created a room");
     }
 
     void OnJoinedLobby() //join lobby in GetRoomField
@@ -24,6 +27,7 @@ public class PhotonManager : Photon.MonoBehaviour
     void OnJoinedRoom()
     {
         Debug.Log("Joined");
+        //PhotonNetwork.player.NickName = GameObject.FindGameObjectWithTag("TextField").GetComponent<Text>().text;
 
         if (run)
         {
@@ -31,6 +35,7 @@ public class PhotonManager : Photon.MonoBehaviour
 
             Vector3 spawn = new Vector3(20, 200, 0);
 
+            PhotonNetwork.player.NickName = GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName;
             PhotonNetwork.Instantiate("CassieMain", spawn, Quaternion.identity, 0);
 
             /*

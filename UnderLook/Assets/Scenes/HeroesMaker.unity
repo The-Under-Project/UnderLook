@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakePlayer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1789072190224918789, guid: daceabaaebeef19448fd0f4e11886a55,
+        type: 3}
+      propertyPath: m_TagString
+      value: bluePos
+      objectReference: {fileID: 0}
     - target: {fileID: 1789072190224918904, guid: daceabaaebeef19448fd0f4e11886a55,
         type: 3}
       propertyPath: basic
@@ -4190,6 +4195,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 1789072190224918789, guid: daceabaaebeef19448fd0f4e11886a55,
+        type: 3}
+      propertyPath: m_TagString
+      value: redPos
+      objectReference: {fileID: 0}
     - target: {fileID: 1789072190224918904, guid: daceabaaebeef19448fd0f4e11886a55,
         type: 3}
       propertyPath: basic
@@ -4198,7 +4208,7 @@ PrefabInstance:
     - target: {fileID: 1789072190224918905, guid: daceabaaebeef19448fd0f4e11886a55,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: -11.87
       objectReference: {fileID: 0}
     - target: {fileID: 1789072190224918905, guid: daceabaaebeef19448fd0f4e11886a55,
         type: 3}
@@ -4852,6 +4862,8 @@ MonoBehaviour:
   isOnTrack: 0
   launch: 0
   doTP: 0
+  bluePos: {x: 0, y: 0, z: 0}
+  redPos: {x: 0, y: 0, z: 0}
 --- !u!114 &8451727501361294683
 MonoBehaviour:
   m_ObjectHideFlags: 0

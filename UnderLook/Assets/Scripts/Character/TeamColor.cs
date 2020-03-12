@@ -15,4 +15,10 @@ public class TeamColor : MonoBehaviour
         enemieColor = !isBlue ? "Red" : "Blue";
         gameObject.GetComponent<MaterialsApply>().Launch();
     }
+    public void Up()
+    {
+        teamColor = isBlue ? "Blue" : "Red";
+        enemieColor = !isBlue ? "Red" : "Blue";
+        gameObject.GetComponent<MaterialsApply>().Launch();
+    }
 }

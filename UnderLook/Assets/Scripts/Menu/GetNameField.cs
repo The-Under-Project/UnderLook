@@ -11,7 +11,7 @@ public class GetNameField : MonoBehaviour
             GameObject.FindGameObjectWithTag("TextField").GetComponent<Text>().text.Length >= 3)
         {
 
-            PhotonNetwork.player.NickName = GameObject.FindGameObjectWithTag("TextField").GetComponent<Text>().text;
+            
             GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName = 
                 GameObject.FindGameObjectWithTag("TextField").GetComponent<Text>().text;
         }

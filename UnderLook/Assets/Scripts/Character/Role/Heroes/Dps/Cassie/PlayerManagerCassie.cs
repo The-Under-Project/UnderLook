@@ -46,12 +46,15 @@ namespace Health
             {
                 // We own this player: send the others our data
                 stream.SendNext(this.Health);
+                stream.SendNext(gameObject.GetComponent<TeamColor>().isBlue);
             }
             else
             {
                 // Network player, receive data
                 this.Health = (int)stream.ReceiveNext();
+                gameObject.GetComponent<TeamColor>().isBlue = (bool)stream.ReceiveNext();
             }
+            gameObject.GetComponent<TeamColor>().Up();
         }
     }
 }

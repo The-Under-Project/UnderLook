@@ -11,7 +11,7 @@ public class TPplayerCollision : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<TeamColor>().isBlue = isBlue;
-            other.GetComponent<Moving>().TP();
+            other.GetComponent<Moving>().TP(isBlue);
         }
     }
 }

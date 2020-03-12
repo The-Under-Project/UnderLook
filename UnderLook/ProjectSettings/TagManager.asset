@@ -19,6 +19,8 @@ TagManager:
   - CubeMenu
   - Destroy
   - TPmaker
+  - redPos
+  - bluePos
   layers:
   - Default
   - TransparentFX
