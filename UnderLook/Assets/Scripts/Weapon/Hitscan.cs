@@ -28,10 +28,6 @@ namespace Weapon
         void Start()
         {
             shotDuration = new WaitForSeconds(fireRate/2);
-
-            //gunLine = GetComponent<LineRenderer>();
-            //gunAudio = GetComponent<AudioSource>();
-            //fpscam = GetComponentInChildren<Camera>();
         }
 
         // Update is called once per frame
