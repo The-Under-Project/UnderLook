@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 499678906}
   - component: {fileID: 499678911}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Foe
   m_TagString: Foe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,9 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d9831fb253eb144914b6ec863f8f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.05
   maxX: 10
   maxZ: 10
-  speed: 2
+  left: 1
 --- !u!135 &499678907
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4131ca402970a434a8c156985a8f2c65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -223,7 +224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499678905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 10}
+  m_LocalPosition: {x: -10, y: 1, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -296,7 +297,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c21f6eb6fe610a54abf708c3a8a1e1f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -563,7 +564,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bdc262ef1f61d0f4d9239637d6ba3e0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -618,8 +619,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83fd0792a263bd42807580618a29cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posX: 0
+  posX2: 0
+  diffX: 0
+  posZ: 0
+  posZ2: 0
+  diffZ: 0
+  pos: {x: 0, y: 0, z: 0}
   precision: 1
   speedProj: 120
   ammo: {fileID: 1678059852693225714, guid: efdfaa66d1313c94e82d70a34f4cf144, type: 3}
   timer: 100
+  timer2: 100
+  tpsActu: 0.1
   tempsentredeuxtir: 1
+  shade: {fileID: 5324364463480136714, guid: 54f1c4317ade1a6439b4fd59094cd738, type: 3}
+  actualShade: {fileID: 0}

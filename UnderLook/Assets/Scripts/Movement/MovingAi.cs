@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MovingAi : MonoBehaviour
 {
+    public float speed;
+
+
     [SerializeField] private float maxX;
     [SerializeField] private float maxZ;
-    [SerializeField] private float speed;
+    public bool left = true;
     CharacterController characterController;
-    private Vector3 rotationvision;
-    private int nomrederotation = 0;
+
     private void Start()
     {
         
@@ -20,28 +23,37 @@ public class MovingAi : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.position.x >= maxX && transform.position.z < maxZ )
+        if (left)
         {
-            
-            //characterController.transform.rotation = Quaternion.Euler(rotationvision);
-            characterController.Move(transform.forward * speed * Time.deltaTime);
+            Left();
         }
-        else if (transform.position.z >= maxZ && transform.position.x >-maxX)
+        else
         {
-            
-            //characterController.transform.rotation = Quaternion.Euler(rotationvision);
-            characterController.Move(transform.right * (-speed) * Time.deltaTime);
-
-        }
-        else if (transform.position.x <= -maxX && transform.position.z > -maxZ)
-        { 
-            //characterController.transform.rotation = Quaternion.Euler(rotationvision);
-            characterController.Move(transform.forward * (-speed) * Time.deltaTime);
-        }
-        else if (transform.position.z <= -maxZ && transform.position.x < maxX)
-        {
-            //characterController.transform.rotation = Quaternion.Euler(rotationvision);
-            characterController.Move(transform.right * speed * Time.deltaTime);
+            Right();
         }
     }
+
+    void Left()
+    {
+        Vector3 target = new Vector3(maxX, 1, maxZ); 
+        transform.position = Vector3.MoveTowards(transform.position, target, speed);
+
+        // Check if the position of the cube and sphere are approximately equal.
+        if (Vector3.Distance(transform.position, target) < 0.001f)
+        {
+            left = false;
+        }
+    }
+    void Right()
+    {
+        Vector3 target = new Vector3(-maxX, 1, maxZ);
+        transform.position = Vector3.MoveTowards(transform.position, target, speed);
+
+        // Check if the position of the cube and sphere are approximately equal.
+        if (Vector3.Distance(transform.position, target) < 0.001f)
+        {
+            left = true;
+        }
+    }
+
 }

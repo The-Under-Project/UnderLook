@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace UnityStandardAssets.ImageEffects
-{
+{/*
     [CustomEditor(typeof (Antialiasing))]
     public class AntialiasingEditor : Editor
     {
@@ -71,5 +71,5 @@ namespace UnityStandardAssets.ImageEffects
 
             serObj.ApplyModifiedProperties();
         }
-    }
+    }*/
 }
