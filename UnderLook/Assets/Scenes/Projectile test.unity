@@ -301,6 +301,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7990919736149711771, guid: 2e29c9a943a147f4eb0150b026a5f035,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7990919736149711771, guid: 2e29c9a943a147f4eb0150b026a5f035,
+        type: 3}
+      propertyPath: instantiationId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8171696699039599957, guid: 2e29c9a943a147f4eb0150b026a5f035,
         type: 3}
       propertyPath: m_Name
