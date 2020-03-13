@@ -114,21 +114,26 @@ public class ProjectilAim : MonoBehaviour
 
         //donc j'ai sa vitesse et le temps.
 
-        for (int i = 0; i < 10; i++)
-        {
+        float lastD = distanceIA;
 
-            tpsShoot = shoot((Vector3.Distance(transform.position, prediction) + distanceIA) / 2);
+        for (int i = 0; i < 10; i++)
+        
+        {
+            float actualD = Vector3.Distance(transform.position, prediction);
+            tpsShoot = shoot((actualD + lastD) / 2);
 
             vitZ = diffZ / tpsShoot;
             vitX = diffX / tpsShoot;
 
             prediction = vitesse(vitX, 0, vitZ, posX2, posY, posZ2);
+            lastD = actualD;
         }
 
         actualShade.transform.position = prediction;
 
         transform.LookAt(actualShade.transform.position);
         LaunchProjectile();
+        Debug.Log("RESET");
         //maintenant seconde équation j'ai la vitesse et la position mais pas temps
 
     }
