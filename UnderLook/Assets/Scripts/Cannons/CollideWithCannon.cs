@@ -10,8 +10,10 @@ public class CollideWithCannon : MonoBehaviour
         if (other.tag == "Cannon")
         {
             gameObject.transform.SetParent(dollycart.transform);
-            gameObject.GetComponent<Movement>().isOnTrack = true;
-            gameObject.GetComponent<Movement>().DOLaunch();
+            gameObject.GetComponent<Moving>().isOnTrack = true;
+            gameObject.GetComponent<Moving>().DOLaunch();
+            other.gameObject.GetComponentInChildren<AnimationCannon>().test = true;
+
         }
     }
 }

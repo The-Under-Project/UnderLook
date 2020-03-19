@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     public bool isOnTrack = false;
     public float launch = 0f;
 
+
+
     private Vector3 moveDirection = Vector3.zero;
 
     void Start()
@@ -65,6 +67,7 @@ public class Movement : MonoBehaviour
         gameObject.GetComponent<CollideWithCannon>().dollycart.GetComponent<Cinemachine.CinemachineDollyCart>().m_Position = 0;
         Sequence s = DOTween.Sequence();
         s.Append(transform.DOLocalRotate(new Vector3(0, 0, 0), .5f)); //rotate to 0 0 0
+        //s.Complete()
         isOnTrack = false;
 
         return s;

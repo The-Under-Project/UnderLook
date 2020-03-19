@@ -21,32 +21,6 @@ namespace Player
         public float distance = 4.5f;
         public GameObject[] players;
 
-        #region get
-        public int Hp
-        {
-            get { return hp; }
-        }
-        public int Speed
-        {
-            get { return speed; }
-        }
-        public int Jump
-        {
-            get { return jump; }
-        }
-        #endregion get
-        #region set
-        public int setHp
-        {
-            set { hp = value; }
-        }
-        #endregion set
-        #region DEBUG
-        public virtual void Life()
-        {
-            Debug.Log(("current life {0}", hp));
-        }
-        #endregion DEBUG
 
         #region Main
 

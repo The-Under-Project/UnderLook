@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         ClampX = 0.0f;
+
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -21,11 +22,13 @@ public class CameraController : MonoBehaviour
         CameraMove();
     }
 
+
     // FixedUpdate is called once per frame after every other Update
     void CameraMove()
     {
         float mouseX =Input.GetAxis( InputHorizontalAxis )* SpeedRotate;
         float mouseY = Input.GetAxis(InputVerticalAxis)* SpeedRotate;
+
         ClampX += mouseY;
         if(ClampX>90.0f)
         {
