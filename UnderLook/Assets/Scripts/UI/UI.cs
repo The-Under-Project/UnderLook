@@ -21,7 +21,7 @@ public class UI : MonoBehaviour
 
     [Header("Capacity 1")] 
     public float percentageCooldown1;
-    public float time1;
+    public float time1 = 2;
     public bool CoolDown1;
     private bool cdRefresh1;
     [SerializeField] private Image capacityBG1;
@@ -48,7 +48,6 @@ public class UI : MonoBehaviour
 
     [Header("Ultimate")]
     public Image ultimateBar;
-
     [Range(0.0f, 1.0f)]
     [SerializeField] private float CurrentUltimate;
 
@@ -63,6 +62,15 @@ public class UI : MonoBehaviour
     [SerializeField] private float maxShield;
     [Range(0.0f, 200f)]
     public float CurrentShield;
+
+    [Header("Market")]
+    public bool showmarket = false;
+    public Card itembought;
+    public GameObject market;
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
+    public bool alreadyboughtthing = false;
 
     private void Start()
     {
@@ -102,12 +110,12 @@ public class UI : MonoBehaviour
         {
             ShieldBar.transform.parent.gameObject.SetActive(false);
         }
-       
+        market.SetActive(false);
     }
     void FixedUpdate()
     {
         #region hideousCapacityRefresh
-        
+
         if (cdRefresh1)
             capacityBG1.fillAmount = percentageCooldown1;
         if (cdRefresh1 && percentageCooldown1 == 1)
@@ -169,7 +177,44 @@ public class UI : MonoBehaviour
         ultimateBar.fillAmount = CurrentUltimate;
 
         #endregion ultimate
+
+        #region market
+        if (alreadyboughtthing || !showmarket)
+        {
+            market.SetActive(false);
+        }
+        else
+        {
+            market.SetActive(true);
+            
+                if (Input.GetKeyDown(KeyCode.F2))
+                {
+                    itembought = item1.GetComponent<CardDisplay>().card;
+                    alreadyboughtthing = true;
+                
+
+                }
+                if (Input.GetKeyDown(KeyCode.F3))
+                {
+                    itembought = item2.GetComponent<CardDisplay>().card;
+                    alreadyboughtthing = true;
+
+
+            }
+                if (Input.GetKeyDown(KeyCode.F4))
+                {
+                    itembought = item3.GetComponent<CardDisplay>().card;
+                    alreadyboughtthing = true;
+
+            }
+            
+        }
+        #endregion market
     }
+
+
+
+
 
     Sequence CD1()
     {
@@ -225,4 +270,6 @@ public class UI : MonoBehaviour
                 break;
         }
     }
+    
+
 }

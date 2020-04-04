@@ -37,6 +37,8 @@ namespace Player
         public Vector3 force;
         public string enemyColor;
 
+        
+
 
 
 
@@ -98,6 +100,28 @@ namespace Player
 
                 GetComponent<Moving>().gravityApplied = true;
             }
+
+
+            if (Input.GetKeyDown(KeyCode.F1) && !canvasUI.GetComponent<UI>().alreadyboughtthing)
+            {
+                if (canvasUI.GetComponent<UI>().alreadyboughtthing)
+                {
+                    ApllyCard(canvasUI.GetComponent<UI>().itembought);
+                    canvasUI.GetComponent<UI>().showmarket = false;
+                }
+                else
+                {
+
+                    if (canvasUI.GetComponent<UI>().showmarket)
+                        canvasUI.GetComponent<UI>().showmarket = false;
+                    else
+                    {
+                        canvasUI.GetComponent<UI>().showmarket = true;
+                    }
+                }
+                
+                
+            }
         }
 
         //-----------------------------
@@ -124,6 +148,7 @@ namespace Player
             {
                 Ulti();
             }
+            Debug.Log(GetComponent<Moving>().speed);
 
         }
 
@@ -271,6 +296,24 @@ namespace Player
             s.Append(DOTween.To(() => Teleport, x => Teleport = x, 100f, TimeTP));
 
             return s;
+        }
+        public void ApllyCard(Card upgrade)
+        {
+
+            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
+           // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
+
+            canvasUI.GetComponent<UI>().time1 *= (1 - upgrade.coolDownCap1);
+            canvasUI.GetComponent<UI>().time2 *= (1 - upgrade.coolDownCap2 / 100);
+            canvasUI.GetComponent<UI>().time3 *= (1 - upgrade.coolDownCap3 / 100);
+
+
+
+
+            GetComponent<Moving>().jumpspeed *= (float)((float)1 + (float)(upgrade.jumpspeed / 100));
+            GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
+            GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
+            
         }
 
 
