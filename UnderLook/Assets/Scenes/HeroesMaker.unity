@@ -2785,6 +2785,7 @@ GameObject:
   - component: {fileID: 4930991576764964271}
   - component: {fileID: 8451727501361294683}
   - component: {fileID: 3286700725596273483}
+  - component: {fileID: 658071167538227099}
   m_Layer: 0
   m_Name: Cassie
   m_TagString: Player
@@ -2792,6 +2793,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &658071167538227099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658071167538227098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66728d0ccef0ad408df95f007153023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  itembought: 0
 --- !u!33 &1296020187775383766
 MeshFilter:
   m_ObjectHideFlags: 0

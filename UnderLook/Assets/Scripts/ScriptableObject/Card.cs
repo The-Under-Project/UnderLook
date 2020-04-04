@@ -21,18 +21,22 @@ public class Card : ScriptableObject
     public float coolDownCap1;
     public float damageCap1;
     public float durationCap1;
+    public float duracionCap1;
 
     public float coolDownCap2;
     public float damageCap2;
     public float durationCap2;
+    public float duracionCap2;
 
     public float coolDownCap3;
     public float damageCap3;
     public float durationCap3;
+    public float duracionCap3;
 
 
     public float ultimateCD;
     public float ultimateDamge;
     public float ultimateDuration;
+    public float duracionUltimate;
 
 }

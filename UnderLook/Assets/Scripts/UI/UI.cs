@@ -65,12 +65,10 @@ public class UI : MonoBehaviour
 
     [Header("Market")]
     public bool showmarket = false;
-    public Card itembought;
     public GameObject market;
     public GameObject item1;
     public GameObject item2;
     public GameObject item3;
-    public bool alreadyboughtthing = false;
 
     private void Start()
     {
@@ -179,38 +177,37 @@ public class UI : MonoBehaviour
         #endregion ultimate
 
         #region market
-        if (alreadyboughtthing || !showmarket)
+        if (!showmarket || GetComponentInParent<Market>().itembought)
         {
             market.SetActive(false);
         }
         else
         {
             market.SetActive(true);
-            
-                if (Input.GetKeyDown(KeyCode.F2))
-                {
-                    itembought = item1.GetComponent<CardDisplay>().card;
-                    alreadyboughtthing = true;
-                
-
-                }
-                if (Input.GetKeyDown(KeyCode.F3))
-                {
-                    itembought = item2.GetComponent<CardDisplay>().card;
-                    alreadyboughtthing = true;
+            if (Input.GetKey(KeyCode.F2))
+            {
+                GetComponentInParent<Market>().item = item1.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
 
 
             }
-                if (Input.GetKeyDown(KeyCode.F4))
-                {
-                    itembought = item3.GetComponent<CardDisplay>().card;
-                    alreadyboughtthing = true;
+            if (Input.GetKey(KeyCode.F3))
+            {
+                GetComponentInParent<Market>().item = item2.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+
 
             }
-            
+            if (Input.GetKey(KeyCode.F4))
+            {
+                GetComponentInParent<Market>().item = item3.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+            }
         }
         #endregion market
     }
+
+
 
 
 
