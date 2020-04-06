@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeamColor : MonoBehaviour
 {
-    [SerializeField ] private bool isBlue;
+    [SerializeField ] public bool isBlue;
     //go faire un debug
     [HideInInspector] public string teamColor;
     [HideInInspector] public string enemieColor;
@@ -13,5 +13,12 @@ public class TeamColor : MonoBehaviour
     {
         teamColor = isBlue ? "Blue" : "Red";
         enemieColor = !isBlue ? "Red" : "Blue";
+        gameObject.GetComponent<MaterialsApply>().Launch();
+    }
+    public void Up()
+    {
+        teamColor = isBlue ? "Blue" : "Red";
+        enemieColor = !isBlue ? "Red" : "Blue";
+        gameObject.GetComponent<MaterialsApply>().Launch();
     }
 }

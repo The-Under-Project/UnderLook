@@ -45,4 +45,6 @@ MonoBehaviour:
   - GetMovements
   - GetString
   - GetUpdate
+  - Dmg
+  - Change
   DisableAutoOpenWizard: 1

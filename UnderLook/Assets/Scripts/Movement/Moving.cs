@@ -14,6 +14,9 @@ public class Moving : MonoBehaviour
 
     public bool isOnTrack = false;
     public float launch = 0f;
+    public bool doTP = false;
+
+    public Vector3 bluePos, redPos;
 
     void Awake()
     {
@@ -28,6 +31,7 @@ public class Moving : MonoBehaviour
     }
     void MovementPlayer()
     {
+
         if (!isOnTrack)
         {
             float moveX = Input.GetAxis("Vertical") * speed * Time.deltaTime;
@@ -73,9 +77,27 @@ public class Moving : MonoBehaviour
         return s;
     }
 
+    Sequence Move(Vector3 pos)
+    {
+        Sequence s = DOTween.Sequence();
+        s.Append(transform.DOLocalMove(pos, 0.3f));//.SetEase(Ease.InBounce)) ;
+        return s;
+    }
+
+
     public void DOLaunch()
     {
         DOTween.Play(Launch());
     }
+    public void TP(bool isBlue)
+    {
 
+        bluePos = GameObject.FindGameObjectWithTag("bluePos").transform.position;
+        redPos = GameObject.FindGameObjectWithTag("redPos").transform.position;
+        if (isBlue)
+            DOTween.Play(Move(bluePos));
+        else
+            DOTween.Play(Move(redPos));
+        gameObject.GetComponent<TeamColor>().enabled = true;
+    }
 }

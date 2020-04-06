@@ -13,6 +13,14 @@ TagManager:
   - Floor
   - Canvas
   - mine
+  - PlayerPref
+  - TextField
+  - RoomField
+  - CubeMenu
+  - Destroy
+  - TPmaker
+  - redPos
+  - bluePos
   layers:
   - Default
   - TransparentFX

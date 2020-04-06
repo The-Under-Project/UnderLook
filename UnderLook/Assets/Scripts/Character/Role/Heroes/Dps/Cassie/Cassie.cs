@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using DG.Tweening;
 namespace Player
@@ -42,6 +43,8 @@ namespace Player
 
         private void Start()
         {
+            
+
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
 
