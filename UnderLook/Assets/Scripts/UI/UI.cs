@@ -64,6 +64,13 @@ public class UI : MonoBehaviour
     [Range(0.0f, 200f)]
     public float CurrentShield;
 
+    [Header("Market")]
+    public bool showmarket = false;
+    public GameObject market;
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
+
     private void Start()
     {
         NameCharacter = PhotonNetwork.player.NickName;
@@ -102,7 +109,8 @@ public class UI : MonoBehaviour
         {
             ShieldBar.transform.parent.gameObject.SetActive(false);
         }
-       
+        market.SetActive(false);
+
     }
     void FixedUpdate()
     {
@@ -169,6 +177,36 @@ public class UI : MonoBehaviour
         ultimateBar.fillAmount = CurrentUltimate;
 
         #endregion ultimate
+
+        #region market
+        if (!showmarket || GetComponentInParent<Market>().itembought)
+        {
+            market.SetActive(false);
+        }
+        else
+        {
+            market.SetActive(true);
+            if (Input.GetKey(KeyCode.F2))
+            {
+                GetComponentInParent<Market>().item = item1.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+
+
+            }
+            if (Input.GetKey(KeyCode.F3))
+            {
+                GetComponentInParent<Market>().item = item2.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+
+
+            }
+            if (Input.GetKey(KeyCode.F4))
+            {
+                GetComponentInParent<Market>().item = item3.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+            }
+        }
+        #endregion market
     }
 
     Sequence CD1()
