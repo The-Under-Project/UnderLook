@@ -11,6 +11,7 @@ namespace Basics
         [SerializeField] private bool overwrite;
         public void Update()
         {
+            PlayerName = PhotonNetwork.player.NickName;
             if (trigger)
             {
                 trigger = false;
@@ -26,12 +27,15 @@ namespace Basics
         public void Launch()
         {
             string path = System.IO.Directory.GetCurrentDirectory();
+            Debug.Log(path);
             string fileName = @"TXTstats\stats_"; //..\..\..\..\
 
+         
 
             fileName += PlayerName + ".txt";
             fileName = fileName.Replace(" ", "");
             fileName = fileName.ToLower();
+            Debug.Log(fileName);
 
             try
             {

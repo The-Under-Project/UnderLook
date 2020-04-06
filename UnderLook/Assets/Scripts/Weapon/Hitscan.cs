@@ -7,7 +7,7 @@ namespace Weapon
 {
     public abstract class Hitscan : MonoBehaviour
     {
-
+        public PhotonView photonView;
         public Transform pointShoot;
 
         public int gunDamage;//Damage of weapon , for the moment it's fixed but we need to redefine it
@@ -27,6 +27,7 @@ namespace Weapon
         // Start is called before the first frame update
         void Start()
         {
+            photonView =gameObject.GetComponentInParent<PhotonView>();
             shotDuration = new WaitForSeconds(fireRate/2);
         }
 
@@ -47,7 +48,14 @@ namespace Weapon
                 if (Physics.Raycast(ray, out hit, weaponRange))
                 {
                     gunLine.SetPosition(1, hit.point);
-                    //Here We need the system of box life -> so I can't continue here
+                    //pas générique
+
+                    if (hit.transform.tag == "Player")
+                    {
+                        hit.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, hit.transform.GetComponent<PhotonView>().viewID);
+                        //photonView.RPC("Dmg", PhotonTargets.All, hit.transform.GetComponent<PhotonView>().viewID);
+                    }
+
                 }
                 if (Physics.Raycast(ray, out hit,  Mathf.Infinity))
                 {

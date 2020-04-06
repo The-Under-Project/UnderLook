@@ -13,7 +13,18 @@ TagManager:
   - Floor
   - Canvas
   - mine
+<<<<<<< HEAD
   - Foe
+=======
+  - PlayerPref
+  - TextField
+  - RoomField
+  - CubeMenu
+  - Destroy
+  - TPmaker
+  - redPos
+  - bluePos
+>>>>>>> Brice
   layers:
   - Default
   - TransparentFX

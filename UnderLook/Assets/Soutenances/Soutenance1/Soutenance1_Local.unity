@@ -348,7 +348,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 4cb9e5e1f34359b48aebc3cab2649b16,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4cb9e5e1f34359b48aebc3cab2649b16,
         type: 3}
@@ -679,7 +679,7 @@ PrefabInstance:
     - target: {fileID: 1789072190224918905, guid: daceabaaebeef19448fd0f4e11886a55,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1789072190224918905, guid: daceabaaebeef19448fd0f4e11886a55,
         type: 3}
@@ -927,7 +927,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1773acb3a61a18f479db6e02e70971e6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1773acb3a61a18f479db6e02e70971e6,
         type: 3}
@@ -1016,7 +1016,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1773acb3a61a18f479db6e02e70971e6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1773acb3a61a18f479db6e02e70971e6,
         type: 3}
@@ -1191,7 +1191,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1773acb3a61a18f479db6e02e70971e6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1773acb3a61a18f479db6e02e70971e6,
         type: 3}
@@ -1534,7 +1534,7 @@ PrefabInstance:
     - target: {fileID: 5865526532823928390, guid: 78f124bcb039dce47bf8c2dbeb1a9788,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78f124bcb039dce47bf8c2dbeb1a9788, type: 3}
@@ -1747,7 +1747,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: fcc7efcc4dbf31e479c86ec665cab122,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: fcc7efcc4dbf31e479c86ec665cab122,
         type: 3}
@@ -1900,7 +1900,7 @@ PrefabInstance:
     - target: {fileID: 7804664935042907502, guid: 24f191c8d21fe6846a803d6d60fcd00d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7804664935042907502, guid: 24f191c8d21fe6846a803d6d60fcd00d,
         type: 3}
@@ -1924,6 +1924,36 @@ PrefabInstance:
       objectReference: {fileID: 2118635870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24f191c8d21fe6846a803d6d60fcd00d, type: 3}
+--- !u!1 &1736965293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1604443711}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1736965294}
+  m_Layer: 0
+  m_Name: PayloadWIP (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1736965294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1604443711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736965293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882221686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7804664935042907488, guid: 24f191c8d21fe6846a803d6d60fcd00d,
@@ -3832,7 +3862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &3399805178094356508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4119,6 +4149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51869d4654d858a4d9c63cc500981cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
   pointShoot: {fileID: 4501142238368178904}
   gunDamage: 100
   fireRate: 0.7
