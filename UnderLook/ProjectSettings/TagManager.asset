@@ -4,27 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
-  - Cannon
-  - Point
-  - Payload
-  - Red
-  - Blue
-  - Floor
   - Canvas
   - mine
-<<<<<<< HEAD
-  - Foe
-=======
-  - PlayerPref
-  - TextField
-  - RoomField
   - CubeMenu
-  - Destroy
-  - TPmaker
-  - redPos
-  - bluePos
->>>>>>> Brice
   layers:
   - Default
   - TransparentFX
@@ -34,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - AVOIDWHENBAKING
-  - PostProcessing
+  - 
+  - 
   - 
   - 
   - 
