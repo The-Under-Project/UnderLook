@@ -22,6 +22,7 @@ TagManager:
   - redPos
   - bluePos
   - GroupBlue
+  - GroupRed
   layers:
   - Default
   - TransparentFX

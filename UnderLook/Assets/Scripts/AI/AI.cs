@@ -72,7 +72,11 @@ namespace Player
         }
         void GroupUp()
         {
-            GameObject point = GameObject.FindGameObjectWithTag("GroupBlue");
+            GameObject point = null;
+            if (teamColor == "Blue")
+                point = GameObject.FindGameObjectWithTag("GroupBlue");
+            else
+                point = GameObject.FindGameObjectWithTag("GroupRed");
             agent.SetDestination(point.transform.position);
         }
 
