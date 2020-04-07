@@ -11,7 +11,9 @@ namespace Player
         public GameObject player;
 
         public float Timer;
+        public float groupTimer;
         private float actualTime;
+        public float actualGroupTimer;
         public float RandomTime;
 
         public bool BlueTeam = false;
@@ -20,6 +22,8 @@ namespace Player
 
         public float distance = 4.5f;
         public GameObject[] players;
+
+        public bool isGrouping;
 
 
         #region Main
@@ -46,7 +50,7 @@ namespace Player
 
             
         }
-        void Move()
+        void MoveToPayload()
         {
             GameObject point = GameObject.FindGameObjectWithTag("Point");
             GameObject payload = GameObject.FindGameObjectWithTag("Payload");
@@ -66,6 +70,11 @@ namespace Player
                 
             }
         }
+        void GroupUp()
+        {
+            GameObject point = GameObject.FindGameObjectWithTag("GroupBlue");
+            agent.SetDestination(point.transform.position);
+        }
 
         void Look() //gte the closest enemie and look at him
         {
@@ -75,14 +84,17 @@ namespace Player
             {
                 foreach (var enemie in players)
                 {
-                    if (enemie.GetComponent<AI>().enemyColor == teamColor) //pas ouf pcq j'accède à IA au lieu de player, il faut faire de l'héritage
+                    if (enemie.GetComponent<AI>() != null)
                     {
-                        float localD = Vector3.Distance(enemie.transform.position, this.transform.position);
-                        if (localD < d)
+                        if (enemie.GetComponent<AI>().enemyColor == teamColor) //pas ouf pcq j'accède à IA au lieu de player, il faut faire de l'héritage
                         {
-                            d = localD;
-                            closest = enemie;
+                            float localD = Vector3.Distance(enemie.transform.position, this.transform.position);
+                            if (localD < d)
+                            {
+                                d = localD;
+                                closest = enemie;
 
+                            }
                         }
                     }
                 }
@@ -106,12 +118,28 @@ namespace Player
         {
             if(actualTime <= 0)
             {
-                actualTime = Timer + Random.Range(-RandomTime, RandomTime); ;
-                Move();
+                actualTime = Timer + Random.Range(-RandomTime, RandomTime);
+                if(isGrouping)
+                    GroupUp();
+                else
+                    MoveToPayload();
             }
             else
             {
                 actualTime -= Time.deltaTime;
+            }
+
+            if (actualGroupTimer <= 0)
+            {
+                actualGroupTimer = groupTimer;
+                GameObject payload = GameObject.FindGameObjectWithTag("Payload");
+                if ((payload.GetComponent<PayloadCountPlayer>().returnCappingBlue == 0 && teamColor == "Blue") ||
+                    (payload.GetComponent<PayloadCountPlayer>().returnCappingRed == 0 && teamColor == "Red")) 
+                    isGrouping = true;
+            }
+            else if (!isGrouping)
+            {
+                actualGroupTimer -= Time.deltaTime;
             }
         }
         #endregion Main

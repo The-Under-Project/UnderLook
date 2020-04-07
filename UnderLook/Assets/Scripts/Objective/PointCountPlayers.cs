@@ -45,15 +45,34 @@ public class PointCountPlayers : MonoBehaviour
         {
             if (Vector3.Distance(player.transform.position, this.transform.position) < size)
             {
-                if (player.GetComponent<Player.AI>().teamColor == "Blue")
+                if (Vector3.Distance(player.transform.position, this.transform.position) < size)
                 {
-                    capturingBlue[cappingBlue] = player;
-                    cappingBlue += 1;
-                }
-                else
-                {
-                    capturingBlue[cappingRed] = player;
-                    cappingRed += 1;
+                    if (player.GetComponent<Player.AI>() != null)
+                    {
+                        if (player.GetComponent<Player.AI>().teamColor == "Blue")
+                        {
+                            capturingBlue[cappingBlue] = player;
+                            cappingBlue += 1;
+                        }
+                        else
+                        {
+                            capturingRed[cappingRed] = player;
+                            cappingRed += 1;
+                        }
+                    }
+                    else
+                    {
+                        if (player.GetComponent<TeamColor>().teamColor == "Blue")
+                        {
+                            capturingBlue[cappingBlue] = player;
+                            cappingBlue += 1;
+                        }
+                        else
+                        {
+                            capturingRed[cappingRed] = player;
+                            cappingRed += 1;
+                        }
+                    }
                 }
             }
         }

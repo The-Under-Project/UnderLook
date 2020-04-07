@@ -18,13 +18,14 @@ public class Moving : MonoBehaviour
 
     public Vector3 bluePos, redPos;
 
-    public GameObject posEND;
+    public GameObject posEND_RED;
+    public GameObject posEND_BLUE;
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
 
-
+        //TODO get the position of the posEND_X when spawn
     }
 
     void Update()
@@ -62,7 +63,11 @@ public class Moving : MonoBehaviour
     Sequence Launch()
     {
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOMove(posEND.transform.position, 1.5f)); //move to end of the cannon
+        if(!GetComponent<TeamColor>().isBlue)
+            s.Append(transform.DOMove(posEND_RED.transform.position, 1.5f)); //move to end of the cannon
+        else
+            s.Append(transform.DOMove(posEND_BLUE.transform.position, 1.5f)); //move to end of the cannon
+
         s.Append(DOTween.To(() => launch, x => launch = x, 0.5f, 3f)); //change the speed
         s.OnComplete(() => { DOTween.Play(Land()); });
         return s;

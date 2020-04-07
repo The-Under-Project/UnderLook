@@ -21,6 +21,7 @@ TagManager:
   - TPmaker
   - redPos
   - bluePos
+  - GroupBlue
   layers:
   - Default
   - TransparentFX
