@@ -11,7 +11,15 @@ public class PhotonManager : Photon.MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        //PhotonNetwork.ConnectUsingSettings("1.0");
+
+
+        // THE REASON WHY IT S NOT WORKING ONLINE
+
+        PhotonNetwork.ConnectUsingSettings("1.0"); //remove if not debuging
+
+        // THE REASON WHY IT S NOT WORKING ONLINE
+
+
         PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions() { MaxPlayers = 8 }, TypedLobby.Default); //dev mode
         Debug.Log("Created a room");
     }

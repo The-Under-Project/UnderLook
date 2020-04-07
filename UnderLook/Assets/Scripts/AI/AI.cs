@@ -71,21 +71,27 @@ namespace Player
         {
             float d = float.MaxValue;
             GameObject closest = null;
-
-            foreach (var enemie in players)
+            try
             {
-                if (enemie.GetComponent<AI>().enemyColor == teamColor) //pas ouf pcq j'accède à IA au lieu de player, il faut faire de l'héritage
+                foreach (var enemie in players)
                 {
-                    float localD = Vector3.Distance(enemie.transform.position, this.transform.position);
-                    if (localD < d)
+                    if (enemie.GetComponent<AI>().enemyColor == teamColor) //pas ouf pcq j'accède à IA au lieu de player, il faut faire de l'héritage
                     {
-                        d = localD;
-                        closest = enemie;
+                        float localD = Vector3.Distance(enemie.transform.position, this.transform.position);
+                        if (localD < d)
+                        {
+                            d = localD;
+                            closest = enemie;
 
+                        }
                     }
                 }
-            }
             transform.LookAt(closest.transform);
+            }
+            catch // pas ouf ^
+            {
+
+            }
         }
 
         private void Update()

@@ -18,6 +18,8 @@ public class Moving : MonoBehaviour
 
     public Vector3 bluePos, redPos;
 
+    public GameObject posEND;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -60,7 +62,7 @@ public class Moving : MonoBehaviour
     Sequence Launch()
     {
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOLocalMove(new Vector3(0, 0, 0), 1.5f)); //move to end of the cannon
+        s.Append(transform.DOMove(posEND.transform.position, 1.5f)); //move to end of the cannon
         s.Append(DOTween.To(() => launch, x => launch = x, 0.5f, 3f)); //change the speed
         s.OnComplete(() => { DOTween.Play(Land()); });
         return s;
