@@ -24,13 +24,16 @@ public class Moving : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-
-        //TODO get the position of the posEND_X when spawn
     }
 
     void Update()
     {
         MovementPlayer();
+        if(posEND_RED == null || posEND_BLUE == null)
+        {
+            posEND_BLUE = GameObject.FindGameObjectWithTag("CannonBlueEnd");
+            posEND_RED = GameObject.FindGameObjectWithTag("CannonRedEnd");
+        }
     }
     void MovementPlayer()
     {

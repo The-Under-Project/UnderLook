@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PhotonManager : Photon.MonoBehaviour
 {
     public bool run = true;
+    public string mapToLoad;
     // Use this for initialization
     void Start()
     {
@@ -39,7 +40,7 @@ public class PhotonManager : Photon.MonoBehaviour
 
         if (run)
         {
-            SceneManager.LoadScene("HeroesMaker", LoadSceneMode.Additive);
+            SceneManager.LoadScene(mapToLoad, LoadSceneMode.Additive);
 
             Vector3 spawn = new Vector3(20, 200, 0);
 
