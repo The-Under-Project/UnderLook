@@ -25,11 +25,11 @@ public class PayloadCountPlayer : MonoBehaviour
     {
 
         photonView = GetComponent<PhotonView>();
-        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void Update()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         CapInfo();
     }
 

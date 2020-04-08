@@ -21,11 +21,11 @@ public class groupUp : MonoBehaviour
     {
         teamColor = isBlue ? "Blue" : "Red";
         photonView = GetComponent<PhotonView>();
-        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void Update()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         CapInfo();
     }
 
