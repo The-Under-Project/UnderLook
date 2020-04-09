@@ -8,7 +8,6 @@ namespace Player
     public class AI : Base //IA doit hériter à la fin, c'est celle qui n'est pas abstract 
     {
         private NavMeshAgent agent;
-        public GameObject player;
 
         public float Timer;
         public float groupTimer;
@@ -30,6 +29,7 @@ namespace Player
 
         void Start()
         {
+            photonView = GetComponent<PhotonView>();
             teamColor = BlueTeam ? "Blue" : "Red";
             enemyColor = BlueTeam ? "Red" : "Blue";
             int i = 0;
@@ -115,6 +115,10 @@ namespace Player
             DoTime();
             Look();
             //transform.LookAt(player.transform);
+            if (this.hp < 0)
+            {
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
 
 

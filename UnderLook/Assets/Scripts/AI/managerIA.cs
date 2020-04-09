@@ -36,13 +36,22 @@ public class managerIA : MonoBehaviour
                 Vector3 rSpawn = GameObject.FindGameObjectWithTag("redPos").transform.position;
                 for (int i = 0; i < 4-resultBlue; i++)
                 {
-                    Instantiate(BlueIA, bSpawn, Quaternion.identity);
+                    PhotonNetwork.Instantiate("blueIA", bSpawn, Quaternion.identity, 0);
                 }
                 for (int i = 0; i < 4 - resultRed; i++)
                 {
-                    Instantiate(RedIA, rSpawn, Quaternion.identity);
+                    PhotonNetwork.Instantiate("redIA", rSpawn, Quaternion.identity, 0);
+                    //Instantiate(RedIA, rSpawn, Quaternion.identity);
                 }
                 Destroy(gameObject);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            if (PhotonNetwork.isMasterClient)
+            {
+                Vector3 rSpawn = GameObject.FindGameObjectWithTag("redPos").transform.position;
+                PhotonNetwork.Instantiate("redIA", rSpawn, Quaternion.identity, 0);
             }
         }
     }
