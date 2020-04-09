@@ -2702,6 +2702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dollycart: {fileID: 0}
   card: {fileID: 5232968205475998528, guid: f0a391d810a40cd45ae0b1aa7079722b, type: 3}
+  actualTime: 0
+  canCannon: 0
 --- !u!1 &8704717518506111316
 GameObject:
   m_ObjectHideFlags: 0

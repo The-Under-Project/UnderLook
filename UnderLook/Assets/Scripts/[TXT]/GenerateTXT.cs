@@ -28,9 +28,14 @@ namespace Basics
         {
             string path = System.IO.Directory.GetCurrentDirectory();
             Debug.Log(path);
+
+            if(!Directory.Exists("TXTstats"))
+                Directory.CreateDirectory("TXTstats");
+            else
+                Debug.Log("Folder Already Exists");
+
             string fileName = @"TXTstats\stats_"; //..\..\..\..\
 
-         
 
             fileName += PlayerName + ".txt";
             fileName = fileName.Replace(" ", "");
