@@ -71,6 +71,12 @@ public class UI : MonoBehaviour
     public GameObject item2;
     public GameObject item3;
 
+    [Header("Menu")]
+    public GameObject menu;
+    public bool showmenu = false;
+    public GameObject stat;
+    public bool showstat = false;
+
     private void Start()
     {
         NameCharacter = PhotonNetwork.player.NickName;
@@ -110,6 +116,8 @@ public class UI : MonoBehaviour
             ShieldBar.transform.parent.gameObject.SetActive(false);
         }
         market.SetActive(false);
+        menu.SetActive(false);
+        stat.SetActive(false);
 
     }
     void FixedUpdate()
@@ -207,6 +215,16 @@ public class UI : MonoBehaviour
             }
         }
         #endregion market
+
+        #region menu
+        if (showmenu)
+            menu.SetActive(true);
+        else
+        {
+            menu.SetActive(false);
+        }
+        #endregion
+
     }
 
     Sequence CD1()
@@ -263,4 +281,5 @@ public class UI : MonoBehaviour
                 break;
         }
     }
+    
 }

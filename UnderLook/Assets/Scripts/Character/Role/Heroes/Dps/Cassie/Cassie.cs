@@ -116,6 +116,20 @@ namespace Player
                 ApllyCard(GetComponentInChildren<Market>().item);
                 canvasUI.GetComponent<UI>().showmarket = false;
             }
+
+
+            if(Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu)
+            {
+                canvasUI.GetComponent<UI>().showmenu = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                GetComponentInChildren<CameraController>().canmovevision = false;
+            }
+            if(Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
+            {
+
+            }
+      
+
         }
 
         //-----------------------------
