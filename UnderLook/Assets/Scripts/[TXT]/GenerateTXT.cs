@@ -30,7 +30,7 @@ namespace Basics
             Debug.Log(path);
             string fileName = @"TXTstats\stats_"; //..\..\..\..\
 
-         
+
 
             fileName += PlayerName + ".txt";
             fileName = fileName.Replace(" ", "");
@@ -56,10 +56,10 @@ namespace Basics
                         sw.WriteLine("Kills: 0");
                         sw.WriteLine("Deaths: 0");
                     }
-                }	
+                }
 
             }
-            catch 
+            catch
             {
                 Debug.Log("Wrong input");
             }

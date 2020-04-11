@@ -76,6 +76,9 @@ public class UI : MonoBehaviour
     public bool showmenu = false;
     public GameObject stat;
     public bool showstat = false;
+    public GameObject option;
+    public bool showoption;
+    public Image sound;
 
     private void Start()
     {
@@ -118,6 +121,8 @@ public class UI : MonoBehaviour
         market.SetActive(false);
         menu.SetActive(false);
         stat.SetActive(false);
+        option.SetActive(false);
+        sound.fillAmount = 0.5f;
 
     }
     void FixedUpdate()
@@ -281,5 +286,24 @@ public class UI : MonoBehaviour
                 break;
         }
     }
-    
+
+    public void SoundUp()
+    {
+        if (sound.fillAmount < 1)
+        {
+            sound.fillAmount += 0.1f;
+        }
+        else
+        { sound.fillAmount = 1; }
+    }
+    public void Sounddown()
+    {
+        if (sound.fillAmount > 0)
+            sound.fillAmount -= 0.1f;
+        else
+        {
+            sound.fillAmount = 0;
+        }
+    }
+
 }

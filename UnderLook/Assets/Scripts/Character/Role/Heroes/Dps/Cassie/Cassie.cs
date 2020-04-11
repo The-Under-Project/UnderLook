@@ -38,6 +38,8 @@ namespace Player
         public Vector3 force;
         public string enemyColor;
 
+        public float waitmarket = 1f;
+
 
 
 
@@ -102,8 +104,9 @@ namespace Player
                 GetComponent<Moving>().gravityApplied = true;
             }
 
-            if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought)
+            if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
             {
+                wait();
                 if (canvasUI.GetComponent<UI>().showmarket)
                     canvasUI.GetComponent<UI>().showmarket = false;
                 else
@@ -111,14 +114,14 @@ namespace Player
                     canvasUI.GetComponent<UI>().showmarket = true;
                 }
             }
-            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket)
+            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket )
             {
                 ApllyCard(GetComponentInChildren<Market>().item);
                 canvasUI.GetComponent<UI>().showmarket = false;
             }
 
 
-            if(Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu)
+            if(Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
             {
                 canvasUI.GetComponent<UI>().showmenu = true;
                 Cursor.lockState = CursorLockMode.Confined;
@@ -126,9 +129,11 @@ namespace Player
             }
             if(Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
             {
-
+                canvasUI.GetComponent<UI>().stat.SetActive(false);
             }
-      
+            if(Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
+                canvasUI.GetComponent<UI>().option.SetActive(false);
+
 
         }
 
@@ -320,6 +325,13 @@ namespace Player
 
 
 
+        }
+        Sequence wait()
+        {
+            waitmarket = 0;
+            Sequence s = DOTween.Sequence();
+            s.Append(DOTween.To(() => waitmarket, x => waitmarket = x, 1, 0.25f));
+            return s;
         }
 
 

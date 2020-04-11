@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public Text text;
     public void Resume()
     {
-        Debug.Log(1);
         GetComponentInChildren<UI>().showmenu = false;
         GetComponentInChildren<CameraController>().canmovevision = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -17,9 +17,11 @@ public class Menu : MonoBehaviour
     public void Stats()
     {
         GetComponentInChildren<UI>().stat.SetActive(true);
+        GetComponentInChildren<UI>().showstat = true;
+
         string path = System.IO.Directory.GetCurrentDirectory();
         string fileName = @"\TXTstats\stats_";
-        string[] lines = System.IO.File.ReadAllLines(path + fileName + "jukantral.txt");
+        string[] lines = System.IO.File.ReadAllLines(path + fileName + PhotonNetwork.player.NickName + ".txt");
         string lestats = ""; 
         foreach (var line in lines)
         {
@@ -30,11 +32,12 @@ public class Menu : MonoBehaviour
 
     public void Option()
     {
-
+        GetComponentInChildren<UI>().option.SetActive(true);
+        GetComponentInChildren<UI>().showoption = true;
     }
 
     public void Exit()
     {
-
+        Application.Quit();
     }
 }
