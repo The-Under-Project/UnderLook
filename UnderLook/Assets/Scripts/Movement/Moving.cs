@@ -47,10 +47,6 @@ public class Moving : MonoBehaviour
             }
             moveZ -= gravity * Time.deltaTime;
 
-
-            if (characterController.isGrounded)
-                moveZ = 0;
-
             if (canMove)
                 characterController.Move(transform.forward * moveX + transform.right * moveY); //time multiplié au carré
             if (gravityApplied)
