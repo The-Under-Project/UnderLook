@@ -8,6 +8,7 @@ namespace Player {
         protected bool shield;
         protected int shieldLife;
         protected int shieldRecovery;
+        protected int hp;
 
     }
 }

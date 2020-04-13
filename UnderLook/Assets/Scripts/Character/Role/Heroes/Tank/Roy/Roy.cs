@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Player;
 using UnityEngine;
 
@@ -9,9 +10,12 @@ public class Roy : Tank
     public GameObject canvasUI;
     public float cameraFOV;
     public Camera cam;
-    protected int shieldLife;
-    protected int shieldRecovery;
-
+    new private int shieldLife;
+    new private int shieldRecovery;
+    new private int hp;
+    private float time = 15f;
+    private int power = 15;
+    public GameObject shield;
     void Start()
     {
         GetComponent<Moving>().speed = speed;
@@ -26,8 +30,9 @@ public class Roy : Tank
         canvasUI.GetComponent<UI>().maxHP = hpmax;
         shieldLife = 100;
         shieldRecovery = 10;
+        hp = hpmax;
     }
-
+    
     private void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -54,7 +59,7 @@ public class Roy : Tank
 
     private void M1()
     {
-        
+        this.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
     }
 
     private void M2()
@@ -64,19 +69,31 @@ public class Roy : Tank
 
     private void Cap1()
     {
-        
+        GameObject shootedShield = Instantiate(shield, transform.position,Quaternion.identity) as GameObject;
+        shootedShield.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
+        shootedShield.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+        Destroy(shootedShield, time);
     }
 
     private void Cap2()
     {
-        
+        GetComponentInChildren<Moving>().capacity = true;
     }
 
     private void Ulti()
     {
-        
+        int hpSave = getHp();
+        setHp(1000);
     }
 
+    public int getHp()
+    {
+        return hp;
+    }
 
-
+    public void setHp(int newHp)
+    {
+        hp = newHp;
+    }
+    
 }

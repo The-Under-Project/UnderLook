@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -14,6 +15,7 @@ public class Moving : MonoBehaviour
 
     public bool isOnTrack = false;
     public float launch = 0f;
+    public Boolean capacity = false;
 
     void Awake()
     {
@@ -34,9 +36,14 @@ public class Moving : MonoBehaviour
             float moveY = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
             //float moveZ = 0.0f;
 
-            if ((Input.GetButton("Jump") && characterController.isGrounded))
+            if ((Input.GetButton("Jump") && characterController.isGrounded) || capacity)
             {
                 moveZ = jumpspeed;
+                if (capacity)
+                {
+                    moveZ = jumpspeed * 3;
+                    capacity = false;
+                }
             }
             moveZ -= gravity * Time.deltaTime;
 

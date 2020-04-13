@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Microsoft.Win32;
 using UnityEngine;
 
 public class BulletShot : MonoBehaviour
@@ -13,9 +15,12 @@ public class BulletShot : MonoBehaviour
         public float masse;
         public float distance;
         public Transform gunPosition;//Position of gun to calculate the line
-
         public Camera fpscam;
 
+        public int power; //vitesse d'ejection
+        public float time; //temps avant suppression de balle
+        public GameObject bullet; //Balle utilisée
+        
         //private AudioSource gunAudio; //The audio of gun
         [SerializeField] private LineRenderer gunLine; //The line of shoot 
         private float nextFire; // Time when you can do a new shot
@@ -26,7 +31,9 @@ public class BulletShot : MonoBehaviour
         {
             if (Time.time > nextFire)  //je ne pense pas que ça marche
             {
-                
+                GameObject shootedBullet = Instantiate(bullet, transform.position,Quaternion.identity) as GameObject;
+                shootedBullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
+                Destroy(shootedBullet, time);
             }
 
         }
