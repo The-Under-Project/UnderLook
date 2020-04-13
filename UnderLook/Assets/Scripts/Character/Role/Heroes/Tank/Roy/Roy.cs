@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using DG.Tweening;
 using Player;
 using UnityEngine;
 
@@ -16,6 +18,9 @@ public class Roy : Tank
     private float time = 15f;
     private int power = 15;
     public GameObject shield;
+
+    public Boolean cd = false;
+    private float time1 = 20f;
     void Start()
     {
         GetComponent<Moving>().speed = speed;
@@ -82,18 +87,17 @@ public class Roy : Tank
 
     private void Ulti()
     {
-        int hpSave = getHp();
-        setHp(1000);
+        float hpSave = canvasUI.GetComponent<UI>().CurrentHP;
+        canvasUI.GetComponent<UI>().CurrentHP = 1000f;
+        float percentageCooldown1 = 0;
+        Boolean cdRefresh1 = true;
+        Sequence s = DOTween.Sequence();
+        if(!cd)
+            s.Append(DOTween.To(() => percentageCooldown1, x => percentageCooldown1 = x, 1, time1));
+        else
+            percentageCooldown1 = 1;
+        canvasUI.GetComponent<UI>().CurrentHP = hpSave;
     }
-
-    public int getHp()
-    {
-        return hp;
-    }
-
-    public void setHp(int newHp)
-    {
-        hp = newHp;
-    }
+    
     
 }
