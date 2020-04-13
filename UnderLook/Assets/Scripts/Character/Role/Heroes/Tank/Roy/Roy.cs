@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Player;
 using UnityEngine;
+using DG.Tweening;
 
 public class Roy : Tank
 {
@@ -16,6 +17,15 @@ public class Roy : Tank
     private float time = 15f;
     private int power = 15;
     public GameObject shield;
+
+    [Header("Grappin")]
+    public GameObject grap;
+    public float timergrap;
+    public float cooldownM2;
+    public Collision collision;
+    public float forceofGrap;
+    public bool inMotion;
+
     void Start()
     {
         GetComponent<Moving>().speed = speed;
@@ -64,6 +74,24 @@ public class Roy : Tank
 
     private void M2()
     {
+        if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1 && !inMotion)
+        {
+            canvasUI.GetComponent<UI>().cap("two");
+            inMotion = true;
+            GameObject grappin = Instantiate(grap, transform.position, Quaternion.identity) as GameObject;
+            collision = grappin.GetComponent<Collision>();
+            grappin.GetComponentInChildren<Rigidbody>().useGravity = false;
+            grappin.GetComponentInChildren<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * forceofGrap);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                RetourGrappin(collision.gameObject);
+                
+            }
+            else
+            {
+
+            }
+        }
         
     }
 
@@ -94,6 +122,14 @@ public class Roy : Tank
     public void setHp(int newHp)
     {
         hp = newHp;
+    }
+
+   
+
+    public void RetourGrappin(GameObject foe)
+    {
+        foe.GetComponentInChildren<Moving>().canMove = false;
+        foe.GetComponent<Rigidbody>().velocity = this.transform.TransformDirection(-Vector3.forward * forceofGrap);
     }
     
 }
