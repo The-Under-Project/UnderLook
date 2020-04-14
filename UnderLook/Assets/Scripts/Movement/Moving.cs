@@ -18,10 +18,14 @@ public class Moving : MonoBehaviour
 
     public Vector3 bluePos, redPos;
 
+    [SerializeField] private Animator animation;
+    private float mvX;
+    private float mvY;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-
+        animation = GetComponentInParent<Animator>();
 
     }
 
@@ -34,13 +38,18 @@ public class Moving : MonoBehaviour
 
         if (!isOnTrack)
         {
-            float moveX = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-            float moveY = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+            mvX = Input.GetAxis("Horizontal");
+            mvY = Input.GetAxis("Vertical");
+            animationPlayer(mvX, mvY);
+
+            float moveX = mvX * speed * Time.deltaTime;
+            float moveY = mvY * speed * Time.deltaTime;
             //float moveZ = 0.0f;
 
             if ((Input.GetButton("Jump") && characterController.isGrounded))
             {
                 moveZ = jumpspeed;
+                animationPlayer(0.42f, 0.42f);
             }
             moveZ -= gravity * Time.deltaTime;
 
@@ -98,5 +107,32 @@ public class Moving : MonoBehaviour
         else
             DOTween.Play(Move(redPos));
         gameObject.GetComponent<TeamColor>().enabled = true;
+    }
+
+    private void animationPlayer(float X, float Y)
+    {
+        if (X < -0.5f && Y == 0)
+        {
+            animation.speed = 1.25f;
+        }
+        else if (X > 0.5f && Y == 0)
+        {
+            animation.speed = 2f;
+        }
+        else if (X == 0 && Y > 0.5f)
+        {
+            animation.speed = 0.75f;
+        }
+        else if (X == 0 && Y < -0.5f)
+        {
+            animation.speed = 1f;
+        }
+        else if ( X < 0.9f && Y > 0.9f)
+        {
+            animation.speed = 0.75f;
+        }
+
+        animation.SetFloat("VelX", X);
+        animation.SetFloat("VelY", Y);
     }
 }
