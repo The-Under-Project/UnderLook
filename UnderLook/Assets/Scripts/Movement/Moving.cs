@@ -15,8 +15,14 @@ public class Moving : MonoBehaviour
 
     public bool isOnTrack = false;
     public float launch = 0f;
-<<<<<<< HEAD
+    public bool doTP = false;
+
     public Boolean capacity = false;
+
+    public Vector3 bluePos, redPos;
+
+    public GameObject posEND_RED;
+    public GameObject posEND_BLUE;
 
     void Awake()
     {
@@ -51,6 +57,10 @@ public class Moving : MonoBehaviour
                 }
             }
             moveZ -= gravity * Time.deltaTime;
+
+
+            if (characterController.isGrounded)
+                moveZ = 0;
 
             if (canMove)
                 characterController.Move(transform.forward * moveX + transform.right * moveY); //time multiplié au carré

@@ -2,12 +2,30 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Dinasty\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Dinasty\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_UnderLook.-373208626.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Dinasty\Documents\UnderLook\UnderLook" t="IncludeRecursive">
+    <e p="C:\Users\Dinasty\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_UnderLook.-212410510.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Dinasty\UnderLook\UnderLook" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Binston" t="Include">
+          <e p="Barrier.shader" t="Include" />
+          <e p="FXAA" t="Include">
+            <e p="_Antialiasing" t="Include">
+              <e p="DLAA.shader" t="Include" />
+              <e p="FXAA2.shader" t="Include" />
+              <e p="FXAA3Console.shader" t="Include" />
+              <e p="FXAAPreset2.shader" t="Include" />
+              <e p="FXAAPreset3.shader" t="Include" />
+              <e p="NFAA.shader" t="Include" />
+              <e p="SSAA.shader" t="Include" />
+            </e>
+            <e p="Antialiasing.cs" t="Include" />
+            <e p="PostEffectsBase.cs" t="Include" />
+            <e p="PostEffectsHelper.cs" t="Include" />
+          </e>
+          <e p="RenderDepth.cs" t="Include" />
+        </e>
         <e p="Demigiant" t="Include">
           <e p="DOTween" t="Include">
             <e p="Modules" t="Include">
@@ -20,6 +38,18 @@
               <e p="DOTweenModuleUtils.cs" t="Include" />
             </e>
             <e p="readme.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Editor" t="Include">
+          <e p="ImageEffects" t="Include">
+            <e p="AntialiasingEditor.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Materials" t="Include">
+          <e p="AlwaysVisible.shader" t="Include" />
+          <e p="Outline" t="Include">
+            <e p="SobelFilter.shader" t="Include" />
+            <e p="ToonBasicOutline.shader" t="Include" />
           </e>
         </e>
         <e p="NavMeshComponents" t="Include">
@@ -286,39 +316,118 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="[DEBUG]" t="Include">
+            <e p="DrawForward.cs" t="Include" />
             <e p="MoveFromPointToPoint.cs" t="Include" />
             <e p="Movement.cs" t="Include" />
+            <e p="ProjectileAddForce.cs" t="Include" />
+            <e p="RandomRotation.cs" t="Include" />
+          </e>
+          <e p="[PUN]" t="Include">
+            <e p="DamagePun.cs" t="Include" />
+            <e p="PlayloadPUN.cs" t="Include" />
+          </e>
+          <e p="[TXT]" t="Include">
+            <e p="AddTXT.cs" t="Include" />
+            <e p="GenerateTXT.cs" t="Include" />
           </e>
           <e p="AI" t="Include">
             <e p="AI.cs" t="Include" />
+            <e p="AIstatsManager.cs" t="Include" />
+            <e p="groupUp.cs" t="Include" />
+            <e p="managerIA.cs" t="Include" />
           </e>
           <e p="Cannons" t="Include">
+            <e p="AnimationCannon.cs" t="Include" />
             <e p="CollideWithCannon.cs" t="Include" />
+            <e p="colorCannon.cs" t="Include" />
             <e p="TrackSpeed.cs" t="Include" />
           </e>
           <e p="Character" t="Include">
-            <e p="Human.cs" t="Include" />
-            <e p="Player.cs" t="Include" />
+            <e p="Base.cs" t="Include" />
+            <e p="MaterialsApply.cs" t="Include" />
             <e p="Role" t="Include">
+              <e p="Dps.cs" t="Include" />
+              <e p="Heroes" t="Include">
+                <e p="Dps" t="Include">
+                  <e p="Cassie" t="Include">
+                    <e p="Cassie.cs" t="Include" />
+                    <e p="CassieMaterialDeath.cs" t="Include" />
+                    <e p="CassieRPC.cs" t="Include" />
+                    <e p="Mine.cs" t="Include" />
+                    <e p="MineDebug.cs" t="Include" />
+                    <e p="MineOnline.cs" t="Include" />
+                    <e p="MineShadeEffect.cs" t="Include" />
+                    <e p="PlayerManagerCassie.cs" t="Include" />
+                    <e p="SphereColor.cs" t="Include" />
+                    <e p="TPoverlapCircle.cs" t="Include" />
+                    <e p="WeaponSniper.cs" t="Include" />
+                  </e>
+                  <e p="Char" t="Include">
+                    <e p="Axe.cs" t="Include" />
+                    <e p="ThrowController.cs" t="Include" />
+                    <e p="WeaponScript.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Tank" t="Include">
+                  <e p="Brik.cs" t="Include" />
+                  <e p="Roy" t="Include">
+                    <e p="Roy.cs" t="Include" />
+                    <e p="Shield.cs" t="Include" />
+                    <e p="ShieldOnline.cs" t="Include" />
+                    <e p="WeaponCannon.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
               <e p="Tank.cs" t="Include" />
             </e>
+            <e p="TeamColor.cs" t="Include" />
+          </e>
+          <e p="Menu" t="Include">
+            <e p="CanvasMenu.cs" t="Include" />
+            <e p="CreateRoom.cs" t="Include" />
+            <e p="DestroyWhenName.cs" t="Include" />
+            <e p="GetNameField.cs" t="Include" />
+            <e p="GetRoomField.cs" t="Include" />
+            <e p="PlayerName.cs" t="Include" />
+            <e p="ShowRooms.cs" t="Include" />
+            <e p="ShowWhenName.cs" t="Include" />
+          </e>
+          <e p="MenuLobby" t="Include">
+            <e p="ChangeScriptNetwork.cs" t="Include" />
+            <e p="Launch.cs" t="Include" />
+            <e p="PlayerTest.cs" t="Include" />
+            <e p="TPplayerCollision.cs" t="Include" />
+          </e>
+          <e p="Movement" t="Include">
+            <e p="CameraController.cs" t="Include" />
+            <e p="Moving.cs" t="Include" />
           </e>
           <e p="Objective" t="Include">
-            <e p="Payload.cs" t="Include" />
             <e p="PayloadCountPlayer.cs" t="Include" />
+            <e p="PayloadOwner.cs" t="Include" />
             <e p="PointCountPlayers.cs" t="Include" />
             <e p="UnlockPayload.cs" t="Include" />
           </e>
           <e p="Photon" t="Include">
+            <e p="LocalInstance.cs" t="Include" />
             <e p="PhotonManager.cs" t="Include" />
-            <e p="PlayerNetWorking.cs" t="Include" />
+            <e p="PlayerNetworkingDeactivate.cs" t="Include" />
           </e>
           <e p="ScriptableObject" t="Include">
             <e p="Card.cs" t="Include" />
             <e p="CardDisplay.cs" t="Include" />
           </e>
+          <e p="UI" t="Include">
+            <e p="UI.cs" t="Include" />
+            <e p="UIChar.cs" t="Include" />
+          </e>
           <e p="Utilities" t="Include">
             <e p="Gravity.cs" t="Include" />
+          </e>
+          <e p="Weapon" t="Include">
+            <e p="BulletShot.cs" t="Include" />
+            <e p="Hitscan.cs" t="Include" />
+            <e p="WeaponRotateCamera.cs" t="Include" />
           </e>
         </e>
       </e>
