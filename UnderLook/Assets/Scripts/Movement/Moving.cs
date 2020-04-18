@@ -18,15 +18,18 @@ public class Moving : MonoBehaviour
 
     public Vector3 bluePos, redPos;
 
-    [SerializeField] private Animator animation;
+    [Header("Animation")]
+    public GameObject body;
+    public Animator animationPerso;
     private float mvX;
     private float mvY;
+    private float mvXold;
+    private float mvYold;
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        animation = GetComponentInParent<Animator>();
-
+        animationPerso = body.GetComponent<Animator>();
     }
 
     void Update()
@@ -38,13 +41,30 @@ public class Moving : MonoBehaviour
 
         if (!isOnTrack)
         {
-            mvX = Input.GetAxis("Horizontal");
-            mvY = Input.GetAxis("Vertical");
-            animationPlayer(mvX, mvY);
+            mvXold = mvX;
+            mvYold = mvY;
+            mvY = Input.GetAxis("Horizontal");
+            mvX = Input.GetAxis("Vertical");
+            animationPlayer(mvY, mvX);
 
             float moveX = mvX * speed * Time.deltaTime;
             float moveY = mvY * speed * Time.deltaTime;
-            //float moveZ = 0.0f;
+            float moveZ = 0.0f;
+
+            if(mvYold == 1 && mvXold == 0 || mvYold == 0 && mvXold == -1 || mvYold == -1 && mvXold == 0)
+            {
+                if(!(mvY == 1 && mvX == 0 || mvY == 0 && mvX == -1 || mvY == -1 && mvX == 0))
+                {
+                    GetComponent<OffSetWeapon>().changeweapondDown = true;
+                }
+            }
+            else
+            {
+                if (mvY == 1 && mvX == 0 || mvY == 0 && mvX == -1 || mvY == -1 && mvX == 0)
+                {
+                    GetComponent<OffSetWeapon>().changeweapondUp = true;
+                }
+            }
 
             if ((Input.GetButton("Jump") && characterController.isGrounded))
             {
@@ -52,10 +72,7 @@ public class Moving : MonoBehaviour
                 animationPlayer(0.42f, 0.42f);
             }
             moveZ -= gravity * Time.deltaTime;
-
-
             
-
             if (canMove)
                 characterController.Move(transform.forward * moveX + transform.right * moveY); //time multiplié au carré
             if (gravityApplied)
@@ -113,26 +130,25 @@ public class Moving : MonoBehaviour
     {
         if (X < -0.5f && Y == 0)
         {
-            animation.speed = 1.25f;
+            animationPerso.speed = 1.25f;
         }
         else if (X > 0.5f && Y == 0)
         {
-            animation.speed = 2f;
+            animationPerso.speed = 2f;
         }
         else if (X == 0 && Y > 0.5f)
         {
-            animation.speed = 0.75f;
+            animationPerso.speed = 0.75f;
         }
         else if (X == 0 && Y < -0.5f)
         {
-            animation.speed = 1f;
+            animationPerso.speed = 1f;
         }
         else if ( X < 0.9f && Y > 0.9f)
         {
-            animation.speed = 0.75f;
+            animationPerso.speed = 0.75f;
         }
-
-        animation.SetFloat("VelX", X);
-        animation.SetFloat("VelY", Y);
+        animationPerso.SetFloat("VelX", X);
+        animationPerso.SetFloat("VelY", Y);
     }
 }

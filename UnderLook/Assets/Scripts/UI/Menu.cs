@@ -10,6 +10,7 @@ public class Menu : MonoBehaviour
     public void Resume()
     {
         GetComponentInChildren<UI>().showmenu = false;
+        Debug.Log(1);
         GetComponentInChildren<CameraController>().canmovevision = true;
         Cursor.lockState = CursorLockMode.Locked;
     }

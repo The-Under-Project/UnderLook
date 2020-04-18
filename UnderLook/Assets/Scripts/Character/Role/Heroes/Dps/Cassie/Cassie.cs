@@ -140,26 +140,28 @@ namespace Player
         //-----------------------------
         private void Update()
         {
-
-            if (Input.GetButtonDown("Fire1"))
+            if (!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
             {
-                M1();
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                M2();
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                Cap1();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Cap2();
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Ulti();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    M1();
+                }
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    M2();
+                }
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    Cap1();
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Cap2();
+                }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Ulti();
+                }
             }
 
         }
