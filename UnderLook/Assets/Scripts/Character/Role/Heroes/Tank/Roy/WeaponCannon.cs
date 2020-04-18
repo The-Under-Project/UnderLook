@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wapon
+namespace Weapon
 {
     public class WeaponCannon : BulletShot
     {
