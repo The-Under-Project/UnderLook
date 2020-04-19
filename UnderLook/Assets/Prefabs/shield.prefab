@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8171696699039599958}
   - component: {fileID: 8171696699039599959}
   - component: {fileID: 8171696699039599956}
-  - component: {fileID: -7528015075074245091}
+  - component: {fileID: 4812261625178259121}
   m_Layer: 0
   m_Name: shield
   m_TagString: shield
@@ -110,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7528015075074245091
+--- !u!114 &4812261625178259121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,14 +119,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 8171696699039599957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50634a5a8b1718446b17fdba651abdc1, type: 3}
+  m_Script: {fileID: 11500000, guid: fa67d82e301603a4b88ad78ab08b2feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG_LOCAL: 1
   direction: {x: 0, y: 0, z: 0}
-  enemieColor: Red
-  colorBub: Blue
+  offset: {x: 0, y: 0, z: 0}
+  teamColor: Blue
+  setColor: 0
   rb: {fileID: 0}
   percentage: 0
   time: 0
   range: 0
+  draw: 0
+  shield: {fileID: 2238133413720263628, guid: f70f2150d0d522a4ea7145c7268f8089, type: 3}
+  canYouGetMyColor: 1

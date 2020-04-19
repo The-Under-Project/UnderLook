@@ -38,7 +38,7 @@ namespace Player
             cam = GetComponentInChildren<Camera>();
             cameraFOV = cam.fieldOfView;
 
-            canvasUI.GetComponent<UI>().hasShield = true;
+            canvasUI.GetComponent<UI>().hasShield = false;
             canvasUI.GetComponent<UI>().hasThreeCapacities = false;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
             shieldLife = 100;

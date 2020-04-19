@@ -25,9 +25,8 @@ public class Shield : MonoBehaviour
     public float time;
 
     public int range;
-    public GameObject[] playerWallHack;
-    public GameObject[] oldWallHack;
-
+    public Boolean draw = false;
+    public GameObject shield;
 
     public bool canYouGetMyColor = true;
 
@@ -39,17 +38,26 @@ public class Shield : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.grey;
-        //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-        Gizmos.DrawWireSphere(transform.position, range);
+        if (draw)
+        {
+            Gizmos.color = Color.grey;
+            //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
+            Gizmos.DrawWireSphere(transform.position, range);
+            
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, range);
+            Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            this.gameObject.GetComponent<Renderer>().enabled = false;
+            rb.isKinematic = false;
+            draw = true;
+            PhotonNetwork.Instantiate("BlueBubble", this.transform.position, Quaternion.identity, 0);
+            //GameObject shootedShield = Instantiate(shield, transform.position, Quaternion.identity) as GameObject;
         }
     }
     
