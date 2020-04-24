@@ -49,7 +49,7 @@ public class Moving : MonoBehaviour
 
             float moveX = mvX * speed * Time.deltaTime;
             float moveY = mvY * speed * Time.deltaTime;
-            float moveZ = 0.0f;
+            
 
             if(mvYold == 1 && mvXold == 0 || mvYold == 0 && mvXold == -1 || mvYold == -1 && mvXold == 0)
             {
@@ -126,7 +126,7 @@ public class Moving : MonoBehaviour
         gameObject.GetComponent<TeamColor>().enabled = true;
     }
 
-    private void animationPlayer(float X, float Y)
+   private void animationPlayer(float X, float Y)
     {
         if (X < -0.5f && Y == 0)
         {
