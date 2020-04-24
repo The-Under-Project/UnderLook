@@ -8,10 +8,10 @@ public class CassieMaterialDeath : MonoBehaviour
     public int hpdebug;
     void FixedUpdate()
     {
-        hpdebug = gameObject.GetComponent<Health.PlayerManagerCassie>().Health;
-        if (hpdebug <= 0)
+        if (gameObject.GetComponent<Health.PlayerManagerCassie>().Health <= 0)
         {
-            gameObject.GetComponent<Renderer>().material = death;
+            gameObject.GetComponent<Player.Cassie>().hp = gameObject.GetComponent<Player.Cassie>().hpmax;
+            gameObject.GetComponent<Moving>().TP(gameObject.GetComponent<TeamColor>().isBlue);
         }
     }
 }
