@@ -27,7 +27,7 @@ namespace Player
         public bool inMotion;
         public Boolean cd = false;
         private float time1 = 20f;
-        public GameObject grapPose;
+        public GameObject shotPoint;
 
         void Start()
         {
@@ -83,19 +83,10 @@ namespace Player
 
         private void M2()
         {
-            if (!inMotion)
-            {
-                inMotion = true;
-                GameObject grappin = Instantiate(grap, grapPose.transform.position, Quaternion.identity) as GameObject;
-                collision = grappin.GetComponent<Collision>();
-                grappin.GetComponentInChildren<Rigidbody>().AddForce(transform.forward * forceofGrap);
-                if (collision.gameObject.CompareTag("Player"))
-                {
-                    RetourGrappin(collision.gameObject);
-
-                }
-            }
-
+            GameObject grappin = Instantiate(grap, shotPoint.transform.position, Quaternion.identity) as GameObject;
+            grappin.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
+            grappin.GetComponent<Grappin>().setPlayer(this.gameObject);
+            Destroy(grappin, time);
         }
 
         private void Cap1()
@@ -103,7 +94,7 @@ namespace Player
             if (canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
                 canvasUI.GetComponent<UI>().cap("one");
-                GameObject shootedShield = Instantiate(shield, transform.position, Quaternion.identity) as GameObject;
+                GameObject shootedShield = Instantiate(shield, shotPoint.transform.position, Quaternion.identity) as GameObject;
                 shootedShield.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
                 //shootedShield.SendMessage("SetColor", GetComponent<TeamColor>().teamColor);
                 Destroy(shootedShield, time);

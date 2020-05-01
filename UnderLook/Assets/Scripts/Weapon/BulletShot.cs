@@ -31,8 +31,18 @@ public class BulletShot : MonoBehaviour
         {
             if (Time.time > nextFire)  //je ne pense pas que ça marche
             {
-                GameObject shootedBullet = Instantiate(bullet, transform.position,Quaternion.identity) as GameObject;
+                GameObject shootedBullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
                 shootedBullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
+                Destroy(shootedBullet, time);
+                
+                void OnCollisionEnter(Collision collision)
+                {
+                    if (collision.gameObject.CompareTag("Floor"))
+                    {
+                        Destroy(shootedBullet, time);
+                    }
+                }
+                
                 Destroy(shootedBullet, time);
             }
 

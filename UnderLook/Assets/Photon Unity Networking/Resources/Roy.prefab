@@ -532,13 +532,13 @@ MonoBehaviour:
   cam: {fileID: 8144601629044099986}
   hasInstantiateAShield: 0
   shield: {fileID: 8171696699039599957, guid: 47dedeaf663e1d44f8ddd1f765683009, type: 3}
-  grap: {fileID: 1033521005698496978, guid: 0edc7cb3f6a5a044fb9bc6be14a86ec1, type: 3}
+  grap: {fileID: 3660787213369190142, guid: ede4881b6381b154c9dc0a7b78bc9ed4, type: 3}
   timergrap: 10
   cooldownM2: 0
   forceofGrap: 100
   inMotion: 0
   cd: 0
-  grapPose: {fileID: 0}
+  shotPoint: {fileID: 4266406860827236859}
 --- !u!114 &7454234176485306835
 MonoBehaviour:
   m_ObjectHideFlags: 0

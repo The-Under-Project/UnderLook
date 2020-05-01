@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield : MonoBehaviour
+public class Grappin : MonoBehaviour
 {
     [Header("Online")]
     [Tooltip("Deactivate if you want it to be online")]public bool DEBUG_LOCAL;
@@ -27,23 +27,21 @@ public class Shield : MonoBehaviour
     public int range;
     public Boolean draw = false;
     public GameObject shield;
+    private Boolean activateRotation = true;
+    private GameObject playerL;
 
     public bool canYouGetMyColor = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Debug.Log(teamColor);
     }
 
-    private void OnDrawGizmos()
+    private void Update()
     {
-        if (draw)
+        if (activateRotation)
         {
-            Gizmos.color = Color.grey;
-            //Use the same vars you use to draw your Overlap SPhere to draw your Wire Sphere.
-            Gizmos.DrawWireSphere(transform.position, range);
-            
+            transform.Rotate(Vector3.back * Time.deltaTime);
         }
     }
 
@@ -51,16 +49,22 @@ public class Shield : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezeAll;
-            this.gameObject.GetComponent<Renderer>().enabled = false;
-            rb.isKinematic = false;
-            draw = true;
-            PhotonNetwork.Instantiate("BlueBubble", this.transform.position, Quaternion.identity, 0);
-            //GameObject shootedShield = Instantiate(shield, transform.position, Quaternion.identity) as GameObject;
+            activateRotation = false;
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject playerAd = collision.gameObject;
+            playerAd.GetComponent<Rigidbody>().position = playerL.GetComponent<Rigidbody>().position;
         }
     }
-    
+
+    public void setPlayer(GameObject player)
+    {
+        playerL = player;
+    }
+
     void DEBUG(bool d)
     {
         DEBUG_LOCAL = d;
