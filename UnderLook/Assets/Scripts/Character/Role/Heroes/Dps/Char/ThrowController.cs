@@ -78,7 +78,9 @@ public class ThrowController : MonoBehaviour
         hasWeapon = false;
         weaponRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         weapon.parent = null;
-        weapon.eulerAngles = new Vector3(0, -90 +transform.eulerAngles.y, 0);
+        weapon.eulerAngles = new Vector3(0, 90 +  transform.eulerAngles.y, 0);
+
+
         weapon.transform.position += transform.right/5;
         weaponRb.AddForce(Camera.main.transform.forward * throwPower + transform.up * 2, ForceMode.Impulse);
     }

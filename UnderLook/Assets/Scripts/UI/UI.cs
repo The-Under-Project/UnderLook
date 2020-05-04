@@ -60,7 +60,7 @@ public class UI : MonoBehaviour
 
     [Header("Shield")]
     public Image ShieldBar;
-    [SerializeField] private float maxShield;
+    [SerializeField] public float maxShield;
     [Range(0.0f, 200f)]
     public float CurrentShield;
 

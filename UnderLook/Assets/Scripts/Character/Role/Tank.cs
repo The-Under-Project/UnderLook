@@ -5,9 +5,12 @@ using UnityEngine;
 namespace Player { 
     public abstract class Tank : Base
     {
-        protected bool shield;
-        protected int shieldLife;
-        protected int shieldRecovery;
+        [Header("Tank")]
+        public bool shield;
+        public float shieldLifeMax;
+        public float shieldLife;
+        public float shieldRecovery;
+
 
     }
 }
