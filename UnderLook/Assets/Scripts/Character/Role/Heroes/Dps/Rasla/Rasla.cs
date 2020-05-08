@@ -24,6 +24,13 @@ namespace Player
         public int useMax = 3;
         public int use = 3;
 
+        private int hpbeforecap2;
+        public bool invicible = false;
+        public float timeofinvincibility;
+        public float timedepbegininvi = 0;
+        public Camera cameraofperso;
+        public int oldwask;
+
 
         private void Start()
         {
@@ -36,9 +43,22 @@ namespace Player
             canvasUI.GetComponent<UI>().hasThreeCapacities = false;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
 
+            string allyteam = GetComponent<TeamColor>().teamColor;
+            foreach (var machin in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                if (machin.GetComponent<TeamColor>().enemieColor != allyteam)
+                {
+                    machin.layer = 10;
+
+                }
+            }
+
+
         }
         void FixedUpdate()
         {
+            if (invicible)
+                hp = hpbeforecap2;
 
             if (hp <= 0)
             {
@@ -61,7 +81,6 @@ namespace Player
                     sphere.transform.position = hit.point;
                 }
             }
-
             if (use <= 0)
             {
                 use = useMax;
@@ -69,8 +88,14 @@ namespace Player
                 isShadow = false;
                 canvasUI.GetComponent<UI>().cap("one");
                 started = false;
-            }
 
+            }
+            if (timedepbegininvi == 1)
+            {
+                invicible = false;
+                cameraofperso.cullingMask = oldwask;
+
+            }
         }
 
         //-----------------------------
@@ -101,8 +126,8 @@ namespace Player
         {
             if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
-                
-                if(use > 0)
+
+                if (use > 0)
                 {
                     use--;
                     started = true;
@@ -132,7 +157,16 @@ namespace Player
 
         private void Cap2()
         {
+            if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
+            {
+                canvasUI.GetComponent<UI>().cap("two");
+                hpbeforecap2 = hp;
+                invicible = true;
+                Invicibilityseq();
+                oldwask = cameraofperso.cullingMask;
+                cameraofperso.cullingMask = cameraofperso.cullingMask ^ (1 << 10);
 
+            }
         }
 
         private void tp()
@@ -146,6 +180,13 @@ namespace Player
             Sequence s = DOTween.Sequence();
             s.Append(DOTween.To(() => Teleport, x => Teleport = x, percentage, TimeTP));
             s.Append(transform.DOLocalMove(sphere.transform.position + new Vector3(0, 0.5f), 0.05f)); //not tp into floor
+            return s;
+        }
+        Sequence Invicibilityseq()
+        {
+            timedepbegininvi = 0;
+            Sequence s = DOTween.Sequence();
+            s.Append(DOTween.To(() => timedepbegininvi, x => timedepbegininvi = x, 1f, timeofinvincibility));
             return s;
         }
 
