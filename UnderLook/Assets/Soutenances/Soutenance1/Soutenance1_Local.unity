@@ -3674,10 +3674,10 @@ MonoBehaviour:
   jumpspeed: 7
   canvasUI: {fileID: 1380790632}
   sphere: {fileID: 1429001904}
-  teleportRange: 25
+  teleportRange: 10
   Teleport: 100
   isShadow: 0
-  TimeTP: 0.05
+  TimeTP: 0.1
   TimeAfterTP: 0
   percentage: 0
   started: 0
