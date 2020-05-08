@@ -39,10 +39,6 @@ public class Grappin : MonoBehaviour
 
     private void Update()
     {
-        if (activateRotation)
-        {
-            transform.Rotate(Vector3.back * Time.deltaTime);
-        }
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -17,6 +17,7 @@ namespace Player
 
         private Boolean cd = false;
         public float time1 = 10f;
+        public float time2 = 3f;
 
         private void Start()
         {
@@ -68,17 +69,26 @@ namespace Player
 
         private void M1()
         {
-            this.GetComponentInChildren<Weapon.WeaponCannon>().Shoot();
+            this.GetComponentInChildren<Weapon.WeaponDagger>().Shoot();
         }
         private void M2()
         {
-            //Nothing for this moment
+            for (int i = 0; i < 3; i++)
+            {
+                Sequence s = DOTween.Sequence();
+                this.GetComponentInChildren<Weapon.WeaponDagger>().Shoot();
+                float percentageCooldown1 = 0;
+                if (!cd)
+                    s.Append(DOTween.To(() => percentageCooldown1, x => percentageCooldown1 = x, 1, time2));
+                else
+                    percentageCooldown1 = 1;
+            }
         }
 
         private void Cap1()
         {
-            this.GetComponent<Moving>().speed = speed*2;
-            this.GetComponent<Moving>().jumpspeed = jumpspeed*2;
+            this.GetComponent<Moving>().speed = speed*1.5f;
+            this.GetComponent<Moving>().jumpspeed = jumpspeed*1.5f;
             
             Sequence s = DOTween.Sequence();
             float percentageCooldown1 = 0;

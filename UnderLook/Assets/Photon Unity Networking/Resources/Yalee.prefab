@@ -208,17 +208,17 @@ GameObject:
   - component: {fileID: 3247424375384944814}
   - component: {fileID: 4964085062789781066}
   - component: {fileID: 1057093712899936603}
-  - component: {fileID: 1057093712899936597}
-  - component: {fileID: 7454234176485306835}
   - component: {fileID: 3782140152649858126}
   - component: {fileID: 4291241510853899435}
   - component: {fileID: 7932226487345428372}
   - component: {fileID: 6787056358554084575}
   - component: {fileID: 1381692680352087614}
   - component: {fileID: 2298093578753873638}
-  - component: {fileID: 3947485558905629586}
+  - component: {fileID: 8224044189079705142}
+  - component: {fileID: 174848223732703428}
+  - component: {fileID: 2149133281083302844}
   m_Layer: 0
-  m_Name: Roy
+  m_Name: Yalee
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 3247424375384944814}
-  - {fileID: 7454234176485306835}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -509,49 +509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   rotationSpeed: 0
---- !u!114 &1057093712899936597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6944196344832428699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69b9db9a674966349987b3e9e4a6809a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DEBUG: 0
-  photonView: {fileID: 3956417975387097825}
-  hpmax: 500
-  hp: 500
-  speed: 8
-  jumpspeed: 10
-  canvasUI: {fileID: 7601880412327940505}
-  cameraFOV: 0
-  cam: {fileID: 8144601629044099986}
-  hasInstantiateAShield: 0
-  shield: {fileID: 8171696699039599957, guid: 47dedeaf663e1d44f8ddd1f765683009, type: 3}
-  grap: {fileID: 3660787213369190142, guid: ede4881b6381b154c9dc0a7b78bc9ed4, type: 3}
-  timergrap: 10
-  cooldownM2: 0
-  forceofGrap: 100
-  inMotion: 0
-  cd: 0
-  shotPoint: {fileID: 4266406860827236859}
---- !u!114 &7454234176485306835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6944196344832428699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515c9d5ad8207704a96197e32e441938, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 5000
 --- !u!114 &3782140152649858126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +538,7 @@ MonoBehaviour:
   playerCamera: {fileID: 8144601630246840913}
   scriptsToIgnore:
   - {fileID: 1955791076977258279}
-  - {fileID: 1057093712899936597}
+  - {fileID: 0}
   - {fileID: 3782140152649858126}
   objectsToIgnore:
   - {fileID: 7601880412327940505}
@@ -645,7 +602,7 @@ MonoBehaviour:
   card: {fileID: 5232968205475998528, guid: f0a391d810a40cd45ae0b1aa7079722b, type: 3}
   actualTime: 0
   canCannon: 0
---- !u!114 &3947485558905629586
+--- !u!114 &8224044189079705142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -654,7 +611,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6944196344832428699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60afcf6871bc03348ad28093f1bcfb90, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b156066666e4b346975e5dde7a80bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gunDamage: 0
@@ -668,8 +625,42 @@ MonoBehaviour:
   fpscam: {fileID: 8144601629044099986}
   power: 5000
   time: 3
-  bullet: {fileID: 1033521005698496978, guid: 0edc7cb3f6a5a044fb9bc6be14a86ec1, type: 3}
+  bullet: {fileID: 8171696699039599957, guid: 5e38d985e1a5a5a42800cae26a5f76de, type: 3}
   gunLine: {fileID: 0}
+--- !u!114 &174848223732703428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944196344832428699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb11b452f870e04e8603353daaf43a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 5000
+--- !u!114 &2149133281083302844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944196344832428699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc3ba0413727814f83e1935d1991007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DEBUG: 0
+  photonView: {fileID: 0}
+  hpmax: 0
+  hp: 0
+  speed: 0
+  jumpspeed: 0
+  canvasUI: {fileID: 0}
+  time1: 10
+  time2: 3
 --- !u!1 &7601880410883207316
 GameObject:
   m_ObjectHideFlags: 0

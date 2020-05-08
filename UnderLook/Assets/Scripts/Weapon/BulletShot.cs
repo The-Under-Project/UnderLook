@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class BulletShot : MonoBehaviour
 {
-        public Transform pointShoot;
 
         public int gunDamage;//Damage of weapon , for the moment it's fixed but we need to redefine it
         public float fireRate;//Rate of weapon  
@@ -15,6 +14,7 @@ public class BulletShot : MonoBehaviour
         public float masse;
         public float distance;
         public Transform gunPosition;//Position of gun to calculate the line
+        public Transform shootPoint;
         public Camera fpscam;
 
         public int power; //vitesse d'ejection
@@ -31,8 +31,12 @@ public class BulletShot : MonoBehaviour
         {
             if (Time.time > nextFire)  //je ne pense pas que ça marche
             {
-                GameObject shootedBullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
-                shootedBullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
+                GameObject shootedBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity) as GameObject;
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * fpscam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= power;
+                shootedBullet.GetComponent<Rigidbody>().AddForce(force);
+                
                 Destroy(shootedBullet, time);
                 
                 void OnCollisionEnter(Collision collision)

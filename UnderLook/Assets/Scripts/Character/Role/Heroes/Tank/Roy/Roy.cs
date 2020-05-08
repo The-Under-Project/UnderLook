@@ -84,7 +84,10 @@ namespace Player
         private void M2()
         {
             GameObject grappin = Instantiate(grap, shotPoint.transform.position, Quaternion.identity) as GameObject;
-            grappin.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
+            Vector3 force = transform.forward;
+            force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+            force *= power;
+            grappin.GetComponent<Rigidbody>().AddForce(force);
             grappin.GetComponent<Grappin>().setPlayer(this.gameObject);
             Destroy(grappin, time);
         }
