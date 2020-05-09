@@ -21,12 +21,15 @@ public class Moving : MonoBehaviour
 
     public Vector3 bluePos, redPos;
 
+
     public GameObject posEND_RED;
     public GameObject posEND_BLUE;
+
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
+
     }
 
     void Update()
@@ -43,25 +46,40 @@ public class Moving : MonoBehaviour
 
         if (!isOnTrack)
         {
-            float moveX = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-            float moveY = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            //float moveZ = 0.0f;
+            mvXold = mvX;
+            mvYold = mvY;
+            mvY = Input.GetAxis("Horizontal");
+            mvX = Input.GetAxis("Vertical");
+            animationPlayer(mvY, mvX);
+
+            float moveX = mvX * speed * Time.deltaTime;
+            float moveY = mvY * speed * Time.deltaTime;
+            
+
+            if(mvYold == 1 && mvXold == 0 || mvYold == 0 && mvXold == -1 || mvYold == -1 && mvXold == 0)
+            {
+                if(!(mvY == 1 && mvX == 0 || mvY == 0 && mvX == -1 || mvY == -1 && mvX == 0))
+                {
+                    GetComponent<OffSetWeapon>().changeweapondDown = true;
+                }
+            }
+            else
+            {
+                if (mvY == 1 && mvX == 0 || mvY == 0 && mvX == -1 || mvY == -1 && mvX == 0)
+                {
+                    GetComponent<OffSetWeapon>().changeweapondUp = true;
+                }
+            }
 
             if ((Input.GetButton("Jump") && characterController.isGrounded) || capacity)
             {
                 moveZ = jumpspeed;
-                if (capacity)
-                {
-                    moveZ = jumpspeed * 3;
-                    capacity = false;
-                }
+
+                animationPlayer(0.42f, 0.42f);
+
             }
             moveZ -= gravity * Time.deltaTime;
-
-
-            if (characterController.isGrounded)
-                moveZ = 0;
-
+            
             if (canMove)
                 characterController.Move(transform.forward * moveX + transform.right * moveY); //time multiplié au carré
             if (gravityApplied)
@@ -117,5 +135,31 @@ public class Moving : MonoBehaviour
         else
             DOTween.Play(Move(redPos));
         gameObject.GetComponent<TeamColor>().enabled = true;
+    }
+
+   private void animationPlayer(float X, float Y)
+    {
+        if (X < -0.5f && Y == 0)
+        {
+            animationPerso.speed = 1.25f;
+        }
+        else if (X > 0.5f && Y == 0)
+        {
+            animationPerso.speed = 2f;
+        }
+        else if (X == 0 && Y > 0.5f)
+        {
+            animationPerso.speed = 0.75f;
+        }
+        else if (X == 0 && Y < -0.5f)
+        {
+            animationPerso.speed = 1f;
+        }
+        else if ( X < 0.9f && Y > 0.9f)
+        {
+            animationPerso.speed = 0.75f;
+        }
+        animationPerso.SetFloat("VelX", X);
+        animationPerso.SetFloat("VelY", Y);
     }
 }

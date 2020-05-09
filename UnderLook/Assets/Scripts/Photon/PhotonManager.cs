@@ -8,6 +8,8 @@ public class PhotonManager : Photon.MonoBehaviour
 {
     public bool run = true;
     public string mapToLoad;
+    private bool connected = false;
+    public string instantiateName;
     // Use this for initialization
     void Start()
     {
@@ -38,14 +40,27 @@ public class PhotonManager : Photon.MonoBehaviour
         Debug.Log("Joined");
         //PhotonNetwork.player.NickName = GameObject.FindGameObjectWithTag("TextField").GetComponent<Text>().text;
 
-        if (run)
+        connected = true;
+        
+    }
+    void OnLeftRoom()
+    {
+        Debug.Log("Left");
+    }
+    private void Update()
+    {
+        if (run && connected)
         {
+            run = false;
             SceneManager.LoadScene(mapToLoad, LoadSceneMode.Additive);
 
             Vector3 spawn = new Vector3(20, 200, 0);
 
             PhotonNetwork.player.NickName = GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName;
-            PhotonNetwork.Instantiate("Yalee", spawn, Quaternion.identity, 0);
+
+            PhotonNetwork.Instantiate(instantiateName, spawn, Quaternion.identity, 0); // <----------------------------------
+            //PhotonNetwork.Instantiate("CassieMain", spawn, Quaternion.identity, 0);
+
 
             /*
             //Vector3 spawn = new Vector3(1, 15, 23);
@@ -54,9 +69,5 @@ public class PhotonManager : Photon.MonoBehaviour
             else
                 PhotonNetwork.Instantiate("CassieR", spawn, Quaternion.identity, 0);*/
         }
-    }
-    void OnLeftRoom()
-    {
-        Debug.Log("Left");
     }
 }
