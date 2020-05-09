@@ -8,10 +8,11 @@ namespace Player
     public class AI : Base //IA doit hériter à la fin, c'est celle qui n'est pas abstract 
     {
         private NavMeshAgent agent;
-        public GameObject player;
 
         public float Timer;
+        public float groupTimer;
         private float actualTime;
+        public float actualGroupTimer;
         public float RandomTime;
 
         public bool BlueTeam = false;
@@ -21,11 +22,14 @@ namespace Player
         public float distance = 4.5f;
         public GameObject[] players;
 
+        public bool isGrouping;
+
 
         #region Main
 
         void Start()
         {
+            photonView = GetComponent<PhotonView>();
             teamColor = BlueTeam ? "Blue" : "Red";
             enemyColor = BlueTeam ? "Red" : "Blue";
             int i = 0;
@@ -46,7 +50,7 @@ namespace Player
 
             
         }
-        void Move()
+        void MoveToPayload()
         {
             GameObject point = GameObject.FindGameObjectWithTag("Point");
             GameObject payload = GameObject.FindGameObjectWithTag("Payload");
@@ -66,26 +70,44 @@ namespace Player
                 
             }
         }
+        void GroupUp()
+        {
+            GameObject point = null;
+            if (teamColor == "Blue")
+                point = GameObject.FindGameObjectWithTag("GroupBlue");
+            else
+                point = GameObject.FindGameObjectWithTag("GroupRed");
+            agent.SetDestination(point.transform.position);
+        }
 
         void Look() //gte the closest enemie and look at him
         {
             float d = float.MaxValue;
             GameObject closest = null;
-
-            foreach (var enemie in players)
+            try
             {
-                if (enemie.GetComponent<AI>().enemyColor == teamColor) //pas ouf pcq j'accède à IA au lieu de player, il faut faire de l'héritage
+                foreach (var enemie in players)
                 {
-                    float localD = Vector3.Distance(enemie.transform.position, this.transform.position);
-                    if (localD < d)
+                    if (enemie.GetComponent<AI>() != null)
                     {
-                        d = localD;
-                        closest = enemie;
+                        if (enemie.GetComponent<AI>().enemyColor == teamColor) //pas ouf pcq j'accède à IA au lieu de player, il faut faire de l'héritage
+                        {
+                            float localD = Vector3.Distance(enemie.transform.position, this.transform.position);
+                            if (localD < d)
+                            {
+                                d = localD;
+                                closest = enemie;
 
+                            }
+                        }
                     }
                 }
-            }
             transform.LookAt(closest.transform);
+            }
+            catch // pas ouf ^
+            {
+
+            }
         }
 
         private void Update()
@@ -93,6 +115,10 @@ namespace Player
             DoTime();
             Look();
             //transform.LookAt(player.transform);
+            if (this.hp < 0)
+            {
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
 
 
@@ -100,12 +126,28 @@ namespace Player
         {
             if(actualTime <= 0)
             {
-                actualTime = Timer + Random.Range(-RandomTime, RandomTime); ;
-                Move();
+                actualTime = Timer + Random.Range(-RandomTime, RandomTime);
+                if(isGrouping)
+                    GroupUp();
+                else
+                    MoveToPayload();
             }
             else
             {
                 actualTime -= Time.deltaTime;
+            }
+
+            if (actualGroupTimer <= 0)
+            {
+                actualGroupTimer = groupTimer;
+                GameObject payload = GameObject.FindGameObjectWithTag("Payload");
+                if ((payload.GetComponent<PayloadCountPlayer>().returnCappingBlue == 0 && teamColor == "Blue") ||
+                    (payload.GetComponent<PayloadCountPlayer>().returnCappingRed == 0 && teamColor == "Red")) 
+                    isGrouping = true;
+            }
+            else if (!isGrouping)
+            {
+                actualGroupTimer -= Time.deltaTime;
             }
         }
         #endregion Main

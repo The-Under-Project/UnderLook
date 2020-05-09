@@ -25,11 +25,11 @@ public class PayloadCountPlayer : MonoBehaviour
     {
 
         photonView = GetComponent<PhotonView>();
-        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void Update()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         CapInfo();
     }
 
@@ -49,15 +49,31 @@ public class PayloadCountPlayer : MonoBehaviour
         {
             if (Vector3.Distance(player.transform.position, this.transform.position) < size)
             {
-                if (player.GetComponent<Player.AI>().teamColor == "Blue")
+                if (player.GetComponent<Player.AI>() != null)
                 {
-                    capturingBlue[cappingBlue] = player;
-                    cappingBlue += 1;
+                    if (player.GetComponent<Player.AI>().teamColor == "Blue")
+                    {
+                        capturingBlue[cappingBlue] = player;
+                        cappingBlue += 1;
+                    }
+                    else
+                    {
+                        capturingRed[cappingRed] = player;
+                        cappingRed += 1;
+                    }
                 }
                 else
                 {
-                    capturingBlue[cappingRed] = player;
-                    cappingRed += 1;
+                    if (player.GetComponent<TeamColor>().teamColor == "Blue")
+                    {
+                        capturingBlue[cappingBlue] = player;
+                        cappingBlue += 1;
+                    }
+                    else
+                    {
+                        capturingRed[cappingRed] = player;
+                        cappingRed += 1;
+                    }
                 }
             }
         }

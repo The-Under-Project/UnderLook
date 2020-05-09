@@ -21,6 +21,12 @@ TagManager:
   - TPmaker
   - redPos
   - bluePos
+  - GroupBlue
+  - GroupRed
+  - CannonBlueEnd
+  - CannonRedEnd
+  - CannonRedPath
+  - CannonBluePath
   layers:
   - Default
   - TransparentFX
