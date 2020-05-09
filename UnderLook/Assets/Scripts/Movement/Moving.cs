@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -15,6 +16,8 @@ public class Moving : MonoBehaviour
     public bool isOnTrack = false;
     public float launch = 0f;
     public bool doTP = false;
+
+    public Boolean capacity = false;
 
     public Vector3 bluePos, redPos;
 
@@ -68,10 +71,12 @@ public class Moving : MonoBehaviour
                 }
             }
 
-            if ((Input.GetButton("Jump") && characterController.isGrounded))
+            if ((Input.GetButton("Jump") && characterController.isGrounded) || capacity)
             {
                 moveZ = jumpspeed;
+
                 animationPlayer(0.42f, 0.42f);
+
             }
             moveZ -= gravity * Time.deltaTime;
             
