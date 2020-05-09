@@ -18,16 +18,22 @@ public class Moving : MonoBehaviour
 
     public Vector3 bluePos, redPos;
 
+    public GameObject posEND_RED;
+    public GameObject posEND_BLUE;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-
-
     }
 
     void Update()
     {
         MovementPlayer();
+        if(posEND_RED == null || posEND_BLUE == null)
+        {
+            posEND_BLUE = GameObject.FindGameObjectWithTag("CannonBlueEnd");
+            posEND_RED = GameObject.FindGameObjectWithTag("CannonRedEnd");
+        }
     }
     void MovementPlayer()
     {
@@ -60,7 +66,11 @@ public class Moving : MonoBehaviour
     Sequence Launch()
     {
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOLocalMove(new Vector3(0, 0, 0), 1.5f)); //move to end of the cannon
+        if(!GetComponent<TeamColor>().isBlue)
+            s.Append(transform.DOMove(posEND_RED.transform.position, 1.5f)); //move to end of the cannon
+        else
+            s.Append(transform.DOMove(posEND_BLUE.transform.position, 1.5f)); //move to end of the cannon
+
         s.Append(DOTween.To(() => launch, x => launch = x, 0.5f, 3f)); //change the speed
         s.OnComplete(() => { DOTween.Play(Land()); });
         return s;
