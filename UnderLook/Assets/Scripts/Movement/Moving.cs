@@ -7,7 +7,7 @@ public class Moving : MonoBehaviour
 {
     CharacterController characterController;
     public float gravity;
-    [HideInInspector] public float speed, jumpspeed;
+    [HideInInspector]public float speed, jumpspeed;
     private float moveZ;
     public bool canMove = true;
     public bool gravityApplied = true;
