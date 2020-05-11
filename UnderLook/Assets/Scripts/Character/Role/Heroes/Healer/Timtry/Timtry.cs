@@ -6,17 +6,18 @@ using UnityEngine.UI;
 using DG.Tweening;
 namespace Player
 {
-    public class Cassie : Dps
+    public class Timtry : Healer
     {
 
 
-        [Header("Cassie")]
+        [Header("Timtry")]
         public bool hasInstantiateAMine = false;
 
         public GameObject canvasUI;
 
-        public GameObject mine;
-        public GameObject minePos;
+        //public GameObject mine;
+        public GameObject originshoot;
+        
 
         public float mineStrengh;
 
@@ -24,30 +25,42 @@ namespace Player
         public float cameraFOV;
         public Camera cam;
 
-        public bool isShadow = false;
+        /*public bool isShadow = false;
         public GameObject sphere;
 
         public float teleportRange;
 
         public float Teleport = 100;
-
-        public float TimeTP;
+        */
+        /*public float TimeTP;
         public float TimeAfterTP;
         public float percentage;
+        */
 
         public Vector3 force;
         public string enemyColor;
 
         public float waitmarket = 1f;
 
+        
+
+        public float rangecap2; // range of the blessing of timtry
+        public float durationhealing; // duration of the mark of healing
+        public int puissanceshealing; // amount of life recovered by tick
+
+        public float durationzoneofslowness; // look at end of file with sequence for more comprehension
+        public float durationachievedslow = 0f;
+        public bool zoneActivated = false; // if true the prefab slowzone is instanciated
+
+
+
 
         private void Start()
         {
-            
+
 
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
-
 
             cam = GetComponentInChildren<Camera>();
             cameraFOV = cam.fieldOfView;
@@ -55,8 +68,11 @@ namespace Player
             canvasUI.GetComponent<UI>().hasShield = false;
             canvasUI.GetComponent<UI>().hasThreeCapacities = false;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
-            percentage = TimeTP / (TimeTP + TimeAfterTP) * 100;
 
+            GetComponent<SlowdeZone>().CreateEnnemiTeam(GetComponent<TeamColor>().teamColor);
+
+            GetComponent<HealDazze>().ovetimeheal = puissanceshealing;
+            GetComponent<HealDazze>().timeofheal = durationhealing;
         }
         void FixedUpdate()
         {
@@ -71,36 +87,14 @@ namespace Player
 
             cam.fieldOfView = cameraFOV;
 
-            if (isShadow) //si jamais tu es dans la range et que les bords de la sphère  sont bien en contact 'trigger' 
-                          //alors tu peux te tp. Si jamais il y  aps de hit, tu regarde à la distance max si jamais tu peux te tp
+            
+            if(durationachievedslow == 1f)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit, teleportRange))
-                {
-
-                    sphere.transform.position = hit.point;
-                }
+                Destroy(GameObject.FindGameObjectWithTag("slowzone"));
             }
 
 
-            if (Teleport < percentage)
-            {
-                GetComponent<Moving>().gravityApplied = false;
-                GetComponent<Moving>().canMove = false;
-            }
-            else
-            {
-                if (Teleport >= 100)
-                {
-                    GetComponent<Moving>().canMove = true;
-                }
-                else
-                    GetComponent<Moving>().canMove = false;
 
-                GetComponent<Moving>().gravityApplied = true;
-            }
 
             if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
             {
@@ -131,6 +125,8 @@ namespace Player
             }
             if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
                 canvasUI.GetComponent<UI>().option.SetActive(false);
+
+
         }
 
         //-----------------------------
@@ -150,6 +146,10 @@ namespace Player
                 {
                     Cap1();
                 }
+                if (zoneActivated)
+                {
+                    GetComponent<SlowdeZone>().IsInContact();
+                }
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Cap2();
@@ -165,22 +165,7 @@ namespace Player
 
         private void M1()
         {
-            if (!isShadow)
-            {
-                this.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
-            }
-            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
-            {
-                canvasUI.GetComponent<UI>().cap("one");
-                if (GetComponentInChildren<TPoverlapCircle>().nbCol == 4)
-                {
-                    tp(true);
-                }
-                else if (GetComponentInChildren<TPoverlapCircle>().nbCol == 5)
-                {
-                    tp(false);
-                }
-            }
+           
 
         }
         private void M2()
@@ -199,34 +184,25 @@ namespace Player
 
         private void Cap1()
         {
-            if (isShadow)
+
+            if (canvasUI.GetComponent<UI>().percentageCooldown1 == 1f)
             {
-                sphere.SetActive(false);
-                isShadow = false;
-            }
-            else
-            {
-                sphere.SetActive(true);
-                isShadow = true;
+                Destroy(GameObject.FindGameObjectWithTag("slowzone"));
+                canvasUI.GetComponent<UI>().cap("one");
+                GetComponent<SlowdeZone>().slowzone();
+                zoneActivated = true;
+                durationzoneslow();
+                
             }
         }
 
         private void Cap2()
         {
-            if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
+            if(canvasUI.GetComponent<UI>().percentageCooldown2 == 1f)
             {
                 canvasUI.GetComponent<UI>().cap("two");
+                GetComponent<HealDazze>().DeterminedHealed(originshoot.transform, GetComponent<TeamColor>().teamColor, rangecap2);
 
-                GameObject clone = Instantiate(mine, minePos.transform.position, Quaternion.identity) as GameObject; //minePos.transform.rotation
-                clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
-                clone.SendMessage("DEBUG", DEBUG);
-
-                Vector3 force = transform.forward;
-                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
-                force *= mineStrengh;
-                clone.GetComponent<Rigidbody>().AddForce(force);
-
-                hasInstantiateAMine = true;
             }
         }
 
@@ -235,14 +211,7 @@ namespace Player
             //double les dmg
         }
 
-        private void tp(bool offset)
-        {
-            isShadow = false;
-
-            sphere.SetActive(false);
-
-            DOTween.Play(Teleportseq(offset));
-        }
+        
 
         private void dead()
         {
@@ -263,51 +232,7 @@ namespace Player
             s.Append(DOTween.To(() => cameraFOV, x => cameraFOV = x, 60f, 0.2f));
             return s;
         }
-        Sequence Teleportseq(bool offset)
-        {
-            Vector3 offsetValue = new Vector3(0, 0, 0);
-
-            if (offset)
-            {
-                int e = 0;
-                bool[] check = sphere.GetComponent<TPoverlapCircle>().whoTrue;
-                for (int i = 0; i < 5; i++)
-                {
-                    if (check[i] == false)
-                    {
-                        e = i;
-                        break;
-                    }
-                }
-                switch (e) 
-                {
-                    case 0:
-                        offsetValue = new Vector3(-2, 1);
-                        break;
-                    case 1:
-                        offsetValue = new Vector3(2, 1);
-                        break;
-                    case 3:
-                        offsetValue = new Vector3(0, 1, -2);
-                        break;
-                    case 4:
-                        offsetValue = new Vector3(0, 1, 2);
-                        break;
-                }
-
-
-
-
-            }
-            Teleport = 0;
-            Sequence s = DOTween.Sequence();
-            s.Append(DOTween.To(() => Teleport, x => Teleport = x, percentage, TimeTP));
-            s.Append(transform.DOLocalMove(sphere.transform.position + new Vector3(0, 2) + offsetValue, 0.0001f)); //not tp into floor
-            s.Append(DOTween.To(() => Teleport, x => Teleport = x, 100f, TimeTP));
-
-            return s;
-        }
-
+        
         public void ApllyCard(Card upgrade)
         {
 
@@ -332,7 +257,13 @@ namespace Player
             s.Append(DOTween.To(() => waitmarket, x => waitmarket = x, 1, 0.25f));
             return s;
         }
-
+        Sequence durationzoneslow()
+        {
+            durationachievedslow = 0;
+            Sequence s = DOTween.Sequence();
+            s.Append(DOTween.To(() =>durationachievedslow, x => durationachievedslow = x, 1, durationhealing));
+            return s;
+        }
 
 
     }

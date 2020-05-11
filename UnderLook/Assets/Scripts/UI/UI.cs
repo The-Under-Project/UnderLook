@@ -64,6 +64,23 @@ public class UI : MonoBehaviour
     [Range(0.0f, 200f)]
     public float CurrentShield;
 
+
+    [Header("Market")]
+    public bool showmarket = false;
+    public GameObject market;
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
+
+    [Header("Menu")]
+    public GameObject menu;
+    public bool showmenu = false;
+    public GameObject stat;
+    public bool showstat = false;
+    public GameObject option;
+    public bool showoption;
+    public Image sound;
+
     private void Start()
     {
         NameCharacter = PhotonNetwork.player.NickName;
@@ -102,7 +119,16 @@ public class UI : MonoBehaviour
         {
             ShieldBar.transform.parent.gameObject.SetActive(false);
         }
-       
+
+        #region MenuOverlay
+        market.SetActive(false);
+        menu.SetActive(false);
+        stat.SetActive(false);
+        option.SetActive(false);
+        sound.fillAmount = 0.5f;
+        #endregion
+
+
     }
     void FixedUpdate()
     {
@@ -169,6 +195,45 @@ public class UI : MonoBehaviour
         ultimateBar.fillAmount = CurrentUltimate;
 
         #endregion ultimate
+
+        #region market
+        if (!showmarket || GetComponentInParent<Market>().itembought)
+        {
+            market.SetActive(false);
+        }
+        else
+        {
+            market.SetActive(true);
+            if (Input.GetKey(KeyCode.F2))
+            {
+                GetComponentInParent<Market>().item = item1.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+
+
+            }
+            if (Input.GetKey(KeyCode.F3))
+            {
+                GetComponentInParent<Market>().item = item2.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+
+
+            }
+            if (Input.GetKey(KeyCode.F4))
+            {
+                GetComponentInParent<Market>().item = item3.GetComponent<CardDisplay>().card;
+                GetComponentInParent<Market>().itembought = true;
+            }
+        }
+        #endregion market
+
+        #region menu
+        if (showmenu)
+            menu.SetActive(true);
+        else
+        {
+            menu.SetActive(false);
+        }
+        #endregion
     }
 
     Sequence CD1()
@@ -223,6 +288,25 @@ public class UI : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public void SoundUp()
+    {
+        if (sound.fillAmount < 1)
+        {
+            sound.fillAmount += 0.1f;
+        }
+        else
+        { sound.fillAmount = 1; }
+    }
+    public void Sounddown()
+    {
+        if (sound.fillAmount > 0)
+            sound.fillAmount -= 0.1f;
+        else
+        {
+            sound.fillAmount = 0;
         }
     }
 }

@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]private float SpeedRotate = 150f;
     [SerializeField] private Transform BodyPlayer;
     private float ClampX;
+    public bool canmovevision = true;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,8 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CameraMove();
+        if(canmovevision)
+            CameraMove();
     }
 
 
