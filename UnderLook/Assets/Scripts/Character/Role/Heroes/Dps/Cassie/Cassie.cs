@@ -77,9 +77,10 @@ namespace Player
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
+                Debug.Log("shadow");
+
                 if (Physics.Raycast(ray, out hit, teleportRange))
                 {
-
                     sphere.transform.position = hit.point;
                 }
             }
