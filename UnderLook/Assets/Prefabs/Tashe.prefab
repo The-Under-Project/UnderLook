@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 7138717835606546615}
   - component: {fileID: 7138717835606546614}
   - component: {fileID: 6437198733650402295}
+  - component: {fileID: -3465947937650827428}
   m_Layer: 0
   m_Name: Tashe
   m_TagString: Untagged
@@ -291,6 +292,21 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &-3465947937650827428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166501688301683122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7127af350deca0944b1f87ba80ab294f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBlue: 0
+  teamColor: 
+  enemieColor: 
 --- !u!1 &1225216924561931499
 GameObject:
   m_ObjectHideFlags: 0

@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 880401108065775042}
   - component: {fileID: 880401108065775043}
   - component: {fileID: 880401108065775044}
+  - component: {fileID: 8045838716414196153}
   m_Layer: 0
   m_Name: Timtry
   m_TagString: Untagged
@@ -1287,6 +1288,21 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &8045838716414196153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157574180551636163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7127af350deca0944b1f87ba80ab294f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBlue: 0
+  teamColor: 
+  enemieColor: 
 --- !u!1001 &880401107647629153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1554,15 +1570,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc74d077d5a66294ca3714f2ddccf251, type: 3}
---- !u!1 &9157574179558255276 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: fc74d077d5a66294ca3714f2ddccf251,
-    type: 3}
-  m_PrefabInstance: {fileID: 880401109084320677}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5281988895893690559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: fc74d077d5a66294ca3714f2ddccf251,
+    type: 3}
+  m_PrefabInstance: {fileID: 880401109084320677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9157574179558255276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: fc74d077d5a66294ca3714f2ddccf251,
     type: 3}
   m_PrefabInstance: {fileID: 880401109084320677}
   m_PrefabAsset: {fileID: 0}
