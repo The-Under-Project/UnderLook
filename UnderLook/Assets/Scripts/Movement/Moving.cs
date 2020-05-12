@@ -33,6 +33,8 @@ public class Moving : MonoBehaviour
     public float factor;
     public float durationslowness;
 
+    
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();

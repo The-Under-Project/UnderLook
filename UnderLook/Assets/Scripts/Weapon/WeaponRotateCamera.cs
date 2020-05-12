@@ -5,8 +5,10 @@ using UnityEngine;
 public class WeaponRotateCamera : MonoBehaviour
 {
     public GameObject fpscam;
+    public Vector3 offsetinit;
     void Update()
     {
-        gameObject.transform.rotation = fpscam.transform.rotation;
+        Vector3 rotate = offsetinit + fpscam.transform.rotation.eulerAngles;
+        gameObject.transform.rotation = Quaternion.Euler(rotate);
     }
 }
