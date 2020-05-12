@@ -32,7 +32,7 @@ public class SlowdeZone : MonoBehaviour
         foreach (var joueur in ennemiteam)
         {
             
-            if (joueur.GetComponent<Moving>() != null && Mathf.Abs(joueur.transform.position.x - jesuisinstancier.transform.position.x) <= 1 && Mathf.Abs(joueur.transform.position.z - jesuisinstancier.transform.position.z) <= 1f )
+            if (joueur.GetComponent<Moving>() != null && Mathf.Abs(joueur.transform.position.x - jesuisinstancier.transform.position.x) <= 8f && Mathf.Abs(joueur.transform.position.z - jesuisinstancier.transform.position.z) <= 8f )
             {
                
                 

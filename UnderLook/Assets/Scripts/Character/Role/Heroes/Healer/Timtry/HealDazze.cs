@@ -22,7 +22,6 @@ public class HealDazze : MonoBehaviour
         if(Physics.Raycast(origin.transform.position, origin.forward, out  hit, maxDistance))    //(Physics.Raycast(ray,out hit, maxDistance)
         {
             Debug.Log("rayinstantier");
-            Debug.Log(hit.transform.position);
             if (hit.transform.GetComponent<TeamColor>() != null && hit.collider.gameObject.GetComponent<TeamColor>().teamColor == ally)
             {
                 Debug.Log("Worked");
