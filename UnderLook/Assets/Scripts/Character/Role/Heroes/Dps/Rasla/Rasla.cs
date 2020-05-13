@@ -32,6 +32,10 @@ namespace Player
         public int oldwask;
 
         public float waitmarket = 1f;
+        public float powergrenada;
+        public float cdgrenade;
+        public float tempsgre;
+        public float tempsrestatngre;
 
         private void Start()
         {
@@ -53,6 +57,7 @@ namespace Player
 
                 }
             }
+            canvasUI.GetComponent<UI>().time3 = cdgrenade;
 
 
         }
@@ -97,6 +102,12 @@ namespace Player
                 cameraofperso.cullingMask = oldwask;
 
             }
+            if(tempsrestatngre == 1)
+            {
+                Object.Destroy(GameObject.FindGameObjectWithTag("grenade"));
+                GetComponent<effetBlur>().launchedgrenada = false;
+                
+            }
             if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
             {
                 wait();
@@ -138,7 +149,7 @@ namespace Player
                 {
                     M1();
                 }
-                if (Input.GetButtonDown("Fire2"))
+                if (Input.GetKeyDown(KeyCode.G))
                 {
                     M2();
                 }
@@ -157,6 +168,37 @@ namespace Player
 
         private void M1()
         {
+            if (!isShadow)
+            {
+                this.GetComponentInChildren<Weapon.WeaponAssaultRifle>().Shoot();
+            }
+
+        }
+        private void M2()
+        {
+            
+            if( canvasUI.GetComponent<UI>().percentageCooldown3 == 1)
+            {
+                Debug.Log("allo");
+                canvasUI.GetComponent<UI>().cap("three");
+                GetComponent<effetBlur>().GenerateEnnemiTeam(GetComponent<TeamColor>().teamColor);
+                GetComponent<effetBlur>().LaunchedGrenada(this.gameObject, cameraofperso, powergrenada);
+                
+            }
+        }
+
+        private void Cap1()
+        {
+            /*if (isShadow && started)
+            {
+                sphere.SetActive(false);
+                isShadow = false;
+            }
+            else if (!isShadow && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
+            {
+                sphere.SetActive(true);
+                isShadow = true;
+            }*/
             if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
 
@@ -166,25 +208,6 @@ namespace Player
                     started = true;
                     tp();
                 }
-            }
-
-        }
-        private void M2()
-        {
-
-        }
-
-        private void Cap1()
-        {
-            if (isShadow && started)
-            {
-                sphere.SetActive(false);
-                isShadow = false;
-            }
-            else if (!isShadow && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
-            {
-                sphere.SetActive(true);
-                isShadow = true;
             }
         }
 
@@ -222,6 +245,13 @@ namespace Player
             s.Append(DOTween.To(() => timedepbegininvi, x => timedepbegininvi = x, 1f, timeofinvincibility));
             return s;
         }
+        Sequence GrenadaDuration()
+        {
+            tempsrestatngre = 0;
+            Sequence s = DOTween.Sequence();
+            s.Append(DOTween.To(() => tempsrestatngre, x => tempsrestatngre = x, 1f, tempsgre));
+            return s;
+        }
         public void ApllyCard(Card upgrade)
         {
 
@@ -235,9 +265,6 @@ namespace Player
             GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
             GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
             GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
-
-
-
         }
         Sequence wait()
         {

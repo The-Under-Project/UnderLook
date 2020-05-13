@@ -165,7 +165,7 @@ namespace Player
 
         private void M1()
         {
-           
+            GetComponentInChildren<Weapon.WeaponAssaultRifle>().Shoot();
 
         }
         private void M2()

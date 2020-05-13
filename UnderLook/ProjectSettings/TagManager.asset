@@ -27,6 +27,8 @@ TagManager:
   - CannonRedEnd
   - CannonRedPath
   - CannonBluePath
+  - slowzone
+  - grenade
   layers:
   - Default
   - TransparentFX

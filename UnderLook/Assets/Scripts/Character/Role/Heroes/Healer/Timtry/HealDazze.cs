@@ -6,10 +6,10 @@ using DG.Tweening;
 public class HealDazze : MonoBehaviour
 {
     
-    public GameObject touched;
+    public GameObject touched = null;
     public int ovetimeheal;
     public float timeofheal;
-    public float timesincebeginningofheal;
+    public float timesincebeginningofheal = 0;
 
 
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class HealDazze : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(timesincebeginningofheal < 1)
+        if(touched != null && timesincebeginningofheal < 1 && timesincebeginningofheal != 0)
         {
             touched.GetComponent<Player.Base>().hp += ovetimeheal;
             if (touched.GetComponent<Player.Base>().hp > touched.GetComponent<Player.Base>().hpmax)

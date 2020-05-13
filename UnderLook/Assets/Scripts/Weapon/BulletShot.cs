@@ -20,6 +20,7 @@ public class BulletShot : MonoBehaviour
     public int power; //vitesse d'ejection
     public float time; //temps avant suppression de balle
     public GameObject bullet; //Balle utilisée
+    public GameObject player;
 
     //private AudioSource gunAudio; //The audio of gun
     [SerializeField] private LineRenderer gunLine; //The line of shoot 
@@ -32,7 +33,7 @@ public class BulletShot : MonoBehaviour
         if (Time.time > nextFire)  //je ne pense pas que ça marche
         {
             GameObject shootedBullet = Instantiate(bullet, shootPoint.position, Quaternion.identity) as GameObject;
-            Vector3 force = transform.forward;
+            Vector3 force = player.transform.forward;
             force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * fpscam.transform.rotation.eulerAngles.x) * 2f, force.z);
             force *= power;
             shootedBullet.GetComponent<Rigidbody>().AddForce(force);
@@ -46,7 +47,6 @@ public class BulletShot : MonoBehaviour
                     Destroy(shootedBullet, time);
                 }
             }
-
             Destroy(shootedBullet, time);
         }
 
