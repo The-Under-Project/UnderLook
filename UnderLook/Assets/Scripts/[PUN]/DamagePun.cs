@@ -5,23 +5,25 @@ using UnityEngine;
 public class DamagePun : MonoBehaviour
 {
     [PunRPC]
-    void Dmg(int id)
+    void Dmg(Vector2 received)
     {
-        Debug.Log(id);
-        Debug.Log("");
-        Debug.Log(gameObject.GetComponent<PhotonView>().viewID);
-        Debug.Log("");
+        int id = (int)received.x;
+        int damage = (int)received.y;
         if (gameObject.GetComponent<Player.AI>() != null)
         {
-            GetComponent<Player.AI>().hp -= 50;
+            GetComponent<Player.AI>().hp -= damage;
             return;
         }
         if (gameObject.GetComponent<PhotonView>().viewID == id)
         {
-            if (GetComponent<Player.Cassie>()!= null)
-                GetComponent<Player.Cassie>().hp -= 50;
-            else if (GetComponent<Player.Brik>()!= null)
-                GetComponent<Player.Brik>().hp -= 50;
+            if     (GetComponent<Player.Cassie>() != null)
+                GetComponent<Player.Cassie>().hp -= damage;
+            else if (GetComponent<Player.Brik>() != null)
+                GetComponent<Player.Brik>().hp -= damage;
+            else if (GetComponent<Player.Yalee>() != null)
+                GetComponent<Player.Yalee>().hp -= damage;
+            else
+                Debug.Log("ADD COMPONENT DAMAGE");
         }
            
 

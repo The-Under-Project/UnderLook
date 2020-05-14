@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978219d0efd0aeb4185bc4d2e32a3265, type: 3}
   m_Name: Yalee
   m_EditorClassIdentifier: 
-  instantiateName: 
+  instantiateName: Yalee
   artwork: {fileID: 21300000, guid: fdd104cc5eac4ef43bf96b88f31a7b74, type: 3}

@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd14c18eafcedb345b36f9c4eed8e40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 50
   activated: 0
   rotationSpeed: -1000
   time: 0
@@ -487,9 +488,9 @@ GameObject:
   - component: {fileID: 8111160141100890882}
   - component: {fileID: 8111160141100890881}
   - component: {fileID: 8111160141100890880}
-  - component: {fileID: 527290520769726282}
   - component: {fileID: -7013729943332396912}
   - component: {fileID: 4150183918384865566}
+  - component: {fileID: 2986349651141897306}
   m_Layer: 0
   m_Name: Brik
   m_TagString: Player
@@ -664,8 +665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color:
-  - {fileID: 2100000, guid: df7748e21795423458413247611222fa, type: 2}
-  - {fileID: 2100000, guid: b164d1e9f990f2b47a41d2fd1d62ed32, type: 2}
+  - {fileID: 2100000, guid: 4131ca402970a434a8c156985a8f2c65, type: 2}
+  - {fileID: 2100000, guid: bdc262ef1f61d0f4d9239637d6ba3e0a, type: 2}
   basic: {fileID: 2100000, guid: 66809d25884edde4d99d9f6f761c07a0, type: 2}
   wallHack: {fileID: 2100000, guid: b817e68f961cf0349b0bf1896976b95c, type: 2}
 --- !u!114 &8111160141100890894
@@ -705,7 +706,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 8111160141100890892}
-  - {fileID: 527290520769726282}
+  - {fileID: 0}
   - {fileID: 4150183918384865566}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
@@ -864,21 +865,6 @@ MonoBehaviour:
   pulling: 0
   returnTime: 0
   photonView: {fileID: 0}
---- !u!114 &527290520769726282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111160141100890887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c1553a56809ec4a85b3537f7a5ab3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shield: {fileID: 8111160139931230855}
-  shieldState: 0
-  Health: 5000
 --- !u!114 &-7013729943332396912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,6 +890,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+--- !u!114 &2986349651141897306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111160141100890887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2c60f029b1d1448abe137755b22b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: {fileID: 8111160139931230855}
+  shieldState: 0
+  Health: 5000
 --- !u!1001 &4102244449016762663
 PrefabInstance:
   m_ObjectHideFlags: 0

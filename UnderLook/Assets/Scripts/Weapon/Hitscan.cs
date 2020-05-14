@@ -57,7 +57,8 @@ namespace Weapon
 
                     if (hit.transform.tag == "Player")
                     {
-                        hit.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, hit.transform.GetComponent<PhotonView>().viewID);
+                        Vector2 send = new Vector2(hit.transform.GetComponent<PhotonView>().viewID, gunDamage);
+                        hit.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, send);
                         //photonView.RPC("Dmg", PhotonTargets.All, hit.transform.GetComponent<PhotonView>().viewID);
                     }
 

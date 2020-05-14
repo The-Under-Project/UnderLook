@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour
 {
-
+    public int damage = 50;
     public bool activated;
 
     public float rotationSpeed;
@@ -40,7 +40,8 @@ public class WeaponScript : MonoBehaviour
             {
                 time = timeMax;
                 Debug.Log("<color=blue>HIT PLAYER</color>");
-                collision.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, collision.transform.GetComponent<PhotonView>().viewID);
+                Vector2 send = new Vector2(collision.transform.GetComponent<PhotonView>().viewID, damage);
+                collision.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, send);
             }
 
             GetComponent<Rigidbody>().Sleep();
