@@ -1,12 +1,15 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Health
 {
-    public class PlayerManagerCassie : Photon.PunBehaviour, IPunObservable
+    public class PlayerManagerBrik : Photon.PunBehaviour, IPunObservable
     {
+        public GameObject Axe;
         [Tooltip("The current Health of our player")]
         public int Health = 5000;
+        public bool hasAxe;
 
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
@@ -20,25 +23,29 @@ namespace Health
         }
         public void Update()
         {
-            
+
             if (Input.GetKeyDown(KeyCode.M))
             {
-                GetComponent<Player.Cassie>().hp -= 50;
+                GetComponent<Player.Brik>().hp -= 50;
             }
             if (photonView.isMine)
             {
-                if (this.GetComponent<Player.Cassie>().hp <= 0f)
+                if (this.GetComponent<Player.Brik>().hp <= 0f)
                 {
                     Debug.Log("Death");
-                    GetComponent<Player.Cassie>().hp = GetComponent<Player.Cassie>().hpmax;
+                    GetComponent<Player.Brik>().hp = GetComponent<Player.Brik>().hpmax;
                     GetComponent<Moving>().TP(GetComponent<TeamColor>().isBlue);
                 }
             }
-            Health = GetComponent<Player.Cassie>().hp;
+            Health = GetComponent<Player.Brik>().hp;
+            if (!photonView.isMine && !hasAxe)
+            {
+                Axe.SetActive(false);
+            }
         }
         public void Damage()
         {
-            GetComponent<Player.Cassie>().hp -= 50;
+            GetComponent<Player.Brik>().hp -= 50;
             Debug.Log("Player Hit");
         }
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -48,12 +55,14 @@ namespace Health
                 // We own this player: send the others our data
                 stream.SendNext(this.Health);
                 stream.SendNext(gameObject.GetComponent<TeamColor>().isBlue);
+                stream.SendNext(hasAxe);
             }
             else
             {
                 // Network player, receive data
                 this.Health = (int)stream.ReceiveNext();
                 gameObject.GetComponent<TeamColor>().isBlue = (bool)stream.ReceiveNext();
+                this.hasAxe = (bool)stream.ReceiveNext();
             }
             gameObject.GetComponent<TeamColor>().Up();
         }

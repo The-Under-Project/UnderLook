@@ -17,7 +17,13 @@ public class DamagePun : MonoBehaviour
             return;
         }
         if (gameObject.GetComponent<PhotonView>().viewID == id)
-            GetComponent<Player.Cassie>().hp -= 50;
+        {
+            if (GetComponent<Player.Cassie>()!= null)
+                GetComponent<Player.Cassie>().hp -= 50;
+            else if (GetComponent<Player.Brik>()!= null)
+                GetComponent<Player.Brik>().hp -= 50;
+        }
+           
 
     }
 }

@@ -34,6 +34,8 @@ public class Moving : MonoBehaviour
             posEND_BLUE = GameObject.FindGameObjectWithTag("CannonBlueEnd");
             posEND_RED = GameObject.FindGameObjectWithTag("CannonRedEnd");
         }
+
+
     }
     void MovementPlayer()
     {
@@ -58,7 +60,6 @@ public class Moving : MonoBehaviour
                 characterController.Move(transform.forward * moveX + transform.right * moveY); //time multiplié au carré
             if (gravityApplied)
                 characterController.Move(transform.up * moveZ * Time.deltaTime);
-
         }
     }
 
