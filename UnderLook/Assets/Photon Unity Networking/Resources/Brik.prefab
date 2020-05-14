@@ -249,6 +249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   rotationSpeed: -1000
+  time: 0
+  timeMax: 1
 --- !u!114 &4223753301196806208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +489,7 @@ GameObject:
   - component: {fileID: 8111160141100890880}
   - component: {fileID: 527290520769726282}
   - component: {fileID: -7013729943332396912}
+  - component: {fileID: 4150183918384865566}
   m_Layer: 0
   m_Name: Brik
   m_TagString: Player
@@ -702,6 +705,8 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 8111160141100890892}
+  - {fileID: 527290520769726282}
+  - {fileID: 4150183918384865566}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -802,6 +807,7 @@ MonoBehaviour:
   - {fileID: 8111160141100890888}
   - {fileID: 8111160141100890902}
   - {fileID: 8111160141100890880}
+  - {fileID: 8111160139850165430}
   objectsToIgnore:
   - {fileID: 5477262337632007057}
 --- !u!114 &8111160141100890882
@@ -857,6 +863,7 @@ MonoBehaviour:
   hasWeapon: 1
   pulling: 0
   returnTime: 0
+  photonView: {fileID: 0}
 --- !u!114 &527290520769726282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,9 +876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c1553a56809ec4a85b3537f7a5ab3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Axe: {fileID: 8111160139850165428}
+  shield: {fileID: 8111160139931230855}
+  shieldState: 0
   Health: 5000
-  hasAxe: 0
 --- !u!114 &-7013729943332396912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +891,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954964200cc878b44aa86fe9029a1588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4150183918384865566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111160141100890887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01019a450a5d7b8428f3f3ceb050ba6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
 --- !u!1001 &4102244449016762663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -958,15 +978,15 @@ PrefabInstance:
       objectReference: {fileID: 8111160141100890901}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fae9f690e44ad594caea6aafbe916ff9, type: 3}
---- !u!4 &3243786542066323354 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1579117753878978237, guid: fae9f690e44ad594caea6aafbe916ff9,
-    type: 3}
-  m_PrefabInstance: {fileID: 4102244449016762663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3243786540888731224 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1579117755006451583, guid: fae9f690e44ad594caea6aafbe916ff9,
+    type: 3}
+  m_PrefabInstance: {fileID: 4102244449016762663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3243786542066323354 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1579117753878978237, guid: fae9f690e44ad594caea6aafbe916ff9,
     type: 3}
   m_PrefabInstance: {fileID: 4102244449016762663}
   m_PrefabAsset: {fileID: 0}
@@ -1082,6 +1102,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4364977872141598339, guid: 764ff3e2ff13abe4f944ca4dded9af95,
+        type: 3}
+      propertyPath: capacityImage3
+      value: 
+      objectReference: {fileID: 21300000, guid: 513aa1d16b20bfa458d5f5fd55cf86dc,
+        type: 3}
     - target: {fileID: 4364977872141598342, guid: 764ff3e2ff13abe4f944ca4dded9af95,
         type: 3}
       propertyPath: m_Name

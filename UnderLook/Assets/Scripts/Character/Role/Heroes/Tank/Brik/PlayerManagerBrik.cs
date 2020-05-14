@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +7,10 @@ namespace Health
 {
     public class PlayerManagerBrik : Photon.PunBehaviour, IPunObservable
     {
-        public GameObject Axe;
+        public GameObject shield;
+        public bool shieldState;
         [Tooltip("The current Health of our player")]
         public int Health = 5000;
-        public bool hasAxe;
 
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
@@ -38,10 +39,7 @@ namespace Health
                 }
             }
             Health = GetComponent<Player.Brik>().hp;
-            if (!photonView.isMine && !hasAxe)
-            {
-                Axe.SetActive(false);
-            }
+            shieldState = shield.activeSelf;
         }
         public void Damage()
         {
@@ -50,19 +48,23 @@ namespace Health
         }
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
+
+            Debug.Log("<color=green>called</color>");
             if (stream.isWriting)
             {
                 // We own this player: send the others our data
                 stream.SendNext(this.Health);
                 stream.SendNext(gameObject.GetComponent<TeamColor>().isBlue);
-                stream.SendNext(hasAxe);
+                stream.SendNext(GetComponent<shieldState>().state);
             }
             else
             {
                 // Network player, receive data
                 this.Health = (int)stream.ReceiveNext();
                 gameObject.GetComponent<TeamColor>().isBlue = (bool)stream.ReceiveNext();
-                this.hasAxe = (bool)stream.ReceiveNext();
+                shieldState = (bool)stream.ReceiveNext(); 
+                shield.SetActive(shieldState);
+                Debug.Log("Received: " + shieldState);
             }
             gameObject.GetComponent<TeamColor>().Up();
         }

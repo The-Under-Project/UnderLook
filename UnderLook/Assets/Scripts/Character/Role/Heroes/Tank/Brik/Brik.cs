@@ -35,7 +35,7 @@ namespace Player
         }
         void FixedUpdate()
         {
-
+            GetComponent<shieldState>().state = shield;
             canvasUI.GetComponent<UI>().CurrentShield = shieldLife;
 
             Shield.transform.localRotation = new Quaternion(0, 0, 0, 1);
