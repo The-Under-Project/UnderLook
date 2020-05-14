@@ -13,6 +13,9 @@ namespace Player
         public GameObject canvasUI;
         public Camera cam;
         public GameObject sphere;
+        public GameObject shotPoint;
+        public GameObject flare;
+        private int power = 15;
 
         private Boolean isInUlt = false;
 
@@ -76,7 +79,12 @@ namespace Player
             }
             else if (isInUlt)
             {
-                
+                GameObject flareInstance = Instantiate(flare, shotPoint.transform.position, Quaternion.identity) as GameObject;
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= power;
+                flareInstance.GetComponent<Rigidbody>().AddForce(force);
+                isInUlt = false;
             }
         }
         private void M2()
@@ -96,7 +104,7 @@ namespace Player
 
         private void Ulti()
         {
-            
+            isInUlt = true;
         }
     }
 }

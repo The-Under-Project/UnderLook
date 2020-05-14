@@ -12,12 +12,14 @@ namespace Player
 {
     public class Yalee: Dps
     {
-        [Header("NAME_OF_CHARACTER")]
+        [Header("Yalee")]
         public GameObject canvasUI;
 
         private Boolean cd = false;
         public float time1 = 10f;
         public float time2 = 3f;
+        public GameObject smokeEffect;
+        public Camera cam;
 
         private void Start()
         {
@@ -26,6 +28,8 @@ namespace Player
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
 
+            cam = GetComponentInChildren<Camera>();
+            
             canvasUI.GetComponent<UI>().hasShield = false;
             canvasUI.GetComponent<UI>().hasThreeCapacities = false;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
@@ -104,6 +108,13 @@ namespace Player
         {
             this.GetComponent<UI>().CoolDown1 = true;
             this.GetComponent<UI>().CoolDown2 = true;
+        }
+
+        private void Ulti()
+        {
+            var smokeEffectInstantiate = Instantiate(smokeEffect, transform.position, transform.rotation) as GameObject;
+            
+            Destroy(smokeEffectInstantiate, 20f);
         }
     }
 }

@@ -20,14 +20,16 @@ public class Moving : MonoBehaviour
     public Boolean capacity = false;
 
     public Vector3 bluePos, redPos;
-
+    public float mvXold, mvYold, mvY, mvX;
 
     public GameObject posEND_RED;
     public GameObject posEND_BLUE;
+    public Animator animationPerso;
 
 
     void Awake()
     {
+        animationPerso = GetComponent<Animator>().Controler
         characterController = GetComponent<CharacterController>();
 
     }
