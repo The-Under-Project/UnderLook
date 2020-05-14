@@ -57,10 +57,8 @@ public class PhotonManager : Photon.MonoBehaviour
             Vector3 spawn = new Vector3(20, 200, 0);
 
             PhotonNetwork.player.NickName = GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName;
-
             PhotonNetwork.Instantiate(instantiateName, spawn, Quaternion.identity, 0); // <----------------------------------
             //PhotonNetwork.Instantiate("CassieMain", spawn, Quaternion.identity, 0);
-
 
             /*
             //Vector3 spawn = new Vector3(1, 15, 23);

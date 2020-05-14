@@ -41,8 +41,6 @@ namespace Player
         public float waitmarket = 1f;
 
 
-
-
         private void Start()
         {
             
@@ -114,27 +112,25 @@ namespace Player
                     canvasUI.GetComponent<UI>().showmarket = true;
                 }
             }
-            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket )
+            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket)
             {
                 ApllyCard(GetComponentInChildren<Market>().item);
                 canvasUI.GetComponent<UI>().showmarket = false;
             }
 
 
-            if(Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
+            if (Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
             {
                 canvasUI.GetComponent<UI>().showmenu = true;
                 Cursor.lockState = CursorLockMode.Confined;
                 GetComponentInChildren<CameraController>().canmovevision = false;
             }
-            if(Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
+            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
             {
                 canvasUI.GetComponent<UI>().stat.SetActive(false);
             }
-            if(Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
+            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
                 canvasUI.GetComponent<UI>().option.SetActive(false);
-
-
         }
 
         //-----------------------------
@@ -311,6 +307,7 @@ namespace Player
 
             return s;
         }
+
         public void ApllyCard(Card upgrade)
         {
 

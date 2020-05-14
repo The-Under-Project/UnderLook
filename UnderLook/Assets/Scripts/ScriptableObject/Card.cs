@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Card", menuName = "Card")] //make a sub menu
+[CreateAssetMenu(fileName ="New Card", menuName ="Card")] //make a sub menu
 public class Card : ScriptableObject
 {
     public string cardName;
     public string description;
     public Sprite artwork;
+
 
     public float maxhp;
     public float maxshield;
@@ -38,5 +39,4 @@ public class Card : ScriptableObject
     public float ultimateDamge;
     public float ultimateDuration;
     public float rangeUltimate;
-
 }

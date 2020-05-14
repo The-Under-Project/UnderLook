@@ -8,15 +8,15 @@ public class OffSetWeapon : MonoBehaviour
     public bool changeweapondUp;
     public bool changeweapondDown;
 
- 
+
     void Update()
     {
-        if(changeweapondUp)
+        if (changeweapondUp)
         {
-            Weapon.transform.position = new Vector3(Weapon.transform.position.x, Weapon.transform.position.y + 0.5f, Weapon.transform.position.z) ;
+            Weapon.transform.position = new Vector3(Weapon.transform.position.x, Weapon.transform.position.y + 0.5f, Weapon.transform.position.z);
             changeweapondUp = false;
         }
-        if(changeweapondDown)
+        if (changeweapondDown)
         {
             Weapon.transform.position = new Vector3(Weapon.transform.position.x, Weapon.transform.position.y - 0.5f, Weapon.transform.position.z);
             changeweapondDown = false;

@@ -5,6 +5,6 @@ namespace Player
 {
     public class Healer : Base
     {
-        //[Header("Dps")]
+        //[Header("Healer")]
     }
 }

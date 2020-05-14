@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class Flare : MonoBehaviour
     private Vector3 ultPosition;
     private int GenPosition()
     {
-        var rnd = new Random();
+        var rnd = new System.Random();
         return rnd.Next(rayon * 2 + 1) - rayon;
     }
     private void OnCollisionEnter(Collision collision)

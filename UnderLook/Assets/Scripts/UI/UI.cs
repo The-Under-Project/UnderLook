@@ -64,6 +64,7 @@ public class UI : MonoBehaviour
     [Range(0.0f, 200f)]
     public float CurrentShield;
 
+
     [Header("Market")]
     public bool showmarket = false;
     public GameObject market;
@@ -118,11 +119,15 @@ public class UI : MonoBehaviour
         {
             ShieldBar.transform.parent.gameObject.SetActive(false);
         }
+
+        #region MenuOverlay
         market.SetActive(false);
         menu.SetActive(false);
         stat.SetActive(false);
         option.SetActive(false);
         sound.fillAmount = 0.5f;
+        #endregion
+
 
     }
     void FixedUpdate()
@@ -229,7 +234,6 @@ public class UI : MonoBehaviour
             menu.SetActive(false);
         }
         #endregion
-
     }
 
     Sequence CD1()
@@ -305,5 +309,4 @@ public class UI : MonoBehaviour
             sound.fillAmount = 0;
         }
     }
-
 }
