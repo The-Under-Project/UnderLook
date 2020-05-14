@@ -8,6 +8,8 @@ public class PayloadOwner : MonoBehaviour
     public Cinemachine.CinemachinePathBase bluePath;
     public bool run = false;
 
+    public string payloadOwner;
+
     [HideInInspector] public PhotonView photonView;
 
     void Start()
@@ -17,7 +19,7 @@ public class PayloadOwner : MonoBehaviour
 
         public void Color(string name)
     {
-        string payloadOwner = name;
+        payloadOwner = name;
         run = true;
 
         if(payloadOwner == "Blue" && PhotonNetwork.inRoom)

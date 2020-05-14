@@ -196,7 +196,7 @@ MonoBehaviour:
   weaponRange: 100
   hitForce: 0
   gunPosition: {fileID: 5358633090073778382}
-  fpscam: {fileID: 5358633088863187716}
+  fpscam: {fileID: 6897147776356854829}
   gunLine: {fileID: 5358633089888772902}
 --- !u!120 &5358633089888772902
 LineRenderer:
@@ -1716,7 +1716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5926c691094efc849b5d7cb5d0c475b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpscam: {fileID: 5358633089822872263}
+  fpscam: {fileID: 6897147776356855044}
 --- !u!1 &5919292959995952484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2080,7 @@ GameObject:
   - component: {fileID: 8313923574869690321}
   - component: {fileID: 2537244809695486839}
   - component: {fileID: 2485239474682418314}
+  - component: {fileID: -3509550501779334338}
   m_Layer: 0
   m_Name: Cassie
   m_TagString: Player
@@ -2100,7 +2101,7 @@ Transform:
   m_Children:
   - {fileID: 5919292959959097641}
   - {fileID: 5919292959939586315}
-  - {fileID: 5358633088863187717}
+  - {fileID: 6897147776356855013}
   - {fileID: 5247161554120575127}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2232,7 +2233,7 @@ MonoBehaviour:
   mineStrengh: 300
   isZooming: 0
   cameraFOV: 60
-  cam: {fileID: 5358633088863187716}
+  cam: {fileID: 6897147776356854829}
   isShadow: 0
   sphere: {fileID: 5358633089970962326}
   teleportRange: 25
@@ -2392,7 +2393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1f95fb3b167054e93fbb32910eedff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 5358633089822872263}
+  playerCamera: {fileID: 6897147776356855044}
   scriptsToIgnore:
   - {fileID: 2341482579007264689}
   - {fileID: 1854103366545393689}
@@ -2483,6 +2484,21 @@ MonoBehaviour:
   card: {fileID: 5232968205475998528, guid: f0a391d810a40cd45ae0b1aa7079722b, type: 3}
   actualTime: 0
   canCannon: 0
+--- !u!114 &-3509550501779334338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558505118254789133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91da4ff95c61462438f7d1121c3e8a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  payload: {fileID: 0}
+  victory: {fileID: 7175022676702050628, guid: 1dde8499d42feed4fa6b306a693598c5, type: 3}
+  defeat: {fileID: 598129384895267510, guid: f15ca70714e6fd64c9b3521088c3c40b, type: 3}
 --- !u!1 &7955994646754139429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2668,19 +2684,19 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7469078812768076674, guid: fae9f690e44ad594caea6aafbe916ff9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fae9f690e44ad594caea6aafbe916ff9, type: 3}
---- !u!1 &5358633089822872263 stripped
+--- !u!1 &6897147776356855044 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1579117755006451583, guid: fae9f690e44ad594caea6aafbe916ff9,
     type: 3}
   m_PrefabInstance: {fileID: 6897147776356855224}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5358633088863187717 stripped
+--- !u!4 &6897147776356855013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1579117753878978237, guid: fae9f690e44ad594caea6aafbe916ff9,
     type: 3}
   m_PrefabInstance: {fileID: 6897147776356855224}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &5358633088863187716 stripped
+--- !u!20 &6897147776356854829 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1579117753878978236, guid: fae9f690e44ad594caea6aafbe916ff9,
     type: 3}
