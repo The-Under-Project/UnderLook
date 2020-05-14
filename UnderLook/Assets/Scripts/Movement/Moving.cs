@@ -99,6 +99,7 @@ public class Moving : MonoBehaviour
             {
                 moveZ = jumpspeed*1.5f;
             }
+            
             moveZ -= gravity * Time.deltaTime;
 
 
