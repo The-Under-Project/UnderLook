@@ -54,7 +54,6 @@ namespace Player
                 if (machin.GetComponent<TeamColor>().enemieColor != allyteam)
                 {
                     machin.layer = 10;
-
                 }
             }
             canvasUI.GetComponent<UI>().time3 = cdgrenade;
@@ -183,6 +182,7 @@ namespace Player
                 canvasUI.GetComponent<UI>().cap("three");
                 GetComponent<effetBlur>().GenerateEnnemiTeam(GetComponent<TeamColor>().teamColor);
                 GetComponent<effetBlur>().LaunchedGrenada(this.gameObject, cameraofperso, powergrenada);
+                GrenadaDuration();
                 
             }
         }
@@ -220,7 +220,7 @@ namespace Player
                 invicible = true;
                 Invicibilityseq();
                 oldwask = cameraofperso.cullingMask;
-                cameraofperso.cullingMask = cameraofperso.cullingMask ^ (1 << 10);
+                cameraofperso.cullingMask = cameraofperso.cullingMask ^ (1 << 9);
 
             }
         }
