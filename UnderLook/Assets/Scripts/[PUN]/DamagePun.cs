@@ -16,22 +16,25 @@ public class DamagePun : MonoBehaviour
         }
         if (gameObject.GetComponent<PhotonView>().viewID == id)
         {
-            if (GetComponent<Player.Cassie>() != null)
-                GetComponent<Player.Cassie>().hp -= damage;
-            else if (GetComponent<Player.Brik>() != null)
-                GetComponent<Player.Brik>().hp -= damage;
-            else if (GetComponent<Player.Yalee>() != null)
-                GetComponent<Player.Yalee>().hp -= damage;
-            else if (GetComponent<Player.Timtry>() != null)
-                GetComponent<Player.Timtry>().hp -= damage;
-            else if (GetComponent<Player.Easwith>() != null)
-                GetComponent<Player.Easwith>().hp -= damage;
-            else if (GetComponent<Player.Roy>() != null)
-                GetComponent<Player.Roy>().hp -= damage;
-            else if (GetComponent<Player.Rasla>() != null)
-                GetComponent<Player.Rasla>().hp -= damage;
-            else
-                Debug.Log("ADD COMPONENT DAMAGE");
+            if (GetComponent<StartingPun>().canStart)
+            {
+                if (GetComponent<Player.Cassie>() != null)
+                    GetComponent<Player.Cassie>().hp -= damage;
+                else if (GetComponent<Player.Brik>() != null)
+                    GetComponent<Player.Brik>().hp -= damage;
+                else if (GetComponent<Player.Yalee>() != null)
+                    GetComponent<Player.Yalee>().hp -= damage;
+                else if (GetComponent<Player.Timtry>() != null)
+                    GetComponent<Player.Timtry>().hp -= damage;
+                else if (GetComponent<Player.Easwith>() != null)
+                    GetComponent<Player.Easwith>().hp -= damage;
+                else if (GetComponent<Player.Roy>() != null)
+                    GetComponent<Player.Roy>().hp -= damage;
+                else if (GetComponent<Player.Rasla>() != null)
+                    GetComponent<Player.Rasla>().hp -= damage;
+                else
+                    Debug.Log("ADD COMPONENT DAMAGE");
+            }
         }
 
 

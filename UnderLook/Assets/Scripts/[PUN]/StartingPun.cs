@@ -6,7 +6,7 @@ public class StartingPun : MonoBehaviour
 {
     public bool canStart;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.N))
         {

@@ -338,7 +338,7 @@ MonoBehaviour:
   - {fileID: 2391470907864994507}
   - {fileID: 8082578803813290319}
   objectsToIgnore:
-  - {fileID: 0}
+  - {fileID: 3904671009457274917}
 --- !u!114 &7628919872967607170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ MonoBehaviour:
   hp: 200
   speed: 8
   jumpspeed: 7
-  canvasUI: {fileID: 0}
+  canvasUI: {fileID: 3904671009457274917}
   hasInstantiateAMine: 0
   sphere: {fileID: 6646142224674706120}
   teleportRange: 25
@@ -1154,6 +1154,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764ff3e2ff13abe4f944ca4dded9af95, type: 3}
+--- !u!1 &3904671009457274917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4364977872141598342, guid: 764ff3e2ff13abe4f944ca4dded9af95,
+    type: 3}
+  m_PrefabInstance: {fileID: 766642900099874467}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3904671009457274913 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4364977872141598338, guid: 764ff3e2ff13abe4f944ca4dded9af95,

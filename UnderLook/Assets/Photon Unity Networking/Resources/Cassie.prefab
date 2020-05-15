@@ -720,7 +720,7 @@ MonoBehaviour:
   speed: 8
   jumpspeed: 7
   hasInstantiateAMine: 0
-  canvasUI: {fileID: 0}
+  canvasUI: {fileID: 9071313978330066664}
   mine: {fileID: 8171696699039599957, guid: 2e29c9a943a147f4eb0150b026a5f035, type: 3}
   minePos: {fileID: 31404318917681517}
   mineStrengh: 300
@@ -891,7 +891,7 @@ MonoBehaviour:
   - {fileID: 2341482579007264689}
   - {fileID: 1854103366545393689}
   objectsToIgnore:
-  - {fileID: 0}
+  - {fileID: 9071313978330066664}
 --- !u!114 &9203450470550318812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,6 +1219,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764ff3e2ff13abe4f944ca4dded9af95, type: 3}
+--- !u!1 &9071313978330066664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4364977872141598342, guid: 764ff3e2ff13abe4f944ca4dded9af95,
+    type: 3}
+  m_PrefabInstance: {fileID: 4715352647032803438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9071313978330066668 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4364977872141598338, guid: 764ff3e2ff13abe4f944ca4dded9af95,

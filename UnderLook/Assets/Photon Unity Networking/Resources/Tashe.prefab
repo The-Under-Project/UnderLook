@@ -386,7 +386,7 @@ MonoBehaviour:
   - {fileID: 1803851814428835438}
   - {fileID: 8125379121602811183}
   objectsToIgnore:
-  - {fileID: 0}
+  - {fileID: 4555960576176849298}
 --- !u!114 &5102355332073162499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   hp: 200
   speed: 8
   jumpspeed: 7
-  canvasUI: {fileID: 0}
+  canvasUI: {fileID: 4555960576176849298}
   cam: {fileID: 8298933669152627419}
   shotPoint: {fileID: 8849094432122953169}
   isShadow: 0
@@ -1196,6 +1196,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 764ff3e2ff13abe4f944ca4dded9af95, type: 3}
+--- !u!1 &4555960576176849298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4364977872141598342, guid: 764ff3e2ff13abe4f944ca4dded9af95,
+    type: 3}
+  m_PrefabInstance: {fileID: 263885259882643220}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4555960576176849302 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4364977872141598338, guid: 764ff3e2ff13abe4f944ca4dded9af95,
