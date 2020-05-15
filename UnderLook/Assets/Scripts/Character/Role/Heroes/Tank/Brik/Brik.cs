@@ -49,7 +49,10 @@ namespace Player
                 }
             }
 
-
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
 
             if (hp <= 0)
             {

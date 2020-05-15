@@ -39,6 +39,10 @@ namespace Player
         }
         void FixedUpdate()
         {
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
 
             if (hp <= 0)
             {

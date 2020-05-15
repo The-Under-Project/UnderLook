@@ -62,7 +62,10 @@ namespace Player
         }
         void FixedUpdate()
         {
-
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
             if (hp <= 0)
             {
                 //Debug.Log("Dead");
