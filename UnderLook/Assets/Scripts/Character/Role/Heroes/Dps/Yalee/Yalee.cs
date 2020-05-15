@@ -20,11 +20,13 @@ namespace Player
         public float time2 = 3f;
         //public GameObject smokeEffect;
         public Camera cam;
+        public float actualtime = 0f;
+        public float cdtime = 3;
 
         private void Start()
         {
 
-
+            actualtime = cdtime;
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
 
@@ -45,6 +47,16 @@ namespace Player
             }
 
             canvasUI.GetComponent<UI>().CurrentHP = hp;
+            if (actualtime <= 0)
+            {
+                GetComponent<Moving>().speed = speed;
+                GetComponent<Moving>().jumpspeed = jumpspeed;
+            }
+            else
+            {
+                time();
+            }
+
         }
 
         //-----------------------------
@@ -79,35 +91,38 @@ namespace Player
         {
             for (int i = 0; i < 3; i++)
             {
-                Sequence s = DOTween.Sequence();
                 this.GetComponentInChildren<Weapon.WeaponDagger>().Shoot();
-                float percentageCooldown1 = 0;
-                if (!cd)
-                    s.Append(DOTween.To(() => percentageCooldown1, x => percentageCooldown1 = x, 1, time2));
-                else
-                    percentageCooldown1 = 1;
             }
         }
 
         private void Cap1()
         {
-            canvasUI.GetComponent<UI>().cap("one");
-            this.GetComponent<Moving>().speed = speed * 1.5f;
-            this.GetComponent<Moving>().jumpspeed = jumpspeed * 1.5f;
+            if (canvasUI.GetComponent<UI>().percentageCooldown1 == 1 || canvasUI.GetComponent<UI>().rescue)
+            {
+                actualtime = cdtime;
+                canvasUI.GetComponent<UI>().rescue = false;
+                canvasUI.GetComponent<UI>().cap("one");
+                this.GetComponent<Moving>().speed = speed * 2f;
+                this.GetComponent<Moving>().jumpspeed = jumpspeed * 2f;
 
-            Sequence s = DOTween.Sequence();
-            float percentageCooldown1 = 0;
-            if (!cd)
-                s.Append(DOTween.To(() => percentageCooldown1, x => percentageCooldown1 = x, 1, time1));
-            else
-                percentageCooldown1 = 1;
-            this.GetComponent<Moving>().speed = speed;
-            this.GetComponent<Moving>().jumpspeed = jumpspeed;
+            }
         }
 
         private void Cap2()
         {
-            canvasUI.GetComponent<UI>().cap("two");
+            if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
+            {
+                canvasUI.GetComponent<UI>().cap("two");
+
+                canvasUI.GetComponent<UI>().rescue = true;
+            }
+        }
+        public void time()
+        {
+            if (actualtime > 0)
+            {
+                actualtime -= Time.deltaTime;
+            }
         }
         /*
         private void Ulti()

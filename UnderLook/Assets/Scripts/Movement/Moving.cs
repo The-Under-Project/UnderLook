@@ -7,7 +7,8 @@ public class Moving : MonoBehaviour
 {
     CharacterController characterController;
     public float gravity;
-    [HideInInspector] public float speed, jumpspeed;
+    public float speed, jumpspeed;
+    public float originalSpeed;
     private float moveZ;
     public bool canMove = true;
     public bool gravityApplied = true;
@@ -23,6 +24,7 @@ public class Moving : MonoBehaviour
 
     void Awake()
     {
+        originalSpeed = speed;
         characterController = GetComponent<CharacterController>();
     }
 

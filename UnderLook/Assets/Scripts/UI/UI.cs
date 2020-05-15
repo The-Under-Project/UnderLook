@@ -8,6 +8,7 @@ public class UI : MonoBehaviour
 {
     [Header("Debug")]
     public bool cd;
+    public bool cancel;
 
     [Header("Global")]
     public bool hasThreeCapacities;
@@ -24,6 +25,9 @@ public class UI : MonoBehaviour
     public float time1;
     public bool CoolDown1;
     private bool cdRefresh1;
+
+    public bool rescue = false;
+
     [SerializeField] private Image capacityBG1;
     [SerializeField] private Sprite capacityImage1;
     [SerializeField] private GameObject Capacity1;
@@ -108,11 +112,15 @@ public class UI : MonoBehaviour
     {
         #region hideousCapacityRefresh
         
-        if (cdRefresh1)
+        if (cdRefresh1 && !rescue)
             capacityBG1.fillAmount = percentageCooldown1;
         if (cdRefresh1 && percentageCooldown1 == 1)
         {
             cdRefresh1 = false;
+            capacityBG1.color = whiteAlpha;
+        }
+        if (rescue)
+        {
             capacityBG1.color = whiteAlpha;
         }
         if (CoolDown1)
@@ -169,9 +177,17 @@ public class UI : MonoBehaviour
         ultimateBar.fillAmount = CurrentUltimate;
 
         #endregion ultimate
+
+
+        if (cancel && percentageCooldown2 == 1)
+        {
+            cancel = false;
+            cd = false;
+            cap("two");
+        }
     }
 
-    Sequence CD1()
+    public Sequence CD1()
     {
         capacityBG1.color = orange;
         percentageCooldown1 = 0;

@@ -28,6 +28,7 @@ TagManager:
   - CannonRedPath
   - CannonBluePath
   - VictoryPoint
+  - noCollision
   layers:
   - Default
   - TransparentFX

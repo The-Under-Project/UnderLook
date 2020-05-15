@@ -22,6 +22,8 @@ public class DamagePun : MonoBehaviour
                 GetComponent<Player.Brik>().hp -= damage;
             else if (GetComponent<Player.Yalee>() != null)
                 GetComponent<Player.Yalee>().hp -= damage;
+            else if (GetComponent<Player.Timtry>() != null)
+                GetComponent<Player.Timtry>().hp -= damage;
             else
                 Debug.Log("ADD COMPONENT DAMAGE");
         }
