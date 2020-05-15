@@ -9,6 +9,7 @@ namespace Weapon
     {
         public PhotonView photonView;
         public Transform pointShoot;
+        public Transform pointOut;
 
         public int gunDamage;//Damage of weapon , for the moment it's fixed but we need to redefine it
         public float fireRate;//Rate of weapon  
@@ -56,15 +57,15 @@ namespace Weapon
 
                     if (hit.transform.tag == "Player")
                     {
-                        hit.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, hit.transform.GetComponent<PhotonView>().viewID);
+                        Vector2 send = new Vector2(hit.transform.GetComponent<PhotonView>().viewID, gunDamage);
+                        hit.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, send);
                         //photonView.RPC("Dmg", PhotonTargets.All, hit.transform.GetComponent<PhotonView>().viewID);
                     }
 
                 }
-                if (Physics.Raycast(ray, out hit,  Mathf.Infinity))
+                else
                 {
-                    gunLine.SetPosition(1, hit.point);
-                    //Here We need the system of box life -> so I can't continue here
+                    gunLine.SetPosition(1, pointOut.transform.position);
                 }
 
             }

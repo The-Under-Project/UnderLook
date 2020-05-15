@@ -9,7 +9,6 @@ public class Card : ScriptableObject
     public string description;
     public Sprite artwork;
 
-
     public float maxhp;
     public float maxshield;
 

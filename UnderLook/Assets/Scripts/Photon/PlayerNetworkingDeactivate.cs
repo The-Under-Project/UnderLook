@@ -19,7 +19,7 @@ public class PlayerNetworkingDeactivate : MonoBehaviour
         photonView = GetComponent<PhotonView>();
         Initialize();
     }
-    void Initialize()
+    public void Initialize()
     {
         if (photonView.isMine)
         {

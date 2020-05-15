@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
 using Cinemachine;
+using Health;
 
 [RequireComponent(typeof(Animator))]
 public class ThrowController : MonoBehaviour
@@ -26,9 +27,11 @@ public class ThrowController : MonoBehaviour
     public bool hasWeapon = true;
     public bool pulling = false;
     public float returnTime = 0;
+    public PhotonView photonView;
 
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         weaponRb = weapon.GetComponent<Rigidbody>();
         weaponScript = weapon.GetComponent<WeaponScript>();
         origLocPos = weapon.localPosition;
@@ -43,8 +46,6 @@ public class ThrowController : MonoBehaviour
 
     void Update()
     {
-
-
         if (Input.GetMouseButtonDown(0) && hasWeapon)
         {
             WeaponThrow();

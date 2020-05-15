@@ -3653,7 +3653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1878102204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3683,6 +3683,11 @@ MonoBehaviour:
   started: 0
   useMax: 3
   use: 3
+  invicible: 0
+  timeofinvincibility: 0
+  timedepbegininvi: 0
+  cameraofperso: {fileID: 0}
+  oldwask: 0
 --- !u!95 &1878102205
 Animator:
   serializedVersion: 3
@@ -4295,7 +4300,7 @@ PrefabInstance:
     - target: {fileID: 4421030593637243185, guid: 4d3e41cfecb457444815f4a4bd383e52,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4421030593637243190, guid: 4d3e41cfecb457444815f4a4bd383e52,
         type: 3}
@@ -4357,6 +4362,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5585876773791630097, guid: 4d3e41cfecb457444815f4a4bd383e52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c21f6eb6fe610a54abf708c3a8a1e1f2, type: 2}
     - target: {fileID: 7776624749463427403, guid: 4d3e41cfecb457444815f4a4bd383e52,
         type: 3}
       propertyPath: viewIdField

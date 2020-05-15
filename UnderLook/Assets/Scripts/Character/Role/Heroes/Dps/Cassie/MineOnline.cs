@@ -63,7 +63,7 @@ public class MineOnline : MonoBehaviour
             colorBub = "BlueBubble";
         else if (enemieColor == "Red")
             colorBub = "RedBubble";
-        else
+        else 
             Debug.Log(enemieColor);
         PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
     }

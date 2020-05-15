@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class HealDazze : MonoBehaviour
 {
-    
+
     public GameObject touched = null;
     public int ovetimeheal;
     public float timeofheal;
@@ -13,13 +13,13 @@ public class HealDazze : MonoBehaviour
 
 
     // Start is called before the first frame update
-    
+
     public void DeterminedHealed(Transform origin, string ally, float maxDistance)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Debug.Log("determinedheal");
-        if(Physics.Raycast(origin.transform.position, origin.forward, out  hit, maxDistance))    //(Physics.Raycast(ray,out hit, maxDistance)
+        if (Physics.Raycast(origin.transform.position, origin.forward, out hit, maxDistance))    //(Physics.Raycast(ray,out hit, maxDistance)
         {
             Debug.Log("rayinstantier");
             if (hit.transform.GetComponent<TeamColor>() != null && hit.collider.gameObject.GetComponent<TeamColor>().teamColor == ally)
@@ -28,18 +28,18 @@ public class HealDazze : MonoBehaviour
                 touched = hit.transform.gameObject;
                 Healing();
             }
-            
+
         }
     }
     void FixedUpdate()
     {
-        if(touched != null && timesincebeginningofheal < 1 && timesincebeginningofheal != 0)
+        if (touched != null && timesincebeginningofheal < 1 && timesincebeginningofheal != 0)
         {
             touched.GetComponent<Player.Base>().hp += ovetimeheal;
             if (touched.GetComponent<Player.Base>().hp > touched.GetComponent<Player.Base>().hpmax)
                 touched.GetComponent<Player.Base>().hp = touched.GetComponent<Player.Base>().hpmax;
         }
-        else if(timesincebeginningofheal == 1)
+        else if (timesincebeginningofheal == 1)
         {
             touched = null;
         }

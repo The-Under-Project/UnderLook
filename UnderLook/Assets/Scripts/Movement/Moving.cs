@@ -7,7 +7,8 @@ public class Moving : MonoBehaviour
 {
     CharacterController characterController;
     public float gravity;
-    [HideInInspector]public float speed, jumpspeed;
+    public float speed, jumpspeed;
+    public float originalSpeed;
     private float moveZ;
     public bool canMove = true;
     public bool gravityApplied = true;
@@ -33,10 +34,10 @@ public class Moving : MonoBehaviour
     public float factor;
     public float durationslowness;
 
-    
 
     void Awake()
     {
+        originalSpeed = speed;
         characterController = GetComponent<CharacterController>();
         animationPerso = body.GetComponent<Animator>();
     }
@@ -49,18 +50,19 @@ public class Moving : MonoBehaviour
             posEND_BLUE = GameObject.FindGameObjectWithTag("CannonBlueEnd");
             posEND_RED = GameObject.FindGameObjectWithTag("CannonRedEnd");
         }
-        if(tempsrestant == 1f)
+        if (tempsrestant == 1f)
         {
             speed /= factor;
             tempsrestant = 0f;
         }
+
+
     }
     void MovementPlayer()
     {
 
         if (!isOnTrack)
         {
-
             mvXold = mvX;
             mvYold = mvY;
             mvY = Input.GetAxis("Horizontal");
@@ -94,13 +96,11 @@ public class Moving : MonoBehaviour
             moveZ -= gravity * Time.deltaTime;
 
 
-                
 
             if (canMove)
                 characterController.Move(transform.forward * moveX + transform.right * moveY); //time multiplié au carré
             if (gravityApplied)
                 characterController.Move(transform.up * moveZ * Time.deltaTime);
-
         }
     }
 
@@ -152,7 +152,10 @@ public class Moving : MonoBehaviour
             DOTween.Play(Move(redPos));
         gameObject.GetComponent<TeamColor>().enabled = true;
     }
-
+    public void Teleport(Vector3 position)
+    {
+        DOTween.Play(Move(position));
+    }
     private void animationPlayer(float X, float Y)
     {
         if (X < -0.5f && Y == 0)
