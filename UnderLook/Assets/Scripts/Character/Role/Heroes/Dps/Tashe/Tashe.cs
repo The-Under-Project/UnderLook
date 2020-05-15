@@ -18,13 +18,10 @@ namespace Player
         private int power = 15;
 
         private Boolean isInUlt = false;
-
-
-
+        public bool brickaucarre = false;
 
         private void Start()
         {
-
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
 
@@ -37,7 +34,6 @@ namespace Player
         }
         void FixedUpdate()
         {
-
             if (hp <= 0)
             {
                 //Debug.Log("Dead");
@@ -45,6 +41,11 @@ namespace Player
             }
 
             canvasUI.GetComponent<UI>().CurrentHP = hp;
+            if (brickaucarre && canvasUI.GetComponent<UI>().percentageCooldown2 >= 0.5f)
+            {
+                brickaucarre = false;
+                GetComponent<Moving>().jumpspeed /= 2;
+            }
         }
 
         //-----------------------------
@@ -75,7 +76,7 @@ namespace Player
         {
             if (!isInUlt)
             {
-                //met le tire ici
+                this.GetComponentInChildren<Weapon.WeaponRocketLauncher>().Shoot();
             }
             else if (isInUlt)
             {
@@ -94,14 +95,18 @@ namespace Player
 
         private void Cap1()
         {
-  
-        }
-
-        private void Cap2()
-        {
             
         }
 
+        private void Cap2() // super jump
+        {
+            if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
+            {
+                brickaucarre = true;
+                canvasUI.GetComponent<UI>().cap("two");
+                this.GetComponent<Moving>().jumpspeed = jumpspeed * 2f;
+            }
+        }
         private void Ulti()
         {
             isInUlt = true;
