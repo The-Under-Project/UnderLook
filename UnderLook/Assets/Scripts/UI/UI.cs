@@ -19,7 +19,6 @@ public class UI : MonoBehaviour
     [Header("Name")]
     [SerializeField] private string NameCharacter;
     public Text text;
-
     public string gameMaster;
     public Text client;
 
@@ -91,7 +90,6 @@ public class UI : MonoBehaviour
     {
         gameMaster = PhotonNetwork.isMasterClient ? "<color=green>You're master</color>" : "<color=red>You're not master</color>";
         client.text = gameMaster;
-
         NameCharacter = PhotonNetwork.player.NickName;
         percentageCooldown1 = 1;
         percentageCooldown2 = 1;
@@ -310,7 +308,6 @@ public class UI : MonoBehaviour
                 break;
         }
     }
-
     public void SoundUp()
     {
         if (sound.fillAmount < 1)

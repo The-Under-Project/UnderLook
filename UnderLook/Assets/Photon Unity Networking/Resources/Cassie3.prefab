@@ -1647,6 +1647,8 @@ MonoBehaviour:
   hasShield: 0
   NameCharacter: Naexys
   text: {fileID: 5919292958878423003}
+  gameMaster: 
+  client: {fileID: 0}
   percentageCooldown1: 0
   time1: 8
   CoolDown1: 0

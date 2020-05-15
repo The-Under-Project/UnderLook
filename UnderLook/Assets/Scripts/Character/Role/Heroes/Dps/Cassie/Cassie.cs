@@ -43,7 +43,7 @@ namespace Player
 
         private void Start()
         {
-            
+
 
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
@@ -60,10 +60,6 @@ namespace Player
         }
         void FixedUpdate()
         {
-            if (hp > hpmax)
-            {
-                hp = hpmax;
-            }
 
             if (hp <= 0)
             {
@@ -81,10 +77,9 @@ namespace Player
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                Debug.Log("shadow");
-
                 if (Physics.Raycast(ray, out hit, teleportRange))
                 {
+
                     sphere.transform.position = hit.point;
                 }
             }
@@ -106,6 +101,7 @@ namespace Player
 
                 GetComponent<Moving>().gravityApplied = true;
             }
+
             if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
             {
                 wait();
@@ -283,7 +279,7 @@ namespace Player
                         break;
                     }
                 }
-                switch (e) 
+                switch (e)
                 {
                     case 0:
                         offsetValue = new Vector3(-2, 1);
@@ -311,6 +307,7 @@ namespace Player
 
             return s;
         }
+
         public void ApllyCard(Card upgrade)
         {
 

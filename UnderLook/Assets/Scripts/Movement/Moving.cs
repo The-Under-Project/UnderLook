@@ -34,7 +34,6 @@ public class Moving : MonoBehaviour
     public float factor;
     public float durationslowness;
 
-
     void Awake()
     {
         originalSpeed = speed;
@@ -49,11 +48,6 @@ public class Moving : MonoBehaviour
         {
             posEND_BLUE = GameObject.FindGameObjectWithTag("CannonBlueEnd");
             posEND_RED = GameObject.FindGameObjectWithTag("CannonRedEnd");
-        }
-        if (tempsrestant == 1f)
-        {
-            speed /= factor;
-            tempsrestant = 0f;
         }
 
 
@@ -132,7 +126,7 @@ public class Moving : MonoBehaviour
     Sequence Move(Vector3 pos)
     {
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOLocalMove(pos, 0.3f));//.SetEase(Ease.InBounce)) ;
+        s.Append(transform.DOLocalMove(pos, 0.5f));//.SetEase(Ease.InBounce)) ;
         return s;
     }
 
@@ -180,18 +174,5 @@ public class Moving : MonoBehaviour
         }
         animationPerso.SetFloat("VelX", X);
         animationPerso.SetFloat("VelY", Y);
-    }
-
-    public void ChangeSpeedAtEndOfTIime(float duration, bool changement)
-    {
-        durationslowness = duration;
-        ActiveSloweNess();
-    }
-    Sequence ActiveSloweNess()
-    {
-        tempsrestant = 0;
-        Sequence s = DOTween.Sequence();
-        s.Append(DOTween.To(() => tempsrestant, x => tempsrestant = x, 1, durationslowness));
-        return s;
     }
 }

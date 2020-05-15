@@ -12,14 +12,26 @@ namespace Player
 
         public GameObject canvasUI;
         public Camera cam;
-        public GameObject sphere;
         public GameObject shotPoint;
-        public GameObject flare;
-        private int power = 15;
-
-        private bool isInUlt = false;
 
 
+
+
+        public bool isShadow = false;
+        public GameObject sphere;
+
+        public float teleportRange;
+
+        public float Teleport = 100;
+
+        public float TimeTP;
+        public float TimeAfterTP;
+        public float percentage;
+
+
+
+        public float actualtime = 0f;
+        public float cdtime = 3;
 
 
         private void Start()
@@ -37,6 +49,32 @@ namespace Player
         }
         void FixedUpdate()
         {
+            if (isShadow) //si jamais tu es dans la range et que les bords de la sphère  sont bien en contact 'trigger' 
+                          //alors tu peux te tp. Si jamais il y  aps de hit, tu regarde à la distance max si jamais tu peux te tp
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                Debug.Log("shadow");
+
+                if (Physics.Raycast(ray, out hit, teleportRange))
+                {
+                    sphere.transform.position = hit.point;
+                }
+            }
+
+            if (actualtime <= 0)
+            {
+                GetComponent<Moving>().jumpspeed = jumpspeed;
+            }
+            else
+            {
+                timer();
+            }
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
 
             if (hp <= 0)
             {
@@ -45,6 +83,13 @@ namespace Player
             }
 
             canvasUI.GetComponent<UI>().CurrentHP = hp;
+        }
+        public void timer()
+        {
+            if (actualtime > 0)
+            {
+                actualtime -= Time.deltaTime;
+            }
         }
 
         //-----------------------------
@@ -73,19 +118,23 @@ namespace Player
 
         private void M1()
         {
-            if (!isInUlt)
+            if (!isShadow)
             {
-                //met le tire ici
+                this.GetComponentInChildren<Weapon.WeaponDagger>().Shoot();
             }
-            else
+            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
-                GameObject flareInstance = Instantiate(flare, shotPoint.transform.position, Quaternion.identity) as GameObject;
-                Vector3 force = transform.forward;
-                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
-                force *= power;
-                flareInstance.GetComponent<Rigidbody>().AddForce(force);
-                isInUlt = false;
+                canvasUI.GetComponent<UI>().cap("one");
+                if (GetComponentInChildren<TPoverlapCircle>().nbCol == 4)
+                {
+                    tp(true);
+                }
+                else if (GetComponentInChildren<TPoverlapCircle>().nbCol == 5)
+                {
+                    tp(false);
+                }
             }
+
         }
         private void M2()
         {
@@ -94,17 +143,78 @@ namespace Player
 
         private void Cap1()
         {
-
+            if (isShadow)
+            {
+                sphere.SetActive(false);
+                isShadow = false;
+            }
+            else
+            {
+                sphere.SetActive(true);
+                isShadow = true;
+            }
         }
 
         private void Cap2()
         {
-
+            if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
+            {
+                actualtime = cdtime;
+                canvasUI.GetComponent<UI>().cap("two");
+                this.GetComponent<Moving>().jumpspeed = jumpspeed * 2f;
+            }
         }
-
-        private void Ulti()
+        private void tp(bool offset)
         {
-            isInUlt = true;
+            isShadow = false;
+
+            sphere.SetActive(false);
+
+            DOTween.Play(Teleportseq(offset));
+        }
+        Sequence Teleportseq(bool offset)
+        {
+            Vector3 offsetValue = new Vector3(0, 0, 0);
+
+            if (offset)
+            {
+                int e = 0;
+                bool[] check = sphere.GetComponent<TPoverlapCircle>().whoTrue;
+                for (int i = 0; i < 5; i++)
+                {
+                    if (check[i] == false)
+                    {
+                        e = i;
+                        break;
+                    }
+                }
+                switch (e)
+                {
+                    case 0:
+                        offsetValue = new Vector3(-2, 1);
+                        break;
+                    case 1:
+                        offsetValue = new Vector3(2, 1);
+                        break;
+                    case 3:
+                        offsetValue = new Vector3(0, 1, -2);
+                        break;
+                    case 4:
+                        offsetValue = new Vector3(0, 1, 2);
+                        break;
+                }
+
+
+
+
+            }
+            Teleport = 0;
+            Sequence s = DOTween.Sequence();
+            s.Append(DOTween.To(() => Teleport, x => Teleport = x, percentage, TimeTP));
+            s.Append(transform.DOLocalMove(sphere.transform.position + new Vector3(0, 2) + offsetValue, 0.0001f)); //not tp into floor
+            s.Append(DOTween.To(() => Teleport, x => Teleport = x, 100f, TimeTP));
+
+            return s;
         }
     }
 }

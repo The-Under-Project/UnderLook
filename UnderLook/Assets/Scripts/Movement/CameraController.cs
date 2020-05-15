@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform BodyPlayer;
     private float ClampX;
     public bool canmovevision = true;
+
     // Start is called before the first frame update
     void Start()
     {

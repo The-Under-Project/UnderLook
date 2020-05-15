@@ -1527,6 +1527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cd: 0
+  cancel: 0
   hasThreeCapacities: 0
   hasShield: 0
   NameCharacter: Naexys
@@ -1534,6 +1535,7 @@ MonoBehaviour:
   percentageCooldown1: 0
   time1: 12
   CoolDown1: 0
+  rescue: 0
   capacityBG1: {fileID: 1269396349997561594}
   capacityImage1: {fileID: 21300000, guid: 8672d616c93535a439db7b323d79e5ad, type: 3}
   Capacity1: {fileID: 1269396349827478712}
@@ -1956,6 +1958,7 @@ GameObject:
   - component: {fileID: 4323870864243016455}
   - component: {fileID: 1782367157866733527}
   - component: {fileID: 5462640265034874271}
+  - component: {fileID: 537300594996648737}
   m_Layer: 0
   m_Name: Yalee
   m_TagString: Player
@@ -2074,6 +2077,7 @@ MonoBehaviour:
   gravity: 20
   speed: 8
   jumpspeed: 7
+  originalSpeed: 0
   canMove: 1
   gravityApplied: 1
   isOnTrack: 0
@@ -2274,6 +2278,8 @@ MonoBehaviour:
   time1: 10
   time2: 3
   cam: {fileID: 713240770542853855}
+  actualtime: 0
+  cdtime: 3
 --- !u!114 &5462640265034874271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2286,3 +2292,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954964200cc878b44aa86fe9029a1588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &537300594996648737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782367157866733526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cee6f6dda42f347ad7a6246bef2de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 5000
