@@ -16,6 +16,9 @@ public class UI : MonoBehaviour
     private Color32 orange = new  Color32(255, 165, 0, 150);
     private Color32 whiteAlpha = new  Color32(255, 255, 255, 150);
 
+    public string gameMaster;
+    public Text  client;
+
     [Header("Name")]
     [SerializeField] private string NameCharacter;
     public Text text; 
@@ -70,6 +73,10 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
+        gameMaster = PhotonNetwork.isMasterClient ? "<color=green>You're master</color>" : "<color=red>You're not master</color>";
+        client.text = gameMaster;
+
+
         NameCharacter = PhotonNetwork.player.NickName;
         percentageCooldown1 = 1;
         percentageCooldown2 = 1;
