@@ -118,6 +118,8 @@ public class UI : MonoBehaviour
     void FixedUpdate()
     {
         #region hideousCapacityRefresh
+
+        Debug.Log(PhotonNetwork.room.Name);
         
         if (cdRefresh1 && !rescue)
             capacityBG1.fillAmount = percentageCooldown1;

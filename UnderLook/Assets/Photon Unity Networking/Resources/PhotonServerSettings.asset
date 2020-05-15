@@ -48,4 +48,5 @@ MonoBehaviour:
   - Dmg
   - Change
   - Teleport
+  - STARTING_MATCH
   DisableAutoOpenWizard: 1
