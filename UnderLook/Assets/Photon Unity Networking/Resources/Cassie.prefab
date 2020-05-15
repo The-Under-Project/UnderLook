@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 7448919687529202741}
   - component: {fileID: 7448919687529202740}
   - component: {fileID: 8042733858036624310}
+  - component: {fileID: 1112034149256873032}
   m_Layer: 0
   m_Name: Cassie
   m_TagString: Player
@@ -571,7 +572,7 @@ MonoBehaviour:
   - {fileID: 5200476813190423957}
   - {fileID: 5200476813190423954}
   objectsToIgnore:
-  - {fileID: 0}
+  - {fileID: 2591628068800447084}
 --- !u!114 &5200476813190423962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +818,21 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!114 &1112034149256873032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4254251340350471330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3815d93c28968af4a878af41a3c7d0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapon: {fileID: 5200476813840238761}
+  changeweapondUp: 0
+  changeweapondDown: 0
 --- !u!1 &4362329404818815434
 GameObject:
   m_ObjectHideFlags: 0

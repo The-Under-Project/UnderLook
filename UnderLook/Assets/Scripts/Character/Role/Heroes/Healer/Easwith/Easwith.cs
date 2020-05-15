@@ -17,6 +17,8 @@ namespace Player
         public GameObject weaponDMG;
         public GameObject weaponHEAL;
 
+        public float waitmarket = 1f;
+
         private void Start()
         {
             this.GetComponent<Moving>().speed = speed;
@@ -46,12 +48,41 @@ namespace Player
             }
 
             canvasUI.GetComponent<UI>().CurrentHP = hp;
+            if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
+            {
+                wait();
+                if (canvasUI.GetComponent<UI>().showmarket)
+                    canvasUI.GetComponent<UI>().showmarket = false;
+                else
+                {
+                    canvasUI.GetComponent<UI>().showmarket = true;
+                }
+            }
+            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket)
+            {
+                ApllyCard(GetComponentInChildren<Market>().item);
+                canvasUI.GetComponent<UI>().showmarket = false;
+            }
+
+
+            if (Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
+            {
+                canvasUI.GetComponent<UI>().showmenu = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                GetComponentInChildren<CameraController>().canmovevision = false;
+            }
+            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
+            {
+                canvasUI.GetComponent<UI>().stat.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
+                canvasUI.GetComponent<UI>().option.SetActive(false);
         }
 
         //-----------------------------
         private void Update()
         {
-            if (true)//(!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
+            if (!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
             {
 
                 if (Input.GetButtonDown("Fire1"))
@@ -109,6 +140,30 @@ namespace Player
             {
                 actualtime -= Time.deltaTime;
             }
+        }
+        public void ApllyCard(Card upgrade)
+        {
+
+            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
+            // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
+
+            canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
+            canvasUI.GetComponent<UI>().time2 *= (1 - upgrade.coolDownCap2 / 100);
+            canvasUI.GetComponent<UI>().time3 *= (1 - upgrade.coolDownCap3 / 100);
+
+            GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
+            GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
+            GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
+
+
+
+        }
+        Sequence wait()
+        {
+            waitmarket = 0;
+            Sequence s = DOTween.Sequence();
+            s.Append(DOTween.To(() => waitmarket, x => waitmarket = x, 1, 0.25f));
+            return s;
         }
     }
 }

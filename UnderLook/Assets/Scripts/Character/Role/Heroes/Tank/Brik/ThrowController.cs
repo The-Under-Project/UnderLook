@@ -82,7 +82,7 @@ public class ThrowController : MonoBehaviour
         weapon.eulerAngles = new Vector3(0, 90 +  transform.eulerAngles.y, 0);
 
 
-        weapon.transform.position += transform.right/5;
+        weapon.transform.position += transform.right;  //transform.right/5
         weaponRb.AddForce(Camera.main.transform.forward * throwPower + transform.up * 2, ForceMode.Impulse);
     }
     public void WeaponStartPull()

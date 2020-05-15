@@ -138,19 +138,19 @@ namespace Player
         {
             if (!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1")) // tir
                 {
                     M1();
                 }
-                if (Input.GetButtonDown("Fire2"))
+                if (Input.GetButtonDown("Fire2")) // zoom/dezoom
                 {
                     M2();
                 }
-                if (Input.GetKeyDown(KeyCode.LeftShift))
+                if (Input.GetKeyDown(KeyCode.LeftShift)) //tp
                 {
                     Cap1();
                 }
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E)) //grenade
                 {
                     Cap2();
                 }
