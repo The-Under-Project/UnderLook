@@ -55,8 +55,6 @@ public class Moving : MonoBehaviour
             moveZ -= gravity * Time.deltaTime;
 
 
-            if (characterController.isGrounded)
-                moveZ = 0;
 
             if (canMove)
                 characterController.Move(transform.forward * moveX + transform.right * moveY); //time multiplié au carré
@@ -112,5 +110,9 @@ public class Moving : MonoBehaviour
         else
             DOTween.Play(Move(redPos));
         gameObject.GetComponent<TeamColor>().enabled = true;
+    }
+    public void Teleport(Vector3 position)
+    {
+        DOTween.Play(Move(position));
     }
 }

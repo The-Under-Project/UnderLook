@@ -16,7 +16,7 @@ public class DamagePun : MonoBehaviour
         }
         if (gameObject.GetComponent<PhotonView>().viewID == id)
         {
-            if     (GetComponent<Player.Cassie>() != null)
+            if (GetComponent<Player.Cassie>() != null)
                 GetComponent<Player.Cassie>().hp -= damage;
             else if (GetComponent<Player.Brik>() != null)
                 GetComponent<Player.Brik>().hp -= damage;
@@ -26,10 +26,22 @@ public class DamagePun : MonoBehaviour
                 GetComponent<Player.Timtry>().hp -= damage;
             else if (GetComponent<Player.Easwith>() != null)
                 GetComponent<Player.Easwith>().hp -= damage;
+            else if (GetComponent<Player.Roy>() != null)
+                GetComponent<Player.Roy>().hp -= damage;
             else
                 Debug.Log("ADD COMPONENT DAMAGE");
         }
-           
 
+
+    }
+    [PunRPC]
+    void Teleport(Quaternion received)
+    {
+        int id = (int)received.x;
+        Vector3 position = new Vector3(received.y, received.z, received.w);
+        if (gameObject.GetComponent<PhotonView>().viewID == id)
+        {
+            gameObject.GetComponent<Moving>().Teleport(position);
+        }
     }
 }
