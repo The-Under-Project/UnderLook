@@ -10,60 +10,70 @@ namespace Player
         [Header("Rasla")]
         public GameObject canvasUI;
 
-        public GameObject sphere;
+        public bool hasInstantiateAMine = false;
 
+        [Header("TP")]
+        public GameObject sphere;
         public float teleportRange;
         public float Teleport = 100;
-
         public bool isShadow = false;
         public float TimeTP;
         public float TimeAfterTP;
         public float percentage;
-
         public bool started = false;
         public int useMax = 3;
         public int use = 3;
 
+
+        [Header("PasTp")]
         private int hpbeforecap2;
         public bool invicible = false;
         public float timeofinvincibility;
         public float timedepbegininvi = 0;
-        public Camera cameraofperso;
+        public Camera cam;
+
+        public GameObject mine;
+        public GameObject minePos;
+
+        public float mineStrengh;
+
         public int oldwask;
 
+        public int oldHPmax;
+
+        public float actualtime = 0f;
+        public float timeMax = 0f;
 
         private void Start()
         {
 
-
+            oldHPmax = hpmax;
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
 
             canvasUI.GetComponent<UI>().hasShield = false;
-            canvasUI.GetComponent<UI>().hasThreeCapacities = false;
+            canvasUI.GetComponent<UI>().hasThreeCapacities = true;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
 
             string allyteam = GetComponent<TeamColor>().teamColor;
-            foreach (var machin in GameObject.FindGameObjectsWithTag("Player"))
-            {
-                if (machin.GetComponent<TeamColor>().enemieColor != allyteam)
-                {
-                    machin.layer = 10;
-
-                }
-            }
 
 
         }
         void FixedUpdate()
         {
-            if (invicible)
-                hp = hpbeforecap2;
-
+            timer();
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
             if (hp <= 0)
             {
                 //Debug.Log("Dead");
                 //dead();
+            }
+            if (actualtime <= 0)
+            {
+                hpmax = oldHPmax;
             }
 
             canvasUI.GetComponent<UI>().CurrentHP = hp;
@@ -93,40 +103,51 @@ namespace Player
             if (timedepbegininvi == 1)
             {
                 invicible = false;
-                cameraofperso.cullingMask = oldwask;
+                cam.cullingMask = oldwask;
 
             }
+            /*
+            if (tempsrestatngre == 1)
+            {
+                Object.Destroy(GameObject.FindGameObjectWithTag("grenade"));
+                GetComponent<effetBlur>().launchedgrenada = false;
+                GetComponent<effetBlur>().Deactivate();
+
+            }*/
         }
 
         //-----------------------------
         private void Update()
         {
 
-            if (Input.GetButtonDown("Fire1"))
-            {
-                M1();
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                M2();
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                Cap1();
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Cap2();
-            }
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    M1();
+                }
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    M2();
+                }
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    Cap1();
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Cap2();
+                }
 
         }
 
 
         private void M1()
         {
+            if (!isShadow)
+            {
+                this.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
+            }
             if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
-
                 if (use > 0)
                 {
                     use--;
@@ -139,6 +160,21 @@ namespace Player
         private void M2()
         {
 
+            if (canvasUI.GetComponent<UI>().percentageCooldown3 == 1)
+            {
+                canvasUI.GetComponent<UI>().cap("three");
+                GameObject clone = Instantiate(mine, minePos.transform.position, Quaternion.identity) as GameObject; //minePos.transform.rotation
+                clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+                clone.SendMessage("DEBUG", DEBUG);
+
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= mineStrengh;
+                clone.GetComponent<Rigidbody>().AddForce(force);
+
+                hasInstantiateAMine = true;
+
+         } 
         }
 
         private void Cap1()
@@ -160,11 +196,9 @@ namespace Player
             if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
             {
                 canvasUI.GetComponent<UI>().cap("two");
-                hpbeforecap2 = hp;
-                invicible = true;
-                Invicibilityseq();
-                oldwask = cameraofperso.cullingMask;
-                cameraofperso.cullingMask = cameraofperso.cullingMask ^ (1 << 10);
+                hpmax = 99999999;
+                hp = hpmax;
+                actualtime = timeMax;
 
             }
         }
@@ -189,7 +223,13 @@ namespace Player
             s.Append(DOTween.To(() => timedepbegininvi, x => timedepbegininvi = x, 1f, timeofinvincibility));
             return s;
         }
-
+        public void timer()
+        {
+            if (actualtime > 0)
+            {
+                actualtime -= Time.deltaTime;
+            }
+        }
     }
 
 }

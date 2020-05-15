@@ -91,7 +91,7 @@ public class Moving : MonoBehaviour
     Sequence Move(Vector3 pos)
     {
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOLocalMove(pos, 0.3f));//.SetEase(Ease.InBounce)) ;
+        s.Append(transform.DOLocalMove(pos, 0.5f));//.SetEase(Ease.InBounce)) ;
         return s;
     }
 
