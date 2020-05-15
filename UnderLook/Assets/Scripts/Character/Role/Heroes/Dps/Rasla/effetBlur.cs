@@ -79,4 +79,21 @@ public class effetBlur : MonoBehaviour
         }
 
     }
+
+    public void Deactivate()
+    {
+        foreach(var p in ennemiteam)
+        {
+            if (p != null)
+            {
+                blurness = null;
+                PostProcessVolume volume = p.GetComponentInChildren<PostProcessVolume>();
+                volume.profile.TryGetSettings(out blurness);
+                if(blurness != null)
+                {
+                    blurness.active = false;
+                }
+            }
+        }
+    }
 }

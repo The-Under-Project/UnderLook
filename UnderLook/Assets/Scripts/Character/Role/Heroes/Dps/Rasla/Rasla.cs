@@ -10,32 +10,33 @@ namespace Player
         [Header("Rasla")]
         public GameObject canvasUI;
 
-        public GameObject sphere;
 
+        [Header("TP")]
+        public GameObject sphere;
         public float teleportRange;
         public float Teleport = 100;
-
         public bool isShadow = false;
         public float TimeTP;
         public float TimeAfterTP;
         public float percentage;
-
         public bool started = false;
         public int useMax = 3;
         public int use = 3;
 
+
+        [Header("PasTp")]
         private int hpbeforecap2;
         public bool invicible = false;
         public float timeofinvincibility;
         public float timedepbegininvi = 0;
         public Camera cameraofperso;
         public int oldwask;
-
         public float waitmarket = 1f;
         public float powergrenada;
         public float cdgrenade;
         public float tempsgre;
         public float tempsrestatngre;
+        public GameObject[] debug;
 
         private void Start()
         {
@@ -49,10 +50,13 @@ namespace Player
             canvasUI.GetComponent<UI>().maxHP = hpmax;
 
             string allyteam = GetComponent<TeamColor>().teamColor;
-            foreach (var machin in GameObject.FindGameObjectsWithTag("Player"))
+            debug = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var machin in debug)
             {
                 if (machin.GetComponent<TeamColor>().enemieColor != allyteam)
                 {
+                    machin.GetComponentInChildren<WeaponRotateCamera>().gameObject.layer = 10;
+                    machin.GetComponentInChildren<SkinnedMeshRenderer>().gameObject.layer = 10;
                     machin.layer = 10;
                 }
             }
@@ -105,6 +109,7 @@ namespace Player
             {
                 Object.Destroy(GameObject.FindGameObjectWithTag("grenade"));
                 GetComponent<effetBlur>().launchedgrenada = false;
+                GetComponent<effetBlur>().Deactivate();
                 
             }
             if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
@@ -148,7 +153,7 @@ namespace Player
                 {
                     M1();
                 }
-                if (Input.GetKeyDown(KeyCode.G))
+                if (Input.GetButtonDown("Fire2"))
                 {
                     M2();
                 }
@@ -171,6 +176,15 @@ namespace Player
             {
                 this.GetComponentInChildren<Weapon.WeaponAssaultRifle>().Shoot();
             }
+            if(isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
+            {
+                if (use > 0)
+                {
+                    use--;
+                    started = true;
+                    tp();
+                }
+            }
 
         }
         private void M2()
@@ -189,7 +203,7 @@ namespace Player
 
         private void Cap1()
         {
-            /*if (isShadow && started)
+            if (isShadow && started)
             {
                 sphere.SetActive(false);
                 isShadow = false;
@@ -198,16 +212,6 @@ namespace Player
             {
                 sphere.SetActive(true);
                 isShadow = true;
-            }*/
-            if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
-            {
-
-                if (use > 0)
-                {
-                    use--;
-                    started = true;
-                    tp();
-                }
             }
         }
 
@@ -220,7 +224,7 @@ namespace Player
                 invicible = true;
                 Invicibilityseq();
                 oldwask = cameraofperso.cullingMask;
-                cameraofperso.cullingMask = cameraofperso.cullingMask ^ (1 << 9);
+                cameraofperso.cullingMask = cameraofperso.cullingMask ^ (1 << 10);
 
             }
         }
