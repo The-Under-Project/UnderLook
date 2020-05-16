@@ -103,16 +103,20 @@ namespace Player
 
         private void Cap3()
         {
-            canvasUI.GetComponent<UI>().cap("three");
             if (canvasUI.GetComponent<UI>().percentageCooldown3 == 1)
             {
-                Quaternion rot = rotation;
-                rot.x += cam.transform.rotation.x;
-                rot.y += this.transform.rotation.y;
-                rot.z += this.transform.rotation.z;
-                rot.w += this.transform.rotation.w + cam.transform.rotation.w;
+                canvasUI.GetComponent<UI>().cap("three");
 
-                GameObject grappin = Instantiate(grap, minePos.transform.position, Quaternion.identity) as GameObject;
+                Vector3 rot = new Vector3(180, 180, 0);
+
+                // player : y et w
+                // cam
+
+                Vector3 init = transform.rotation.eulerAngles;
+
+                rot.y += init.y;
+
+                GameObject grappin = Instantiate(grap, minePos.transform.position, Quaternion.Euler(rot)) as GameObject;
                 Vector3 force = transform.forward;
                 force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
                 force *= power;

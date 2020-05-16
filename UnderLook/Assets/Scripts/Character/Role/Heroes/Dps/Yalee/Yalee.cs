@@ -126,10 +126,8 @@ namespace Player
         }
         private void M2()
         {
-            for (int i = 0; i < 3; i++)
-            {
-                this.GetComponentInChildren<Weapon.WeaponDagger>().Shoot();
-            }
+
+            this.GetComponentInChildren<Weapon.WeaponDagger>().TripleShoot();
         }
 
         private void Cap1()
