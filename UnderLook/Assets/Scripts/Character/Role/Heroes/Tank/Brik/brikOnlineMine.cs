@@ -62,7 +62,8 @@ public class brikOnlineMine : MonoBehaviour
             colorBub = "BlueBubble";
         else
             colorBub = "RedBubble";
-        PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
+        if(owner != null)
+            PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
     }
 
 
@@ -87,6 +88,7 @@ public class brikOnlineMine : MonoBehaviour
                 if (player != null)
                 {
                     player.GetComponent<Moving>().enabled = true;
+                    player.GetComponent<PlayerNetworkingDeactivate>().Initialize();
                 }
             }
             if (PhotonNetwork.isMasterClient)

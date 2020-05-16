@@ -27,8 +27,9 @@ TagManager:
   - CannonRedEnd
   - CannonRedPath
   - CannonBluePath
-  - slowzone
-  - grenade
+  - VictoryPoint
+  - noCollision
+  - WallDisable
   layers:
   - Default
   - TransparentFX
@@ -40,8 +41,8 @@ TagManager:
   - 
   - AVOIDWHENBAKING
   - PostProcessing
-  - HideEnnemi
-  - Jemaimepas
+  - 
+  - 
   - 
   - 
   - 

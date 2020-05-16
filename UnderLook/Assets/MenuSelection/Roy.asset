@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978219d0efd0aeb4185bc4d2e32a3265, type: 3}
   m_Name: Roy
   m_EditorClassIdentifier: 
-  instantiateName: 
+  instantiateName: Roy
   artwork: {fileID: 21300000, guid: 3c3e626a509b0dd45b67a4f257ce7a69, type: 3}

@@ -1,16 +1,21 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Threading;
 
 namespace Player
 {
-    public class Easwith: Healer
+    public class Easwith : Healer
     {
         [Header("Easwith")]
         public GameObject canvasUI;
 
-        public float waitmarket = 1f;
+        public float actualtime = 0f;
+        public float cdtime = 3;
+
+        public GameObject weaponDMG;
+        public GameObject weaponHEAL;
 
         private void Start()
         {
@@ -21,53 +26,32 @@ namespace Player
             canvasUI.GetComponent<UI>().hasThreeCapacities = false;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
 
-        }
+    }
         void FixedUpdate()
         {
-
+            time();
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
             if (hp <= 0)
             {
                 //Debug.Log("Dead");
                 //dead();
             }
+            if (actualtime <= 0)
+            {
+                GetComponent<Moving>().speed = speed;
+                GetComponent<Moving>().jumpspeed = jumpspeed;
+            }
 
             canvasUI.GetComponent<UI>().CurrentHP = hp;
-
-            if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
-            {
-                wait();
-                if (canvasUI.GetComponent<UI>().showmarket)
-                    canvasUI.GetComponent<UI>().showmarket = false;
-                else
-                {
-                    canvasUI.GetComponent<UI>().showmarket = true;
-                }
-            }
-            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket)
-            {
-                ApllyCard(GetComponentInChildren<Market>().item);
-                canvasUI.GetComponent<UI>().showmarket = false;
-            }
-
-
-            if (Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
-            {
-                canvasUI.GetComponent<UI>().showmenu = true;
-                Cursor.lockState = CursorLockMode.Confined;
-                GetComponentInChildren<CameraController>().canmovevision = false;
-            }
-            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
-            {
-                canvasUI.GetComponent<UI>().stat.SetActive(false);
-            }
-            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
-                canvasUI.GetComponent<UI>().option.SetActive(false);
         }
 
         //-----------------------------
         private void Update()
         {
-            if (!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
+            if (true)//(!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
             {
 
                 if (Input.GetButtonDown("Fire1"))
@@ -93,7 +77,7 @@ namespace Player
 
         private void M1() // assault rifle
         {
-            this.GetComponentInChildren<Weapon.WeaponAssaultRifle>().Shoot();
+            weaponDMG.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
         }
         private void M2()
         {
@@ -104,18 +88,10 @@ namespace Player
         {
             if (canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
+                actualtime = cdtime;
                 canvasUI.GetComponent<UI>().cap("one");
-
-                Vector3 current_position = transform.position;
-                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-                foreach (GameObject p in players)
-                {
-                    if (Vector3.Distance(p.transform.position,current_position) < 20f && p.GetComponent<TeamColor>().teamColor == this.GetComponent<TeamColor>().teamColor) // players in range
-                    {
-                        StartCoroutine(SpeedEffect(p));
-                    }
-                }
+                this.GetComponent<Moving>().speed = speed * 2f;
+                this.GetComponent<Moving>().jumpspeed = jumpspeed * 2f;
             }
         }
 
@@ -124,64 +100,15 @@ namespace Player
             if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
             {
                 canvasUI.GetComponent<UI>().cap("two");
-
-                Vector3 current_position = transform.position;
-                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-                foreach (GameObject p in players)
-                {
-                    if (Vector3.Distance(p.transform.position,current_position) < 10f && p.GetComponent<TeamColor>().teamColor == this.GetComponent<TeamColor>().teamColor) // players in range
-                    {
-                        StartCoroutine(HealEffect(p));
-                    }
-                }
+                weaponHEAL.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
             }
         }
-
-        IEnumerator SpeedEffect(GameObject p)
+        public void time()
         {
-            p.GetComponent<Moving>().speed *= 1.2f; // 20% ms increase
-
-            yield return new WaitForSeconds(5); // duration
-
-            speed = (int)(p.GetComponent<Moving>().speed/1.2f);
-        }
-
-        IEnumerator HealEffect(GameObject p)
-        {
-            int TotalHeal = 100;
-            int Totalduration = 4;
-            int steps = 100;
-            for(int i = 0; i < steps; i++)
+            if (actualtime > 0)
             {
-                hp += TotalHeal/steps;
-                yield return new WaitForSeconds(Totalduration/steps);
+                actualtime -= Time.deltaTime;
             }
-        }
-
-        public void ApllyCard(Card upgrade)
-        {
-
-            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
-            // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
-
-            canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
-            canvasUI.GetComponent<UI>().time2 *= (1 - upgrade.coolDownCap2 / 100);
-            canvasUI.GetComponent<UI>().time3 *= (1 - upgrade.coolDownCap3 / 100);
-
-            GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
-            GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
-            GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
-
-
-
-        }
-        Sequence wait()
-        {
-            waitmarket = 0;
-            Sequence s = DOTween.Sequence();
-            s.Append(DOTween.To(() => waitmarket, x => waitmarket = x, 1, 0.25f));
-            return s;
         }
     }
-}   
+}

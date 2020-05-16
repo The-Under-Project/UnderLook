@@ -6,7 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 public class effetBlur : MonoBehaviour
 {
     public GameObject[] ennemiteam = new GameObject[4];
- 
+
 
     public GameObject grenada;
     public GameObject grenadaInstantiated;
@@ -24,36 +24,27 @@ public class effetBlur : MonoBehaviour
         this.allyteam = allyteam;
         int i = 0;
         blurness = null;
-        foreach(var p in GameObject.FindGameObjectsWithTag("Player"))
+        foreach (var p in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if (p.GetComponent<TeamColor>().enemieColor == allyteam) 
+            if (p.GetComponent<TeamColor>().enemieColor == allyteam)
             {
                 p.GetComponentInChildren<PostProcessVolume>().profile.TryGetSettings(out blurness);
                 if (blurness != null)
                 {
                     ennemiteam[i++] = p;
                 }
-                
+
             }
             blurness = null;
         }
     }
-    public void LaunchedGrenada(GameObject p, Camera cam, float power)
-    {
-        grenadaInstantiated = Instantiate(grenada, shootpoint.transform.position, Quaternion.identity) as GameObject;
-        Vector3 force = p.transform.forward;
-        force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
-        force *= power;
-        grenada.GetComponent<Rigidbody>().AddForce(force);
-        launchedgrenada = true;
-    }
     // Update is called once per frame
     public void Update()
     {
-        if(launchedgrenada)
+        if (launchedgrenada)
         {
             int i = 0;
-            foreach(var p in  ennemiteam)
+            foreach (var p in ennemiteam)
             {
                 if (p != null)
                 {
@@ -78,5 +69,22 @@ public class effetBlur : MonoBehaviour
             }
         }
 
+    }
+
+    public void Deactivate()
+    {
+        foreach (var p in ennemiteam)
+        {
+            if (p != null)
+            {
+                blurness = null;
+                PostProcessVolume volume = p.GetComponentInChildren<PostProcessVolume>();
+                volume.profile.TryGetSettings(out blurness);
+                if (blurness != null)
+                {
+                    blurness.active = false;
+                }
+            }
+        }
     }
 }

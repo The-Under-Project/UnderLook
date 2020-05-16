@@ -8,12 +8,16 @@ public class UI : MonoBehaviour
 {
     [Header("Debug")]
     public bool cd;
+    public bool cancel;
 
     [Header("Global")]
     public bool hasThreeCapacities;
     public bool hasShield;
     private Color32 orange = new  Color32(255, 165, 0, 150);
     private Color32 whiteAlpha = new  Color32(255, 255, 255, 150);
+
+    public string gameMaster;
+    public Text  client;
 
     [Header("Name")]
     [SerializeField] private string NameCharacter;
@@ -24,6 +28,9 @@ public class UI : MonoBehaviour
     public float time1;
     public bool CoolDown1;
     private bool cdRefresh1;
+
+    public bool rescue = false;
+
     [SerializeField] private Image capacityBG1;
     [SerializeField] private Sprite capacityImage1;
     [SerializeField] private GameObject Capacity1;
@@ -64,25 +71,12 @@ public class UI : MonoBehaviour
     [Range(0.0f, 200f)]
     public float CurrentShield;
 
-
-    [Header("Market")]
-    public bool showmarket = false;
-    public GameObject market;
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
-
-    [Header("Menu")]
-    public GameObject menu;
-    public bool showmenu = false;
-    public GameObject stat;
-    public bool showstat = false;
-    public GameObject option;
-    public bool showoption;
-    public Image sound;
-
     private void Start()
     {
+        gameMaster = PhotonNetwork.isMasterClient ? "<color=green>You're master</color>" : "<color=red>You're not master</color>";
+        client.text = gameMaster;
+
+
         NameCharacter = PhotonNetwork.player.NickName;
         percentageCooldown1 = 1;
         percentageCooldown2 = 1;
@@ -119,26 +113,23 @@ public class UI : MonoBehaviour
         {
             ShieldBar.transform.parent.gameObject.SetActive(false);
         }
-
-        #region MenuOverlay
-        market.SetActive(false);
-        menu.SetActive(false);
-        stat.SetActive(false);
-        option.SetActive(false);
-        sound.fillAmount = 0.5f;
-        #endregion
-
-
+       
     }
     void FixedUpdate()
     {
         #region hideousCapacityRefresh
+
+        Debug.Log(PhotonNetwork.room.Name);
         
-        if (cdRefresh1)
+        if (cdRefresh1 && !rescue)
             capacityBG1.fillAmount = percentageCooldown1;
         if (cdRefresh1 && percentageCooldown1 == 1)
         {
             cdRefresh1 = false;
+            capacityBG1.color = whiteAlpha;
+        }
+        if (rescue)
+        {
             capacityBG1.color = whiteAlpha;
         }
         if (CoolDown1)
@@ -196,47 +187,16 @@ public class UI : MonoBehaviour
 
         #endregion ultimate
 
-        #region market
-        if (!showmarket || GetComponentInParent<Market>().itembought)
+
+        if (cancel && percentageCooldown2 == 1)
         {
-            market.SetActive(false);
+            cancel = false;
+            cd = false;
+            cap("two");
         }
-        else
-        {
-            market.SetActive(true);
-            if (Input.GetKey(KeyCode.F2))
-            {
-                GetComponentInParent<Market>().item = item1.GetComponent<CardDisplay>().card;
-                GetComponentInParent<Market>().itembought = true;
-
-
-            }
-            if (Input.GetKey(KeyCode.F3))
-            {
-                GetComponentInParent<Market>().item = item2.GetComponent<CardDisplay>().card;
-                GetComponentInParent<Market>().itembought = true;
-
-
-            }
-            if (Input.GetKey(KeyCode.F4))
-            {
-                GetComponentInParent<Market>().item = item3.GetComponent<CardDisplay>().card;
-                GetComponentInParent<Market>().itembought = true;
-            }
-        }
-        #endregion market
-
-        #region menu
-        if (showmenu)
-            menu.SetActive(true);
-        else
-        {
-            menu.SetActive(false);
-        }
-        #endregion
     }
 
-    Sequence CD1()
+    public Sequence CD1()
     {
         capacityBG1.color = orange;
         percentageCooldown1 = 0;
@@ -288,25 +248,6 @@ public class UI : MonoBehaviour
                 break;
             default:
                 break;
-        }
-    }
-
-    public void SoundUp()
-    {
-        if (sound.fillAmount < 1)
-        {
-            sound.fillAmount += 0.1f;
-        }
-        else
-        { sound.fillAmount = 1; }
-    }
-    public void Sounddown()
-    {
-        if (sound.fillAmount > 0)
-            sound.fillAmount -= 0.1f;
-        else
-        {
-            sound.fillAmount = 0;
         }
     }
 }

@@ -12,12 +12,17 @@ namespace Player
 
         [Header("Timtry")]
         public bool hasInstantiateAMine = false;
+        public bool hasInstantiateAMineSLOW = false;
+
+        public GameObject mine;
+
+        public GameObject mineSLOW;
+        public GameObject minePos;
 
         public GameObject canvasUI;
 
-        //public GameObject mine;
         public GameObject originshoot;
-        
+
 
         public float mineStrengh;
 
@@ -25,24 +30,10 @@ namespace Player
         public float cameraFOV;
         public Camera cam;
 
-        /*public bool isShadow = false;
-        public GameObject sphere;
-
-        public float teleportRange;
-
-        public float Teleport = 100;
-        */
-        /*public float TimeTP;
-        public float TimeAfterTP;
-        public float percentage;
-        */
-
         public Vector3 force;
         public string enemyColor;
 
         public float waitmarket = 1f;
-
-        
 
         public float rangecap2; // range of the blessing of timtry
         public float durationhealing; // duration of the mark of healing
@@ -52,13 +43,8 @@ namespace Player
         public float durationachievedslow = 0f;
         public bool zoneActivated = false; // if true the prefab slowzone is instanciated
 
-
-
-
         private void Start()
         {
-
-
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
 
@@ -76,7 +62,10 @@ namespace Player
         }
         void FixedUpdate()
         {
-
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
             if (hp <= 0)
             {
                 //Debug.Log("Dead");
@@ -87,53 +76,20 @@ namespace Player
 
             cam.fieldOfView = cameraFOV;
 
-            
-            if(durationachievedslow == 1f)
+
+            if (durationachievedslow == 1f)
             {
                 Destroy(GameObject.FindGameObjectWithTag("slowzone"));
             }
 
-
-
-
-            if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
-            {
-                wait();
-                if (canvasUI.GetComponent<UI>().showmarket)
-                    canvasUI.GetComponent<UI>().showmarket = false;
-                else
-                {
-                    canvasUI.GetComponent<UI>().showmarket = true;
-                }
-            }
-            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket)
-            {
-                ApllyCard(GetComponentInChildren<Market>().item);
-                canvasUI.GetComponent<UI>().showmarket = false;
-            }
-
-
-            if (Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
-            {
-                canvasUI.GetComponent<UI>().showmenu = true;
-                Cursor.lockState = CursorLockMode.Confined;
-                GetComponentInChildren<CameraController>().canmovevision = false;
-            }
-            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
-            {
-                canvasUI.GetComponent<UI>().stat.SetActive(false);
-            }
-            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
-                canvasUI.GetComponent<UI>().option.SetActive(false);
-
-
         }
+
+
+
 
         //-----------------------------
         private void Update()
         {
-            if (!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
-            {
                 if (Input.GetButtonDown("Fire1"))
                 {
                     M1();
@@ -158,51 +114,57 @@ namespace Player
                 {
                     Ulti();
                 }
-            }
-
         }
+
+        
 
 
         private void M1()
         {
-            GetComponentInChildren<Weapon.WeaponAssaultRifle>().Shoot();
+            Debug.Log("run");
+            GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
 
         }
         private void M2()
         {
-            if (cam.fieldOfView == 60)
-            {
-                DOTween.Play(ZoomIN());
-                isZooming = true;
-            }
-            else if (cam.fieldOfView == 30)
-            {
-                DOTween.Play(ZoomOUT());
-                isZooming = true;
-            }
         }
 
         private void Cap1()
         {
 
-            if (canvasUI.GetComponent<UI>().percentageCooldown1 == 1f)
+            if (canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
-                Destroy(GameObject.FindGameObjectWithTag("slowzone"));
                 canvasUI.GetComponent<UI>().cap("one");
-                GetComponent<SlowdeZone>().slowzone();
-                zoneActivated = true;
-                durationzoneslow();
-                
+
+                GameObject clone = Instantiate(mine, minePos.transform.position, Quaternion.identity) as GameObject; //minePos.transform.rotation
+                clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+                clone.SendMessage("DEBUG", DEBUG);
+
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= mineStrengh;
+                clone.GetComponent<Rigidbody>().AddForce(force);
+
+                hasInstantiateAMine = true;
             }
         }
 
         private void Cap2()
         {
-            if(canvasUI.GetComponent<UI>().percentageCooldown2 == 1f)
+            if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
             {
                 canvasUI.GetComponent<UI>().cap("two");
-                GetComponent<HealDazze>().DeterminedHealed(originshoot.transform, GetComponent<TeamColor>().teamColor, rangecap2);
 
+                GameObject clone = Instantiate(mineSLOW, minePos.transform.position, Quaternion.identity) as GameObject; //minePos.transform.rotation
+                clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+                clone.SendMessage("DEBUG", DEBUG);
+
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= mineStrengh;
+                clone.GetComponent<Rigidbody>().AddForce(force);
+
+                hasInstantiateAMineSLOW = true;
             }
         }
 
@@ -211,7 +173,7 @@ namespace Player
             //double les dmg
         }
 
-        
+
 
         private void dead()
         {
@@ -232,24 +194,6 @@ namespace Player
             s.Append(DOTween.To(() => cameraFOV, x => cameraFOV = x, 60f, 0.2f));
             return s;
         }
-        
-        public void ApllyCard(Card upgrade)
-        {
-
-            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
-            // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
-
-            canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
-            canvasUI.GetComponent<UI>().time2 *= (1 - upgrade.coolDownCap2 / 100);
-            canvasUI.GetComponent<UI>().time3 *= (1 - upgrade.coolDownCap3 / 100);
-
-            GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
-            GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
-            GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
-
-
-
-        }
         Sequence wait()
         {
             waitmarket = 0;
@@ -261,7 +205,7 @@ namespace Player
         {
             durationachievedslow = 0;
             Sequence s = DOTween.Sequence();
-            s.Append(DOTween.To(() =>durationachievedslow, x => durationachievedslow = x, 1, durationhealing));
+            s.Append(DOTween.To(() => durationachievedslow, x => durationachievedslow = x, 1, durationhealing));
             return s;
         }
 

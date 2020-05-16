@@ -11,23 +11,25 @@ namespace Player
 {
     public class Roy : Tank
     {
-        [Header("Roy")] public GameObject canvasUI;
+        [Header("Roy")]
+        public bool hasInstantiateAMine = false;
+
+        public GameObject canvasUI;
+
+        public GameObject mine;
+        public GameObject minePos;
+
+        public float mineStrengh;
         public float cameraFOV;
         public Camera cam;
-        public bool hasInstantiateAShield = false;
         private float time = 15f;
-        private int power = 15;
-        public GameObject shield;
+        public int power = 15;
 
-        [Header("Grappin")] public GameObject grap;
-        public float timergrap;
-        public float cooldownM2;
-        public Collision collision;
-        public float forceofGrap;
-        public bool inMotion;
-        public Boolean cd = false;
-        private float time1 = 20f;
-        public GameObject shotPoint;
+        [Header("Grappin")] 
+        public GameObject grap;
+
+        public float actualtime = 0f;
+        public float cdtime = 3;
 
         void Start()
         {
@@ -39,10 +41,12 @@ namespace Player
             cameraFOV = cam.fieldOfView;
 
             canvasUI.GetComponent<UI>().hasShield = false;
-            canvasUI.GetComponent<UI>().hasThreeCapacities = false;
+            canvasUI.GetComponent<UI>().hasThreeCapacities = true;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
             shieldLife = 100;
             shieldRecovery = 10;
+
+
         }
 
         private void Update()
@@ -54,7 +58,7 @@ namespace Player
 
             if (Input.GetButtonDown("Fire2"))
             {
-                M2();
+                Cap3();
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -66,30 +70,46 @@ namespace Player
             {
                 Cap2();
             }
-
-            if (Input.GetKeyDown(KeyCode.A))
+        }
+        private void FixedUpdate()
+        {
+            if (hp > hpmax)
             {
-                Ulti();
+                hp = hpmax;
             }
 
-            Debug.Log(canvasUI.GetComponent<UI>().CurrentHP);
-            Debug.Log(canvasUI.GetComponent<UI>().maxHP);
+            if (hp <= 0)
+            {
+                //Debug.Log("Dead");
+                //dead();
+            }
+
+            canvasUI.GetComponent<UI>().CurrentHP = hp;
+            if (actualtime <= 0)
+            {
+                GetComponent<Moving>().jumpspeed = jumpspeed;
+            }
+            else
+            {
+                timer();
+            }
         }
 
         private void M1()
         {
-            this.GetComponentInChildren<Weapon.WeaponCannon>().Shoot();
+            this.GetComponentInChildren<Weapon.WeaponDagger>().Shoot();
         }
 
-        private void M2()
+        private void Cap3()
         {
-            GameObject grappin = Instantiate(grap, shotPoint.transform.position, Quaternion.identity) as GameObject;
+            canvasUI.GetComponent<UI>().cap("three");
+            GameObject grappin = Instantiate(grap, minePos.transform.position, Quaternion.identity) as GameObject;
             Vector3 force = transform.forward;
             force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
             force *= power;
+
             grappin.GetComponent<Rigidbody>().AddForce(force);
-            grappin.GetComponent<Grappin>().setPlayer(this.gameObject);
-            Destroy(grappin, time);
+            grappin.GetComponent<Grappin>().pos = transform.position;
         }
 
         private void Cap1()
@@ -97,19 +117,33 @@ namespace Player
             if (canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
             {
                 canvasUI.GetComponent<UI>().cap("one");
-                GameObject shootedShield = Instantiate(shield, shotPoint.transform.position, Quaternion.identity) as GameObject;
-                shootedShield.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward * power);
-                //shootedShield.SendMessage("SetColor", GetComponent<TeamColor>().teamColor);
-                Destroy(shootedShield, time);
+                GameObject clone = Instantiate(mine, minePos.transform.position, Quaternion.identity) as GameObject; //minePos.transform.rotation
+                clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+                clone.SendMessage("DEBUG", DEBUG);
+
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= mineStrengh;
+                clone.GetComponent<Rigidbody>().AddForce(force);
+
+                hasInstantiateAMine = true;
             }
         }
 
-        private void Cap2()
+        private void Cap2() // speed boost for all allies in radius
         {
             if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
             {
+                actualtime = cdtime;
                 canvasUI.GetComponent<UI>().cap("two");
-                GetComponentInChildren<Moving>().capacity = true;
+                this.GetComponent<Moving>().jumpspeed = jumpspeed * 2f;
+            }
+        }
+        public void timer()
+        {
+            if (actualtime > 0)
+            {
+                actualtime -= Time.deltaTime;
             }
         }
 
@@ -121,25 +155,9 @@ namespace Player
             canvasUI.GetComponent<UI>().maxHP = 1000f;
             canvasUI.GetComponent<UI>().CurrentHP = 1000f;
             float percentageCooldown1 = 0;
-            Boolean cdRefresh1 = true;
             Sequence s = DOTween.Sequence();
-
-            if (!cd)
-                s.Append(DOTween.To(() => percentageCooldown1, x => percentageCooldown1 = x, 1, time1));
-            else
-                percentageCooldown1 = 1;
             canvasUI.GetComponent<UI>().maxHP = maxHpSave;
             canvasUI.GetComponent<UI>().CurrentHP = hpSave;
         }
-
-
-
-        public void RetourGrappin(GameObject foe)
-        {
-            foe.GetComponentInChildren<Moving>().canMove = false;
-            foe.GetComponent<Rigidbody>().velocity = this.transform.TransformDirection(-Vector3.forward * forceofGrap);
-        }
-
-
     }
 }

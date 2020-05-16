@@ -1,4 +1,4 @@
-﻿
+
 namespace Weapon
 {
     public class WeaponDagger : BulletShot

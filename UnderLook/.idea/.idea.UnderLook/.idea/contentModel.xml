@@ -325,6 +325,8 @@
           <e p="[PUN]" t="Include">
             <e p="DamagePun.cs" t="Include" />
             <e p="PlayloadPUN.cs" t="Include" />
+            <e p="RemoveWall.cs" t="Include" />
+            <e p="StartingPun.cs" t="Include" />
           </e>
           <e p="[TXT]" t="Include">
             <e p="AddTXT.cs" t="Include" />
@@ -345,6 +347,16 @@
           <e p="Character" t="Include">
             <e p="Base.cs" t="Include" />
             <e p="MaterialsApply.cs" t="Include" />
+            <e p="PlayerManager" t="Include">
+              <e p="PlayerManagerBrik.cs" t="Include" />
+              <e p="PlayerManagerCassie.cs" t="Include" />
+              <e p="PlayerManagerEaswith.cs" t="Include" />
+              <e p="PlayerManagerRasla.cs" t="Include" />
+              <e p="PlayerManagerRoy.cs" t="Include" />
+              <e p="PlayerManagerTashe.cs" t="Include" />
+              <e p="PlayerManagerTimtry.cs" t="Include" />
+              <e p="PlayerManagerYalee.cs" t="Include" />
+            </e>
             <e p="Role" t="Include">
               <e p="Dps.cs" t="Include" />
               <e p="Healer.cs" t="Include" />
@@ -357,17 +369,17 @@
                     <e p="MineDebug.cs" t="Include" />
                     <e p="MineOnline.cs" t="Include" />
                     <e p="MineShadeEffect.cs" t="Include" />
-                    <e p="PlayerManagerCassie.cs" t="Include" />
                     <e p="SphereColor.cs" t="Include" />
                     <e p="TPoverlapCircle.cs" t="Include" />
                     <e p="WeaponSniper.cs" t="Include" />
                   </e>
                   <e p="Rasla" t="Include">
                     <e p="effetBlur.cs" t="Include" />
+                    <e p="mineRasla.cs" t="Include" />
                     <e p="Rasla.cs" t="Include" />
+                    <e p="RaslaOnlineMine.cs" t="Include" />
                   </e>
                   <e p="Tashe" t="Include">
-                    <e p="Flare.cs" t="Include" />
                     <e p="Tashe.cs" t="Include" />
                   </e>
                   <e p="Yalee" t="Include">
@@ -378,15 +390,16 @@
                 <e p="Healer" t="Include">
                   <e p="Easwith" t="Include">
                     <e p="Easwith.cs" t="Include" />
-                    <e p="PlayerManagerEaswith.cs" t="Include" />
                     <e p="WeaponAssaultRifle.cs" t="Include" />
                   </e>
                   <e p="Timtry" t="Include">
                     <e p="HealDazze.cs" t="Include" />
-                    <e p="PlayerManagerTimtry.cs" t="Include" />
-                    <e p="SlowdeZone.cs" t="Include" />
+                    <e p="mineHeal.cs" t="Include" />
+                    <e p="mineSlow.cs" t="Include" />
+                    <e p="SlowdeZone.cs.cs" t="Include" />
+                    <e p="TimtriOnlineMine.cs" t="Include" />
+                    <e p="TimtriOnlineMineSlow.cs" t="Include" />
                     <e p="Timtry.cs" t="Include" />
-                    <e p="TimtryMaterialDeath.cs" t="Include" />
                   </e>
                 </e>
                 <e p="Tank" t="Include">
@@ -396,17 +409,15 @@
                     <e p="brikOnlineMine.cs" t="Include" />
                     <e p="mineBrik.cs" t="Include" />
                     <e p="shieldColor.cs" t="Include" />
+                    <e p="shieldState.cs" t="Include" />
                     <e p="ThrowController.cs" t="Include" />
                     <e p="WeaponScript.cs" t="Include" />
                   </e>
                   <e p="Roy" t="Include">
                     <e p="Grappin.cs" t="Include" />
-                    <e p="PlayerManagerRoy.cs" t="Include" />
                     <e p="Roy.cs" t="Include" />
-                    <e p="RoyMaterialDeath.cs" t="Include" />
-                    <e p="Shield.cs" t="Include" />
-                    <e p="ShieldOnline.cs" t="Include" />
-                    <e p="WeaponCannon.cs" t="Include" />
+                    <e p="RoyMine.cs" t="Include" />
+                    <e p="RoyOnlineMine.cs" t="Include" />
                   </e>
                 </e>
               </e>
@@ -433,7 +444,6 @@
           <e p="Movement" t="Include">
             <e p="CameraController.cs" t="Include" />
             <e p="Moving.cs" t="Include" />
-            <e p="OffSetWeapon.cs" t="Include" />
           </e>
           <e p="Objective" t="Include">
             <e p="PayloadCountPlayer.cs" t="Include" />
@@ -452,23 +462,26 @@
             <e p="clickRun.cs" t="Include" />
             <e p="HeroDisplay.cs" t="Include" />
             <e p="HeroMenu.cs" t="Include" />
-            <e p="Market.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
-            <e p="Menu.cs" t="Include" />
             <e p="UI.cs" t="Include" />
             <e p="UIChar.cs" t="Include" />
           </e>
           <e p="Utilities" t="Include">
+            <e p="DestroyAfterXseconds.cs" t="Include" />
             <e p="Gravity.cs" t="Include" />
+          </e>
+          <e p="VictoryCondition" t="Include">
+            <e p="DistanceVictory.cs" t="Include" />
+            <e p="PlayerVictory.cs" t="Include" />
           </e>
           <e p="Weapon" t="Include">
             <e p="BulletShot.cs" t="Include" />
             <e p="Hitscan.cs" t="Include" />
+            <e p="LockOnCollision.cs" t="Include" />
             <e p="WeaponRotateCamera.cs" t="Include" />
           </e>
         </e>
-        <e p="test.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />

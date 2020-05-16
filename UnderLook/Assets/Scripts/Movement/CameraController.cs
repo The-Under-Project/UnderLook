@@ -8,7 +8,6 @@ public class CameraController : MonoBehaviour
     [SerializeField]private float SpeedRotate = 150f;
     [SerializeField] private Transform BodyPlayer;
     private float ClampX;
-    public bool canmovevision = true;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +15,11 @@ public class CameraController : MonoBehaviour
         ClampX = 0.0f;
 
         Cursor.lockState = CursorLockMode.Locked;
-       // GetComponent<Camera>().cullingMask = GetComponent<Camera>().cullingMask ^ (1 << 11); # le probleme avec les lyares c'est que si on l'applique sur chacun des persos
-       //les persos seront invisibles pour tout le monde
-
     }
 
     private void FixedUpdate()
     {
-        if(canmovevision)
-            CameraMove();
+        CameraMove();
     }
 
 

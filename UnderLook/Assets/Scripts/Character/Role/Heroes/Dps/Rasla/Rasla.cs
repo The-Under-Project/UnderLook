@@ -10,66 +10,70 @@ namespace Player
         [Header("Rasla")]
         public GameObject canvasUI;
 
-        public GameObject sphere;
+        public bool hasInstantiateAMine = false;
 
+        [Header("TP")]
+        public GameObject sphere;
         public float teleportRange;
         public float Teleport = 100;
-
         public bool isShadow = false;
         public float TimeTP;
         public float TimeAfterTP;
         public float percentage;
-
         public bool started = false;
         public int useMax = 3;
         public int use = 3;
 
+
+        [Header("PasTp")]
         private int hpbeforecap2;
         public bool invicible = false;
         public float timeofinvincibility;
         public float timedepbegininvi = 0;
-        public Camera cameraofperso;
+        public Camera cam;
+
+        public GameObject mine;
+        public GameObject minePos;
+
+        public float mineStrengh;
+
         public int oldwask;
 
-        public float waitmarket = 1f;
-        public float powergrenada;
-        public float cdgrenade;
-        public float tempsgre;
-        public float tempsrestatngre;
+        public int oldHPmax;
+
+        public float actualtime = 0f;
+        public float timeMax = 0f;
 
         private void Start()
         {
 
-
+            oldHPmax = hpmax;
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
 
             canvasUI.GetComponent<UI>().hasShield = false;
-            canvasUI.GetComponent<UI>().hasThreeCapacities = false;
+            canvasUI.GetComponent<UI>().hasThreeCapacities = true;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
 
             string allyteam = GetComponent<TeamColor>().teamColor;
-            foreach (var machin in GameObject.FindGameObjectsWithTag("Player"))
-            {
-                if (machin.GetComponent<TeamColor>().enemieColor != allyteam)
-                {
-                    machin.layer = 10;
-
-                }
-            }
-            canvasUI.GetComponent<UI>().time3 = cdgrenade;
 
 
         }
         void FixedUpdate()
         {
-            if (invicible)
-                hp = hpbeforecap2;
-
+            timer();
+            if (hp > hpmax)
+            {
+                hp = hpmax;
+            }
             if (hp <= 0)
             {
                 //Debug.Log("Dead");
                 //dead();
+            }
+            if (actualtime <= 0)
+            {
+                hpmax = oldHPmax;
             }
 
             canvasUI.GetComponent<UI>().CurrentHP = hp;
@@ -99,57 +103,28 @@ namespace Player
             if (timedepbegininvi == 1)
             {
                 invicible = false;
-                cameraofperso.cullingMask = oldwask;
+                cam.cullingMask = oldwask;
 
             }
-            if(tempsrestatngre == 1)
+            /*
+            if (tempsrestatngre == 1)
             {
                 Object.Destroy(GameObject.FindGameObjectWithTag("grenade"));
                 GetComponent<effetBlur>().launchedgrenada = false;
-                
-            }
-            if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
-            {
-                wait();
-                if (canvasUI.GetComponent<UI>().showmarket)
-                    canvasUI.GetComponent<UI>().showmarket = false;
-                else
-                {
-                    canvasUI.GetComponent<UI>().showmarket = true;
-                }
-            }
-            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket)
-            {
-                ApllyCard(GetComponentInChildren<Market>().item);
-                canvasUI.GetComponent<UI>().showmarket = false;
-            }
+                GetComponent<effetBlur>().Deactivate();
 
-
-            if (Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
-            {
-                canvasUI.GetComponent<UI>().showmenu = true;
-                Cursor.lockState = CursorLockMode.Confined;
-                GetComponentInChildren<CameraController>().canmovevision = false;
-            }
-            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
-            {
-                canvasUI.GetComponent<UI>().stat.SetActive(false);
-            }
-            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
-                canvasUI.GetComponent<UI>().option.SetActive(false);
+            }*/
         }
 
         //-----------------------------
         private void Update()
         {
-            if (!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
-            {
 
                 if (Input.GetButtonDown("Fire1"))
                 {
                     M1();
                 }
-                if (Input.GetKeyDown(KeyCode.G))
+                if (Input.GetButtonDown("Fire2"))
                 {
                     M2();
                 }
@@ -161,7 +136,6 @@ namespace Player
                 {
                     Cap2();
                 }
-            }
 
         }
 
@@ -170,26 +144,42 @@ namespace Player
         {
             if (!isShadow)
             {
-                this.GetComponentInChildren<Weapon.WeaponAssaultRifle>().Shoot();
+                this.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
+            }
+            if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
+            {
+                if (use > 0)
+                {
+                    use--;
+                    started = true;
+                    tp();
+                }
             }
 
         }
         private void M2()
         {
-            
-            if( canvasUI.GetComponent<UI>().percentageCooldown3 == 1)
+
+            if (canvasUI.GetComponent<UI>().percentageCooldown3 == 1)
             {
-                Debug.Log("allo");
                 canvasUI.GetComponent<UI>().cap("three");
-                GetComponent<effetBlur>().GenerateEnnemiTeam(GetComponent<TeamColor>().teamColor);
-                GetComponent<effetBlur>().LaunchedGrenada(this.gameObject, cameraofperso, powergrenada);
-                
-            }
+                GameObject clone = Instantiate(mine, minePos.transform.position, Quaternion.identity) as GameObject; //minePos.transform.rotation
+                clone.SendMessage("SetColor", this.GetComponent<TeamColor>().enemieColor);
+                clone.SendMessage("DEBUG", DEBUG);
+
+                Vector3 force = transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= mineStrengh;
+                clone.GetComponent<Rigidbody>().AddForce(force);
+
+                hasInstantiateAMine = true;
+
+         } 
         }
 
         private void Cap1()
         {
-            /*if (isShadow && started)
+            if (isShadow && started)
             {
                 sphere.SetActive(false);
                 isShadow = false;
@@ -198,16 +188,6 @@ namespace Player
             {
                 sphere.SetActive(true);
                 isShadow = true;
-            }*/
-            if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
-            {
-
-                if (use > 0)
-                {
-                    use--;
-                    started = true;
-                    tp();
-                }
             }
         }
 
@@ -216,11 +196,9 @@ namespace Player
             if (canvasUI.GetComponent<UI>().percentageCooldown2 == 1)
             {
                 canvasUI.GetComponent<UI>().cap("two");
-                hpbeforecap2 = hp;
-                invicible = true;
-                Invicibilityseq();
-                oldwask = cameraofperso.cullingMask;
-                cameraofperso.cullingMask = cameraofperso.cullingMask ^ (1 << 10);
+                hpmax = 99999999;
+                hp = hpmax;
+                actualtime = timeMax;
 
             }
         }
@@ -245,33 +223,12 @@ namespace Player
             s.Append(DOTween.To(() => timedepbegininvi, x => timedepbegininvi = x, 1f, timeofinvincibility));
             return s;
         }
-        Sequence GrenadaDuration()
+        public void timer()
         {
-            tempsrestatngre = 0;
-            Sequence s = DOTween.Sequence();
-            s.Append(DOTween.To(() => tempsrestatngre, x => tempsrestatngre = x, 1f, tempsgre));
-            return s;
-        }
-        public void ApllyCard(Card upgrade)
-        {
-
-            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
-            // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
-
-            canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
-            canvasUI.GetComponent<UI>().time2 *= (1 - upgrade.coolDownCap2 / 100);
-            canvasUI.GetComponent<UI>().time3 *= (1 - upgrade.coolDownCap3 / 100);
-
-            GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
-            GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
-            GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
-        }
-        Sequence wait()
-        {
-            waitmarket = 0;
-            Sequence s = DOTween.Sequence();
-            s.Append(DOTween.To(() => waitmarket, x => waitmarket = x, 1, 0.25f));
-            return s;
+            if (actualtime > 0)
+            {
+                actualtime -= Time.deltaTime;
+            }
         }
     }
 
