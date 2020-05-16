@@ -28,17 +28,19 @@ public class BulletShot : MonoBehaviour
         if (Time.time > nextFire)  //je ne pense pas que �a marche
         {
             nextFire = Time.time + fireRate;
+            
             Quaternion rot = rotation;
             rot.x += fpscam.transform.rotation.x;
             rot.y += player.transform.rotation.y;
             rot.z += player.transform.rotation.z;
             rot.w += player.transform.rotation.w + fpscam.transform.rotation.w;
+            
             GameObject shootedBullet = Instantiate(bullet, shootPoint.position, rotation) as GameObject;
             Vector3 force = player.transform.forward;
             force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * fpscam.transform.rotation.eulerAngles.x) * 2f, force.z);
             force *= power;
             shootedBullet.GetComponent<Rigidbody>().AddForce(force);
-
+            
             Destroy(shootedBullet, time);
 
             void OnCollisionEnter(Collision collision)
