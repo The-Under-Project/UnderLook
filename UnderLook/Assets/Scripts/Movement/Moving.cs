@@ -64,10 +64,11 @@ public class Moving : MonoBehaviour
             animationPlayer(mvY, mvX);
 
 
-
+            
             float moveX = mvX * speed * Time.deltaTime;
             float moveY = mvY * speed * Time.deltaTime;
-
+            /*
+            //Julien...................................
             if (mvYold == 1 && mvXold == 0 || mvYold == 0 && mvXold == -1 || mvYold == -1 && mvXold == 0)
             {
                 if (!(mvY == 1 && mvX == 0 || mvY == 0 && mvX == -1 || mvY == -1 && mvX == 0))
@@ -81,14 +82,14 @@ public class Moving : MonoBehaviour
                 {
                     GetComponent<OffSetWeapon>().changeweapondUp = true;
                 }
-            }
+            }*/
 
             if ((Input.GetButton("Jump") && characterController.isGrounded))
             {
                 moveZ = jumpspeed;
             }
-            moveZ -= gravity * Time.deltaTime;
-
+            if (!characterController.isGrounded)
+                moveZ -= gravity * Time.deltaTime;
 
 
             if (canMove)

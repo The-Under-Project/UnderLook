@@ -72,7 +72,7 @@ namespace Player
             cam.fieldOfView = cameraFOV;
 
             if (isShadow) //si jamais tu es dans la range et que les bords de la sphère  sont bien en contact 'trigger' 
-                          //alors tu peux te tp. Si jamais il y  aps de hit, tu regarde à la distance max si jamais tu peux te tp
+                //alors tu peux te tp. Si jamais il y  aps de hit, tu regarde à la distance max si jamais tu peux te tp
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -169,7 +169,7 @@ namespace Player
             {
                 this.GetComponentInChildren<Weapon.WeaponSniper>().Shoot();
             }
-            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
+            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1 && GetComponentInChildren<TPoverlapCircle>().nbCol >=4)
             {
                 canvasUI.GetComponent<UI>().cap("one");
                 if (GetComponentInChildren<TPoverlapCircle>().nbCol == 4)

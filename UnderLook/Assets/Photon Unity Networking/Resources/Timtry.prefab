@@ -478,6 +478,36 @@ Transform:
   m_Father: {fileID: 6580615106673792494}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4242666295419727042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034880251689938022}
+  m_Layer: 0
+  m_Name: offset Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1034880251689938022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242666295419727042}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8687694228843275537}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4461474113627412861
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461474113627412861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.7}
+  m_LocalPosition: {x: 0, y: 0.066, z: 0.854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4461474114037496172}
@@ -1049,7 +1079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461474115437121898}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.342, y: 1.07, z: -0.28}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 4461474114037496172}
@@ -1358,6 +1388,7 @@ Transform:
   - {fileID: 4461474115178734132}
   - {fileID: 4461474114183951663}
   - {fileID: 4362658584739193262}
+  - {fileID: 1034880251689938022}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1817,6 +1848,13 @@ MonoBehaviour:
   Weapon: {fileID: 4461474114037496175}
   changeweapondUp: 0
   changeweapondDown: 0
+  pv: {fileID: 0}
+  normal: {fileID: 4242666295419727042}
+  up: {x: 0, y: 0, z: 0}
+  down: {x: 0, y: 0, z: 0}
+  idle: {x: 0, y: 0, z: 0}
+  anim: {fileID: 0}
+  offset: 0.5
 --- !u!114 &2765006203231583753
 MonoBehaviour:
   m_ObjectHideFlags: 0

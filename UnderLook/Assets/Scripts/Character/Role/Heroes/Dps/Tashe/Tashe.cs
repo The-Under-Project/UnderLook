@@ -156,7 +156,7 @@ namespace Player
             {
                 this.GetComponentInChildren<Weapon.WeaponDagger>().Shoot();
             }
-            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1)
+            else if (isShadow && !GetComponentInChildren<TPoverlapCircle>().colAbove && canvasUI.GetComponent<UI>().percentageCooldown1 == 1 && GetComponentInChildren<TPoverlapCircle>().nbCol >= 4)
             {
                 canvasUI.GetComponent<UI>().cap("one");
                 if (GetComponentInChildren<TPoverlapCircle>().nbCol == 4)

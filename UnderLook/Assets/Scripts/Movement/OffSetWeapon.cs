@@ -7,19 +7,61 @@ public class OffSetWeapon : MonoBehaviour
     public GameObject Weapon;
     public bool changeweapondUp;
     public bool changeweapondDown;
+    public PhotonView pv;
+
+    public GameObject normal;
+    public Vector3 up;
+    public Vector3 down;
+    public Vector3 idle;
+
+    public Animator anim;
+
+    public float offset = 0.5f;
+
+    private void Start()
+    {
+
+        anim = GetComponent<Animator>();
+        pv = GetComponent<PhotonView>();
+    }
+    // x = 0 y = -1 -> monte
+    // x = -1 y = 0 -> monte
+    // x = 1  y = 0 -> monte
+
 
 
     void Update()
     {
-        if (changeweapondUp)
+
+        idle = normal.transform.position;
+        idle.y += 0.35f;
+
+
+        up = normal.transform.position;
+        up.y += 0.5f;
+
+        down = normal.transform.position;
+        down.y += 0.15f;
+
+
+        float x = anim.GetFloat("VelX");
+        float y = anim.GetFloat("VelY");
+
+
+        if (!pv.isMine)
         {
-            Weapon.transform.position = new Vector3(Weapon.transform.position.x, Weapon.transform.position.y + 0.5f, Weapon.transform.position.z);
-            changeweapondUp = false;
-        }
-        if (changeweapondDown)
-        {
-            Weapon.transform.position = new Vector3(Weapon.transform.position.x, Weapon.transform.position.y - 0.5f, Weapon.transform.position.z);
-            changeweapondDown = false;
+            if ((x <= -0.5 && y == 0) || (x >= 0.5 && y == 0) || (x == 0 && y <= -0.5))
+            {
+                Weapon.transform.position = up;
+            }
+            else if (x == 0 && y >= 0.5)
+            {
+                Weapon.transform.position = down;
+            }
+            else
+            {
+                Weapon.transform.position = idle;
+            }
         }
     }
 }
