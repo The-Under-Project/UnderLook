@@ -49,8 +49,8 @@ namespace Player
         }
         void FixedUpdate()
         {
-            if (isShadow) //si jamais tu es dans la range et que les bords de la sphère  sont bien en contact 'trigger' 
-                          //alors tu peux te tp. Si jamais il y  aps de hit, tu regarde à la distance max si jamais tu peux te tp
+            if (isShadow) //si jamais tu es dans la range et que les bords de la sphÃ¨re  sont bien en contact 'trigger' 
+                          //alors tu peux te tp. Si jamais il y  aps de hit, tu regarde Ã  la distance max si jamais tu peux te tp
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;

@@ -15,6 +15,7 @@ namespace Player
         public bool hasInstantiateAMine = false;
 
         public GameObject canvasUI;
+        public Quaternion rotation;
 
         public GameObject mine;
         public GameObject minePos;
@@ -103,6 +104,13 @@ namespace Player
         private void Cap3()
         {
             canvasUI.GetComponent<UI>().cap("three");
+            
+            Quaternion rot = rotation;
+            rot.x += cam.transform.rotation.x;
+            rot.y += this.transform.rotation.y;
+            rot.z += this.transform.rotation.z;
+            rot.w += this.transform.rotation.w + cam.transform.rotation.w;
+            
             GameObject grappin = Instantiate(grap, minePos.transform.position, Quaternion.identity) as GameObject;
             Vector3 force = transform.forward;
             force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
