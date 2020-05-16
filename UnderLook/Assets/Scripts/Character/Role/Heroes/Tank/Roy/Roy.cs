@@ -111,7 +111,7 @@ namespace Player
             rot.z += this.transform.rotation.z;
             rot.w += this.transform.rotation.w + cam.transform.rotation.w;
             
-            GameObject grappin = Instantiate(grap, minePos.transform.position, Quaternion.identity) as GameObject;
+            GameObject grappin = Instantiate(grap, minePos.transform.position, rotation) as GameObject;
             Vector3 force = transform.forward;
             force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * cam.transform.rotation.eulerAngles.x) * 2f, force.z);
             force *= power;
