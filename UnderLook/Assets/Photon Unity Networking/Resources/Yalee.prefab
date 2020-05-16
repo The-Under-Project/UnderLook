@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 7496629275842945565}
   - component: {fileID: 7496629275842945564}
   - component: {fileID: 7496629275842945555}
+  - component: {fileID: 7722896471387460393}
   m_Layer: 0
   m_Name: Yalee
   m_TagString: Player
@@ -488,6 +489,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 7496629275721414480}
+  myobjectsToIgnore:
+  - {fileID: 5382080666489810989}
   scriptsToIgnore:
   - {fileID: 7496629275842945559}
   - {fileID: 7496629275842945565}
@@ -649,6 +652,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itembought: 0
+--- !u!114 &7722896471387460393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956969678738225949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fec6c418f63ec47b4ea641ce71a480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canStart: 0
 --- !u!1 &2065100519206043253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,7 +1561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7496629276436991777}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.575}
+  m_LocalPosition: {x: 0, y: 2.59, z: 0.95}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7496629276986046250}

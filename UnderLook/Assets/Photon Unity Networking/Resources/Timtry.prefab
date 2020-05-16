@@ -892,7 +892,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461474114183951662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 1.99, z: 3}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 8687694228843275537}
@@ -1332,6 +1332,7 @@ GameObject:
   - component: {fileID: 2432619839269116501}
   - component: {fileID: 5700329980073544879}
   - component: {fileID: 5816875145357484406}
+  - component: {fileID: 2765006203231583753}
   m_Layer: 0
   m_Name: Timtry
   m_TagString: Player
@@ -1638,6 +1639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4461474113663186517}
+  myobjectsToIgnore:
+  - {fileID: 2257370300016843826}
   scriptsToIgnore:
   - {fileID: 4461474114258046478}
   - {fileID: 5700329980073544879}
@@ -1814,6 +1817,19 @@ MonoBehaviour:
   Weapon: {fileID: 4461474114037496175}
   changeweapondUp: 0
   changeweapondDown: 0
+--- !u!114 &2765006203231583753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677836297763084034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fec6c418f63ec47b4ea641ce71a480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canStart: 0
 --- !u!1 &5763302746407971419
 GameObject:
   m_ObjectHideFlags: 0

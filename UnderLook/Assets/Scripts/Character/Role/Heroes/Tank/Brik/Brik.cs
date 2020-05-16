@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEditor;
 
 namespace Player
 {
@@ -19,6 +20,8 @@ namespace Player
         public GameObject mine;
         public float mineStrengh;
         public GameObject minePos;
+
+        public GameObject skin;
 
         public float waitmarket = 1f;
 
@@ -118,6 +121,7 @@ namespace Player
             //shield
             Shield.SetActive(!Shield.activeSelf);
             shield = !shield;
+            skin.SetActive(shield);
             Vector3 pos = new Vector3(0,0,0);
             pos = shield ? cam2 : cam1;
             DOTween.Play(Moving(pos));

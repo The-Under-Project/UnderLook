@@ -4722,6 +4722,7 @@ GameObject:
   - component: {fileID: 3621474280613369088}
   - component: {fileID: 3731651317806245549}
   - component: {fileID: 4934396432042635039}
+  - component: {fileID: 8862903109252281213}
   m_Layer: 0
   m_Name: Brik
   m_TagString: Player
@@ -4853,7 +4854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c169ddbecf64953409934299b6672e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 40
+  gravity: 20
   speed: 8
   jumpspeed: 7
   originalSpeed: 0
@@ -5058,7 +5059,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1f95fb3b167054e93fbb32910eedff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 2647412838613006027}
+  myobjectsToIgnore:
+  - {fileID: 1542703598464736071}
   scriptsToIgnore:
   - {fileID: 3234409265162019826}
   - {fileID: 3731651317806245549}
@@ -5235,6 +5238,7 @@ MonoBehaviour:
   mine: {fileID: 5090907292636231952, guid: f04c5526c91ba944daf10c16f687e2fe, type: 3}
   mineStrengh: 500
   minePos: {fileID: 8662958318103268048}
+  skin: {fileID: 1542703598464736071}
   waitmarket: 1
 --- !u!114 &4934396432042635039
 MonoBehaviour:
@@ -5251,6 +5255,19 @@ MonoBehaviour:
   Weapon: {fileID: 4578563364968113056}
   changeweapondUp: 0
   changeweapondDown: 0
+--- !u!114 &8862903109252281213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518287395082575993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fec6c418f63ec47b4ea641ce71a480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canStart: 0
 --- !u!1 &6575408280147233670
 GameObject:
   m_ObjectHideFlags: 0
@@ -6621,7 +6638,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8485513156126320393}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 5}
+  m_LocalPosition: {x: 3.2, y: 3.65, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5419619475328958810}
@@ -6792,7 +6809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8773607502249342642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.757, z: -1.03}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 8354181866072155834}

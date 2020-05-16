@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 6976458379936241081}
   - component: {fileID: 6976458379936241082}
   - component: {fileID: 3782967568230491296}
+  - component: {fileID: 1428713796721991772}
   m_Layer: 0
   m_Name: Rasla
   m_TagString: Player
@@ -459,6 +460,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 6976458380426685309}
+  myobjectsToIgnore:
+  - {fileID: 4785293051613628296}
   scriptsToIgnore:
   - {fileID: 6976458379936241063}
   - {fileID: 6976458379936241080}
@@ -662,6 +665,19 @@ MonoBehaviour:
   PlayerName: 
   trigger: 1
   overwrite: 0
+--- !u!114 &1428713796721991772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436849463446129848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fec6c418f63ec47b4ea641ce71a480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canStart: 0
 --- !u!1 &1472833825561905616
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +771,37 @@ Transform:
   - {fileID: 3808876627149811516}
   - {fileID: 9223344987093719979}
   m_Father: {fileID: 1610756223520596473}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3835096367617921029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6976458380395210159}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2714526128124022453}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2714526128124022453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3250bbdfc4c652f4a895df5177e5aeec,
+    type: 3}
+  m_PrefabInstance: {fileID: 6976458380395210159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3835096367617921029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5516568218050058754}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3839766912170044242
@@ -1113,6 +1160,37 @@ Transform:
   - {fileID: 1023487374777803211}
   m_Father: {fileID: 8333086451242035022}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5327918927049822779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6976458380395210159}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5516568218050058754}
+  m_Layer: 0
+  m_Name: revolver (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5516568218050058754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 6976458380395210159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5327918927049822779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2714526128124022453}
+  m_Father: {fileID: 6976458381731108854}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6092121323169360901
 GameObject:
@@ -1624,7 +1702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6976458381087422281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.47}
+  m_LocalPosition: {x: 0, y: 1.65, z: 2.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2714526127715270315}
@@ -1737,7 +1815,7 @@ Transform:
   m_Children:
   - {fileID: 6976458380611964733}
   - {fileID: 6976458381820681287}
-  - {fileID: 2714526128124022453}
+  - {fileID: 5516568218050058754}
   m_Father: {fileID: 2714526127715270315}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2129,12 +2207,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3250bbdfc4c652f4a895df5177e5aeec, type: 3}
---- !u!4 &2714526128124022453 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 3250bbdfc4c652f4a895df5177e5aeec,
-    type: 3}
-  m_PrefabInstance: {fileID: 6976458380395210159}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6976458381454828407
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370299015272070238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 2.49, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4636777082385456151}
@@ -588,7 +588,7 @@ Transform:
   m_Children:
   - {fileID: 370299016869562877}
   - {fileID: 370299015924136423}
-  - {fileID: 4636777082295449644}
+  - {fileID: 4366242222320677524}
   m_Father: {fileID: 4636777082385456151}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1100,6 +1100,37 @@ Transform:
   m_Father: {fileID: 1877205500322658583}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3725508704532746434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 370299015196955446}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4366242222320677524}
+  m_Layer: 0
+  m_Name: rocket_lancher (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4366242222320677524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 370299015196955446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725508704532746434}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4636777082295449644}
+  m_Father: {fileID: 370299016746071617}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4085145116678454896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1256,37 @@ Transform:
   - {fileID: 8333987326238393157}
   m_Father: {fileID: 5162241033176776337}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6229128285763362784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 370299015196955446}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4636777082295449644}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4636777082295449644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 128de61ce5f8a634880e17269c42db66,
+    type: 3}
+  m_PrefabInstance: {fileID: 370299015196955446}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229128285763362784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4366242222320677524}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6352276888781403582
 GameObject:
@@ -1472,6 +1534,7 @@ GameObject:
   - component: {fileID: 370299015303558916}
   - component: {fileID: 3706658263847233630}
   - component: {fileID: 7361959746017635481}
+  - component: {fileID: 3915032460308130121}
   m_Layer: 0
   m_Name: Tashe
   m_TagString: Player
@@ -1601,7 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c169ddbecf64953409934299b6672e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 200
+  gravity: 20
   speed: 8
   jumpspeed: 7
   originalSpeed: 0
@@ -1765,6 +1828,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 370299015076616113}
+  myobjectsToIgnore:
+  - {fileID: 2853608416376431924}
   scriptsToIgnore:
   - {fileID: 370299015303558920}
   - {fileID: 370299015303558916}
@@ -1960,6 +2025,19 @@ MonoBehaviour:
   Weapon: {fileID: 370299016746071616}
   changeweapondUp: 0
   changeweapondDown: 0
+--- !u!114 &3915032460308130121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8503497483926056452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fec6c418f63ec47b4ea641ce71a480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canStart: 0
 --- !u!1 &8589097587658052445
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,12 +2184,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128de61ce5f8a634880e17269c42db66, type: 3}
---- !u!4 &4636777082295449644 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 128de61ce5f8a634880e17269c42db66,
-    type: 3}
-  m_PrefabInstance: {fileID: 370299015196955446}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &370299016662138628
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -568,6 +568,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 6755937243460739142}
+  myobjectsToIgnore:
+  - {fileID: 7679291960517474194}
   scriptsToIgnore:
   - {fileID: 5200476813190423957}
   - {fileID: 5200476813190423954}
