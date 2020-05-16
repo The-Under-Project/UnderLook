@@ -29,28 +29,70 @@ public class BulletShot : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
 
-            Quaternion rot = rotation;
-            rot.x += fpscam.transform.rotation.x;
-            rot.y += player.transform.rotation.y;
-            rot.z += player.transform.rotation.z;
-            rot.w += player.transform.rotation.w + fpscam.transform.rotation.w;
 
-            GameObject shootedBullet = Instantiate(bullet, shootPoint.position, rotation) as GameObject;
+            Vector3 rot = new Vector3(90, 180, 0);
+
+            // player : y et w
+            // cam
+
+            Vector3 init = player.transform.rotation.eulerAngles;
+
+            rot.y += init.y;
+
+            GameObject shotBullet = Instantiate(bullet, shootPoint.transform.position, Quaternion.Euler(rot)) as GameObject;
             Vector3 force = player.transform.forward;
             force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * fpscam.transform.rotation.eulerAngles.x) * 2f, force.z);
             force *= power;
-            shootedBullet.GetComponent<Rigidbody>().AddForce(force);
+            shotBullet.GetComponent<Rigidbody>().AddForce(force);
 
-            Destroy(shootedBullet, time);
+            Destroy(shotBullet, time);
 
             void OnCollisionEnter(Collision collision)
             {
                 if (collision.gameObject.CompareTag("Floor"))
                 {
-                    Destroy(shootedBullet, time);
+                    Destroy(shotBullet, time);
                 }
             }
-            Destroy(shootedBullet, time);
+            Destroy(shotBullet, time);
+        }
+
+    }
+    public void TripleShoot()
+    {
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            for (int i = 0; i < 3; i++)
+            {
+                Vector3 point = new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z);
+
+                Vector3 rot = new Vector3(90, 180, 0);
+
+                // player : y et w
+                // cam
+
+                Vector3 init = player.transform.rotation.eulerAngles;
+
+                rot.y += init.y;
+
+                GameObject shotBullet = Instantiate(bullet, point, Quaternion.Euler(rot)) as GameObject;
+                Vector3 force = player.transform.forward;
+                force = new Vector3(force.x, -Mathf.Sin(Mathf.Deg2Rad * fpscam.transform.rotation.eulerAngles.x) * 2f, force.z);
+                force *= power;
+                shotBullet.GetComponent<Rigidbody>().AddForce(force);
+
+                Destroy(shotBullet, time);
+
+                void OnCollisionEnter(Collision collision)
+                {
+                    if (collision.gameObject.CompareTag("Floor"))
+                    {
+                        Destroy(shotBullet, time);
+                    }
+                }
+                Destroy(shotBullet, time);
+            }
         }
 
     }

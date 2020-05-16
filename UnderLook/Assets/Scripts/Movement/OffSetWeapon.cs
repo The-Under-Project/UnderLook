@@ -23,6 +23,11 @@ public class OffSetWeapon : MonoBehaviour
 
         anim = GetComponent<Animator>();
         pv = GetComponent<PhotonView>();
+        if (!pv.isMine)
+        {
+            normal.transform.position = new Vector3(normal.transform.position.x, normal.transform.position.y - 1, normal.transform.position.z);
+        }
+        Weapon.transform.position = normal.transform.position;
     }
     // x = 0 y = -1 -> monte
     // x = -1 y = 0 -> monte
@@ -32,24 +37,21 @@ public class OffSetWeapon : MonoBehaviour
 
     void Update()
     {
-
-        idle = normal.transform.position;
-        idle.y += 0.35f;
-
-
-        up = normal.transform.position;
-        up.y += 0.5f;
-
-        down = normal.transform.position;
-        down.y += 0.15f;
-
-
-        float x = anim.GetFloat("VelX");
-        float y = anim.GetFloat("VelY");
-
-
         if (!pv.isMine)
         {
+            idle = normal.transform.position;
+            idle.y += 0.35f;
+
+
+            up = normal.transform.position;
+            up.y += 0.5f;
+
+            down = normal.transform.position;
+            down.y += 0.15f;
+
+
+            float x = anim.GetFloat("VelX");
+            float y = anim.GetFloat("VelY");
             if ((x <= -0.5 && y == 0) || (x >= 0.5 && y == 0) || (x == 0 && y <= -0.5))
             {
                 Weapon.transform.position = up;
