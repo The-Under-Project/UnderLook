@@ -491,6 +491,7 @@ GameObject:
   - component: {fileID: -7013729943332396912}
   - component: {fileID: 4150183918384865566}
   - component: {fileID: 2986349651141897306}
+  - component: {fileID: -4218655808530512865}
   m_Layer: 0
   m_Name: Brik
   m_TagString: Player
@@ -622,6 +623,11 @@ MonoBehaviour:
   redPos: {x: 0, y: 0, z: 0}
   posEND_RED: {fileID: 0}
   posEND_BLUE: {fileID: 0}
+  body: {fileID: 0}
+  animationPerso: {fileID: 0}
+  tempsrestant: 0
+  factor: 0
+  durationslowness: 0
 --- !u!114 &8111160141100890902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +659,8 @@ MonoBehaviour:
   mine: {fileID: 5090907292636231952, guid: f04c5526c91ba944daf10c16f687e2fe, type: 3}
   mineStrengh: 500
   minePos: {fileID: 2249831976518098681}
+  skin: {fileID: 0}
+  waitmarket: 1
 --- !u!114 &8111160141100890895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,6 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 3243786540888731224}
+  myobjectsToIgnore: []
   scriptsToIgnore:
   - {fileID: 8111160141100890888}
   - {fileID: 8111160141100890902}
@@ -906,6 +915,18 @@ MonoBehaviour:
   shield: {fileID: 8111160139931230855}
   shieldState: 0
   Health: 5000
+--- !u!114 &-4218655808530512865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111160141100890887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9f6c7b81426d04e886d823ab9aed55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4102244449016762663
 PrefabInstance:
   m_ObjectHideFlags: 0

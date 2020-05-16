@@ -643,6 +643,7 @@ MonoBehaviour:
   SpeedRotate: 5
   BodyPlayer: {fileID: 8687694228843275537}
   canmovevision: 1
+  sensi: 0
 --- !u!114 &4461474113663186504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,6 +1378,7 @@ GameObject:
   - component: {fileID: 5700329980073544879}
   - component: {fileID: 5816875145357484406}
   - component: {fileID: 2765006203231583753}
+  - component: {fileID: 3054215441083423987}
   m_Layer: 0
   m_Name: Timtry
   m_TagString: Player
@@ -1882,6 +1884,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canStart: 0
+--- !u!114 &3054215441083423987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677836297763084034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9f6c7b81426d04e886d823ab9aed55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UserPref: {fileID: 2845094530455900082}
+  sensibility: 0
+  cam: {fileID: 0}
 --- !u!1 &5763302746407971419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,6 +2354,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2845094530455900082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1897848632626155382, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+    type: 3}
+  m_PrefabInstance: {fileID: 4408264412131983556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4362658584739193263 stripped

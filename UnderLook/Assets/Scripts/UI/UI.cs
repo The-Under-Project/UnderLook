@@ -85,6 +85,7 @@ public class UI : MonoBehaviour
     public GameObject option;
     public bool showoption;
     public Image sound;
+   
 
     private void Start()
     {

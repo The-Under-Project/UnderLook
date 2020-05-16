@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 7933731280731321715}
   - component: {fileID: 5444843097834045046}
   - component: {fileID: 7544340942093665277}
+  - component: {fileID: 228123500259972916}
   m_Layer: 0
   m_Name: Roy
   m_TagString: Player
@@ -753,6 +754,21 @@ MonoBehaviour:
   idle: {x: 0, y: 0, z: 0}
   anim: {fileID: 0}
   offset: 0.5
+--- !u!114 &228123500259972916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106465846051892339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9f6c7b81426d04e886d823ab9aed55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UserPref: {fileID: 8380290529544347331}
+  sensibility: 0
+  cam: {fileID: 0}
 --- !u!1 &3320401392415373900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,6 +1889,7 @@ MonoBehaviour:
   SpeedRotate: 5
   BodyPlayer: {fileID: 3125764627657170528}
   canmovevision: 1
+  sensi: 0
 --- !u!114 &7933731281876976394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,5 +2404,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8380290529544347331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1897848632626155382, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+    type: 3}
+  m_PrefabInstance: {fileID: 7933731280828174773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

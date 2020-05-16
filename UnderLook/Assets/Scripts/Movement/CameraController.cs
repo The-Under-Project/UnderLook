@@ -5,10 +5,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private string InputHorizontalAxis,  InputVerticalAxis;
-    [SerializeField]private float SpeedRotate = 150f;
+    [SerializeField]private float SpeedRotate = 5f;
     [SerializeField] private Transform BodyPlayer;
     private float ClampX;
     public bool canmovevision = true;
+    public float sensi = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,8 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (sensi != 0)
+            SpeedRotate = sensi;
         if(canmovevision)
             CameraMove();
     }
@@ -28,8 +31,8 @@ public class CameraController : MonoBehaviour
     // FixedUpdate is called once per frame after every other Update
     void CameraMove()
     {
-        float mouseX =Input.GetAxis( InputHorizontalAxis )* SpeedRotate;
-        float mouseY = Input.GetAxis(InputVerticalAxis)* SpeedRotate;
+        float mouseX = Input.GetAxis( InputHorizontalAxis ) * SpeedRotate;
+        float mouseY = Input.GetAxis(InputVerticalAxis) * SpeedRotate;
 
         ClampX += mouseY;
         if(ClampX>90.0f)
