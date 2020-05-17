@@ -2053,6 +2053,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Option
       objectReference: {fileID: 0}
+    - target: {fileID: 3308244693740609864, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: f60dce3b11ee4284bb7cd108f0155125,
+        type: 2}
+    - target: {fileID: 3308244693740609866, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: 54742cbc292af104f8441e2efc1ddf31,
+        type: 2}
+    - target: {fileID: 3308244693740609878, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 11400000, guid: a3ceaa2d4df93e04ca2177e6d3cd6881,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b7f0e8ac1817f341bdc01af9d92faff, type: 3}
 --- !u!1 &7615423579311980631 stripped
