@@ -8,4 +8,34 @@ public class Card : ScriptableObject
     public string cardName;
     public string description;
     public Sprite artwork;
+
+    public float maxhp;
+    public float maxshield;
+
+    public float speed;
+    public float gravity;
+    public float jumpspeed;
+
+
+
+    public float coolDownCap1;
+    public float damageCap1;
+    public float durationCap1;
+    public float rangeCap1;
+
+    public float coolDownCap2;
+    public float damageCap2;
+    public float durationCap2;
+    public float rangeCap2;
+
+    public float coolDownCap3;
+    public float damageCap3;
+    public float durationCap3;
+    public float rangeCap3;
+
+
+    public float ultimateCD;
+    public float ultimateDamge;
+    public float ultimateDuration;
+    public float rangeUltimate;
 }

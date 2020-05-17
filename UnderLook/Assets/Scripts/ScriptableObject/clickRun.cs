@@ -9,7 +9,7 @@ public class clickRun : MonoBehaviour
         GameObject.FindGameObjectWithTag("GameController").GetComponent<PhotonManager>().instantiateName = GetComponentInParent<HeroDisplay>().nameText.text;
         GameObject.FindGameObjectWithTag("GameController").GetComponent<PhotonManager>().run = true;
 
-        GameObject[] finish = GameObject.FindGameObjectsWithTag("finish");
+        GameObject[] finish = GameObject.FindGameObjectsWithTag("Finish");
         foreach (var f in finish)
         {
             Destroy(f);

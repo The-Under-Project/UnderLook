@@ -25,6 +25,7 @@ public class PhotonManager : Photon.MonoBehaviour
 
         PhotonNetwork.JoinOrCreateRoom(GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().roomName, new RoomOptions() { MaxPlayers = 8 }, TypedLobby.Default); //dev mode
         Debug.Log("Created a room");
+        Debug.Log("Connected on "+PhotonNetwork.CloudRegion);
     }
 
     void OnJoinedLobby() //join lobby in GetRoomField
@@ -55,6 +56,7 @@ public class PhotonManager : Photon.MonoBehaviour
             SceneManager.LoadScene(mapToLoad, LoadSceneMode.Additive);
 
             Vector3 spawn = new Vector3(20, 200, 0);
+
             PhotonNetwork.player.NickName = GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName;
             PhotonNetwork.Instantiate(instantiateName, spawn, Quaternion.identity, 0); // <----------------------------------
             //PhotonNetwork.Instantiate("CassieMain", spawn, Quaternion.identity, 0);

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3758f8f58fdef43803eb9be1df0608, type: 3}
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
-  AppID: 
+  AppID: bc3cbcb4-9e73-4dcb-a15c-a7d6aff582c9
   VoiceAppID: 
   ChatAppID: 
-  HostType: 0
+  HostType: 1
   PreferredRegion: 0
   EnabledRegions: -1
   Protocol: 0
@@ -45,4 +45,9 @@ MonoBehaviour:
   - RequestForPickupTimes
   - STARTING_MATCH
   - Teleport
+  - playSound
+  - playSoundPas
+  - playSoundShoot
+  - playSoundTripleShoot
+  - playSoundLazer
   DisableAutoOpenWizard: 1

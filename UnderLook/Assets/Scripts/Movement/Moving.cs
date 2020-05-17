@@ -5,6 +5,12 @@ using DG.Tweening;
 
 public class Moving : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioClip runAudio = null;
+    private float time = 0f;
+    private PhotonView _view;
+    
+    [Header("Contrôle")]
     CharacterController characterController;
     public float gravity;
     public float speed, jumpspeed;
@@ -22,10 +28,24 @@ public class Moving : MonoBehaviour
     public GameObject posEND_RED;
     public GameObject posEND_BLUE;
 
+    [Header("Animation")]
+    public GameObject body;
+    public Animator animationPerso;
+    private float mvX;
+    private float mvY;
+    private float mvXold;
+    private float mvYold;
+
+    public float tempsrestant = 0f;
+    public float factor;
+    public float durationslowness;
+
     void Awake()
     {
         originalSpeed = speed;
         characterController = GetComponent<CharacterController>();
+        animationPerso = body.GetComponent<Animator>();
+        _view = GetComponent<PhotonView>();
     }
 
     void Update()
@@ -44,16 +64,47 @@ public class Moving : MonoBehaviour
 
         if (!isOnTrack)
         {
-            float moveX = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-            float moveY = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            //float moveZ = 0.0f;
+            mvXold = mvX;
+            mvYold = mvY;
+            mvY = Input.GetAxis("Horizontal");
+            mvX = Input.GetAxis("Vertical");
+            animationPlayer(mvY, mvX);
+
+            if ((mvY != 0f || mvX != 0f) && time <= Time.time)
+            {
+                playSoundPas(GetComponent<PhotonView>().viewID);
+                Debug.Log("Son se joue");
+                time = Time.time + 0.8f;
+                Debug.Log("Set time"+time);
+                Debug.Log(Time.time);
+                
+            }
+
+            float moveX = mvX * speed * Time.deltaTime;
+            float moveY = mvY * speed * Time.deltaTime;
+            /*
+            //Julien...................................
+            if (mvYold == 1 && mvXold == 0 || mvYold == 0 && mvXold == -1 || mvYold == -1 && mvXold == 0)
+            {
+                if (!(mvY == 1 && mvX == 0 || mvY == 0 && mvX == -1 || mvY == -1 && mvX == 0))
+                {
+                    GetComponent<OffSetWeapon>().changeweapondDown = true;
+                }
+            }
+            else
+            {
+                if (mvY == 1 && mvX == 0 || mvY == 0 && mvX == -1 || mvY == -1 && mvX == 0)
+                {
+                    GetComponent<OffSetWeapon>().changeweapondUp = true;
+                }
+            }*/
 
             if ((Input.GetButton("Jump") && characterController.isGrounded))
             {
                 moveZ = jumpspeed;
             }
-            moveZ -= gravity * Time.deltaTime;
-
+            if (!characterController.isGrounded)
+                moveZ -= gravity * Time.deltaTime;
 
 
             if (canMove)
@@ -114,5 +165,42 @@ public class Moving : MonoBehaviour
     public void Teleport(Vector3 position)
     {
         DOTween.Play(Move(position));
+    }
+    private void animationPlayer(float X, float Y)
+    {
+        if (X < -0.5f && Y == 0)
+        {
+            animationPerso.speed = 1.25f;
+        }
+        else if (X > 0.5f && Y == 0)
+        {
+            animationPerso.speed = 2f;
+        }
+        else if (X == 0 && Y > 0.5f)
+        {
+            animationPerso.speed = 0.75f;
+        }
+        else if (X == 0 && Y < -0.5f)
+        {
+            animationPerso.speed = 1f;
+        }
+        else if (X < 0.9f && Y > 0.9f)
+        {
+            animationPerso.speed = 0.75f;
+        }
+        animationPerso.SetFloat("VelX", X);
+        animationPerso.SetFloat("VelY", Y);
+    }
+
+    [PunRPC]
+    void playSoundPas(int viewID)
+    {
+        GameObject player = PhotonView.Find(viewID).gameObject;
+        player.GetComponent<AudioSource>().PlayOneShot(runAudio);
+        
+        if (GetComponent<PhotonView>().isMine)
+        {
+            _view.RPC("playSoundPas", PhotonTargets.OthersBuffered, viewID);
+        }
     }
 }

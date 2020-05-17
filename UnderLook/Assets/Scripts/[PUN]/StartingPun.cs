@@ -8,7 +8,7 @@ public class StartingPun : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             if (PhotonNetwork.isMasterClient)
             {
@@ -16,7 +16,7 @@ public class StartingPun : MonoBehaviour
 
                 GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-                GameObject[] walls   = GameObject.FindGameObjectsWithTag("WallDisable");
+                GameObject[] walls = GameObject.FindGameObjectsWithTag("WallDisable");
 
                 foreach (var player in players)
                 {

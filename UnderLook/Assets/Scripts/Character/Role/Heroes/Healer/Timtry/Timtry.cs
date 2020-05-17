@@ -43,6 +43,8 @@ namespace Player
         public float durationachievedslow = 0f;
         public bool zoneActivated = false; // if true the prefab slowzone is instanciated
 
+        
+
         private void Start()
         {
             this.GetComponent<Moving>().speed = speed;
@@ -81,6 +83,35 @@ namespace Player
             {
                 Destroy(GameObject.FindGameObjectWithTag("slowzone"));
             }
+            if (Input.GetKey(KeyCode.F1) && !GetComponentInChildren<Market>().itembought && !canvasUI.GetComponent<UI>().showmenu && waitmarket == 1f)
+            {
+                wait();
+                if (canvasUI.GetComponent<UI>().showmarket)
+                    canvasUI.GetComponent<UI>().showmarket = false;
+                else
+                {
+                    canvasUI.GetComponent<UI>().showmarket = true;
+                }
+            }
+            if (GetComponentInChildren<Market>().itembought && canvasUI.GetComponent<UI>().showmarket)
+            {
+                ApllyCard(GetComponentInChildren<Market>().item);
+                canvasUI.GetComponent<UI>().showmarket = false;
+            }
+
+
+            if (Input.GetKey(KeyCode.Escape) && !canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
+            {
+                canvasUI.GetComponent<UI>().showmenu = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                GetComponentInChildren<CameraController>().canmovevision = false;
+            }
+            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showstat)
+            {
+                canvasUI.GetComponent<UI>().stat.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Escape) && canvasUI.GetComponent<UI>().showoption)
+                canvasUI.GetComponent<UI>().option.SetActive(false);
 
         }
 
@@ -90,6 +121,8 @@ namespace Player
         //-----------------------------
         private void Update()
         {
+            if (!canvasUI.GetComponent<UI>().showmenu && !canvasUI.GetComponent<UI>().showmarket)
+            {
                 if (Input.GetButtonDown("Fire1"))
                 {
                     M1();
@@ -114,6 +147,7 @@ namespace Player
                 {
                     Ulti();
                 }
+            }
         }
 
         
@@ -208,6 +242,24 @@ namespace Player
             s.Append(DOTween.To(() => durationachievedslow, x => durationachievedslow = x, 1, durationhealing));
             return s;
         }
+        public void ApllyCard(Card upgrade)
+        {
+
+            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
+            // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
+
+            canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
+            canvasUI.GetComponent<UI>().time2 *= (1 - upgrade.coolDownCap2 / 100);
+            canvasUI.GetComponent<UI>().time3 *= (1 - upgrade.coolDownCap3 / 100);
+
+            GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
+            GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
+            GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
+
+
+
+        }
+      
 
 
     }

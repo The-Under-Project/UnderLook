@@ -36,9 +36,10 @@ public class DamagePun : MonoBehaviour
                     Debug.Log("ADD COMPONENT DAMAGE");
             }
         }
-
-
     }
+
+
+    
     [PunRPC]
     void Teleport(Quaternion received)
     {

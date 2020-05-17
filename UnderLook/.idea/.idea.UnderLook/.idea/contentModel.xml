@@ -325,7 +325,7 @@
           <e p="[PUN]" t="Include">
             <e p="DamagePun.cs" t="Include" />
             <e p="PlayloadPUN.cs" t="Include" />
-            <e p="RemoveWall.cs" t="Include" />
+            <e p="RemoveWalls.cs" t="Include" />
             <e p="StartingPun.cs" t="Include" />
           </e>
           <e p="[TXT]" t="Include">
@@ -337,6 +337,9 @@
             <e p="AIstatsManager.cs" t="Include" />
             <e p="groupUp.cs" t="Include" />
             <e p="managerIA.cs" t="Include" />
+          </e>
+          <e p="Audio" t="Include">
+            <e p="ButtonClick.cs" t="Include" />
           </e>
           <e p="Cannons" t="Include">
             <e p="AnimationCannon.cs" t="Include" />
@@ -380,7 +383,9 @@
                     <e p="RaslaOnlineMine.cs" t="Include" />
                   </e>
                   <e p="Tashe" t="Include">
+                    <e p="Grenade.cs" t="Include" />
                     <e p="Tashe.cs" t="Include" />
+                    <e p="WeaponRoquetteLauncher.cs" t="Include" />
                   </e>
                   <e p="Yalee" t="Include">
                     <e p="WeaponDagger.cs" t="Include" />
@@ -444,6 +449,7 @@
           <e p="Movement" t="Include">
             <e p="CameraController.cs" t="Include" />
             <e p="Moving.cs" t="Include" />
+            <e p="OffSetWeapon.cs" t="Include" />
           </e>
           <e p="Objective" t="Include">
             <e p="PayloadCountPlayer.cs" t="Include" />
@@ -464,6 +470,8 @@
             <e p="HeroMenu.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
+            <e p="Market.cs" t="Include" />
+            <e p="Menu.cs" t="Include" />
             <e p="UI.cs" t="Include" />
             <e p="UIChar.cs" t="Include" />
           </e>
@@ -482,6 +490,7 @@
             <e p="WeaponRotateCamera.cs" t="Include" />
           </e>
         </e>
+        <e p="Sensivity.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
