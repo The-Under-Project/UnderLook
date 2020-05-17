@@ -49,4 +49,8 @@ MonoBehaviour:
   - Change
   - Teleport
   - STARTING_MATCH
+  - playSoundLazer
+  - playSoundPas
+  - playSoundShoot
+  - playSoundTripleShoot
   DisableAutoOpenWizard: 1

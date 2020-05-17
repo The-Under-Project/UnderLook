@@ -7,6 +7,12 @@ namespace Weapon
 {
     public abstract class Hitscan : MonoBehaviour
     {
+        [Header("Audio")]
+        [SerializeField] private AudioClip shootAudio = null;
+        private PhotonView _view;
+
+        [Header("Settings")]
+        
         public PhotonView photonView;
         public Transform pointShoot;
         public Transform pointOut;
@@ -30,7 +36,7 @@ namespace Weapon
         {
             photonView =gameObject.GetComponentInParent<PhotonView>();
             shotDuration = new WaitForSeconds(fireRate/2);
-
+            _view = GetComponent<PhotonView>();
             //gunLine = GetComponent<LineRenderer>();
             //gunAudio = GetComponent<AudioSource>();
             //fpscam = GetComponentInChildren<Camera>();
@@ -41,6 +47,7 @@ namespace Weapon
         {
             if (Time.time > nextFire)  //je ne pense pas que ça marche
             {
+                playSoundLazer(_view.viewID);
                 nextFire = Time.time + fireRate; //Set the time for another shot 
                 StartCoroutine(ShotEffect());
 
@@ -71,7 +78,17 @@ namespace Weapon
             }
 
         }
-
+        [PunRPC]
+        void playSoundLazer(int viewID)
+        {
+            GameObject player = PhotonView.Find(viewID).gameObject;
+            player.GetComponent<AudioSource>().PlayOneShot(shootAudio);
+        
+            if (GetComponent<PhotonView>().isMine)
+            {
+                _view.RPC("playSoundLazer", PhotonTargets.OthersBuffered, viewID);
+            }
+        }
 
         private IEnumerator ShotEffect() // Execute effect: Line + Audio
         {
@@ -98,4 +115,5 @@ namespace Weapon
             set { hitForce = value; }
         }
     }
+    
 }

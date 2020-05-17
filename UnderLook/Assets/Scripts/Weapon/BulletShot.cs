@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -6,6 +7,12 @@ using UnityEngine;
 
 public class BulletShot : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioClip shootAudio = null;
+    [SerializeField] private AudioClip shootTripleAudio = null;
+    private PhotonView _view;
+
+    [Header("Settings")]
     public Quaternion rotation;
     public int gunDamage;//Damage of weapon , for the moment it's fixed but we need to redefine it
     public float fireRate;//Rate of weapon  
@@ -15,20 +22,25 @@ public class BulletShot : MonoBehaviour
 
     public int power; //vitesse d'ejection
     public float time; //temps avant suppression de balle
-    public GameObject bullet; //Balle utilisée
+    public GameObject bullet; //Balle utilisÃ©e
     public GameObject player;
 
     //private AudioSource gunAudio; //The audio of gun
     private float nextFire; // Time when you can do a new shot
                             // Start is called before the first frame update
 
-    // Update is called once per frame
+    public void Awake()
+    {
+        _view = GetComponent<PhotonView>();
+    }
+
+                            // Update is called once per frame
     public void Shoot()
     {
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-
+            playSoundShoot(_view.viewID);
 
             Vector3 rot = new Vector3(90, 180, 0);
 
@@ -62,6 +74,7 @@ public class BulletShot : MonoBehaviour
     {
         if (Time.time > nextFire)
         {
+            playSoundTripleShoot(_view.viewID);
             nextFire = Time.time + fireRate;
             for (int i = 0; i < 3; i++)
             {
@@ -96,4 +109,28 @@ public class BulletShot : MonoBehaviour
         }
 
     }
+
+    [PunRPC]
+    void playSoundShoot(int viewID)
+    {
+        GameObject player = PhotonView.Find(viewID).gameObject;
+        player.GetComponent<AudioSource>().PlayOneShot(shootAudio);
+        
+        if (GetComponent<PhotonView>().isMine)
+        {
+            _view.RPC("playSoundShoot", PhotonTargets.OthersBuffered, viewID);
+        }
+    }
+    [PunRPC]
+    void playSoundTripleShoot(int viewID)
+    {
+        GameObject player = PhotonView.Find(viewID).gameObject;
+        player.GetComponent<AudioSource>().PlayOneShot(shootTripleAudio);
+        
+        if (GetComponent<PhotonView>().isMine)
+        {
+            _view.RPC("playSoundTripleShoot", PhotonTargets.OthersBuffered, viewID);
+        }
+    }
+    
 }

@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 699007617}
   - component: {fileID: 699007616}
   - component: {fileID: 699007620}
+  - component: {fileID: 699007621}
   m_Layer: 5
   m_Name: Check
   m_TagString: Untagged
@@ -894,6 +895,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 699007621}
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &699007618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,6 +954,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ceeaa4c94a56e244848b888430badc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &699007621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699007614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedb73af9d79d874dbe695c68a2f2ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickButton: {fileID: 8300000, guid: 12034df7a07c0184eb6aee4089ee3e52, type: 3}
+  audioManager: {fileID: 2094114724}
 --- !u!1 &768714299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147923801}
   - component: {fileID: 1147923800}
+  - component: {fileID: 1147923799}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1319,6 +1346,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &1147923799
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147923798}
+  m_Enabled: 1
 --- !u!20 &1147923800
 Camera:
   m_ObjectHideFlags: 0
@@ -2039,6 +2074,7 @@ GameObject:
   - component: {fileID: 1950761740}
   - component: {fileID: 1950761743}
   - component: {fileID: 1950761744}
+  - component: {fileID: 1950761745}
   m_Layer: 5
   m_Name: create -> SCN !!!!!
   m_TagString: Untagged
@@ -2120,6 +2156,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1950761745}
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1950761741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,3 +2229,97 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scn: Menu
+--- !u!114 &1950761745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950761738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedb73af9d79d874dbe695c68a2f2ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickButton: {fileID: 8300000, guid: 12034df7a07c0184eb6aee4089ee3e52, type: 3}
+  audioManager: {fileID: 2094114724}
+--- !u!1001 &2094114723
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -514
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189506, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189507, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626681504120189565, guid: a50e535ba05b348468beef55d070acbf,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a50e535ba05b348468beef55d070acbf, type: 3}
+--- !u!1 &2094114724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6626681503918658960, guid: a50e535ba05b348468beef55d070acbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2094114723}
+  m_PrefabAsset: {fileID: 0}

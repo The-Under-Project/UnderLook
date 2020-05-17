@@ -5,8 +5,14 @@ using DG.Tweening;
 
 public class Moving : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioClip runAudio = null;
+    private float time = 0f;
+    private PhotonView _view;
+    
+    [Header("Contrôle")]
     CharacterController characterController;
-    public float gravity;
+    public float gravity = 20;
     public float speed, jumpspeed;
     public float originalSpeed;
     private float moveZ;
@@ -39,6 +45,7 @@ public class Moving : MonoBehaviour
         originalSpeed = speed;
         characterController = GetComponent<CharacterController>();
         animationPerso = body.GetComponent<Animator>();
+        _view = GetComponent<PhotonView>();
     }
 
     void Update()
@@ -63,8 +70,16 @@ public class Moving : MonoBehaviour
             mvX = Input.GetAxis("Vertical");
             animationPlayer(mvY, mvX);
 
+            if ((mvY != 0f || mvX != 0f) && time <= Time.time)
+            {
+                playSoundPas(GetComponent<PhotonView>().viewID);
+                Debug.Log("Son se joue");
+                time = Time.time + 0.8f;
+                Debug.Log("Set time"+time);
+                Debug.Log(Time.time);
+                
+            }
 
-            
             float moveX = mvX * speed * Time.deltaTime;
             float moveY = mvY * speed * Time.deltaTime;
             /*
@@ -175,5 +190,17 @@ public class Moving : MonoBehaviour
         }
         animationPerso.SetFloat("VelX", X);
         animationPerso.SetFloat("VelY", Y);
+    }
+
+    [PunRPC]
+    void playSoundPas(int viewID)
+    {
+        GameObject player = PhotonView.Find(viewID).gameObject;
+        player.GetComponent<AudioSource>().PlayOneShot(runAudio);
+
+        if (GetComponent<PhotonView>().isMine)
+        {
+            _view.RPC("playSoundPas", PhotonTargets.OthersBuffered, viewID);
+        }
     }
 }
