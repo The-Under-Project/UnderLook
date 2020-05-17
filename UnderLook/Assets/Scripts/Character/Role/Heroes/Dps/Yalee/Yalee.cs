@@ -168,17 +168,19 @@ namespace Player
         }*/
         public void ApllyCard(Card upgrade)
         {
-            hpmax = (int)upgrade.maxhp;
+            hpmax += (int)upgrade.maxhp;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
+            hp += (int)upgrade.maxhp;
+            canvasUI.GetComponent<UI>().CurrentHP = hp;
             // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
 
             canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
             canvasUI.GetComponent<UI>().time2 *= (1 - upgrade.coolDownCap2 / 100);
             canvasUI.GetComponent<UI>().time3 *= (1 - upgrade.coolDownCap3 / 100);
 
-            GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
+            jumpspeed =(int)(jumpspeed * (1 + (upgrade.jumpspeed / 100)) + 1);
             GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
-            GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
+            speed =(int)(speed *  (1 + upgrade.speed / 100) + 1 );
             GetComponentInChildren<Weapon.WeaponDagger>().gunDamage = (int)(GetComponentInChildren<Weapon.WeaponDagger>().gunDamage * (1 + upgrade.ultimateDamge / 100));
 
 

@@ -67,7 +67,9 @@ public class TimtriOnlineMineSlow : MonoBehaviour
         if (owner != null)
             PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
         else
+        {
             Debug.Log("No owner");
+        }
         slow = owner.GetComponent<Timtry>().slow;
 
     }
@@ -83,7 +85,7 @@ public class TimtriOnlineMineSlow : MonoBehaviour
             {
                 if(player.GetComponent<Moving>().speed == player.GetComponent<Moving>().originalSpeed)
                 {
-                    player.GetComponent<Moving>().speed /= owner.GetComponent<Timtry>().slow;
+                    player.GetComponent<Moving>().speed /= slow;
                 }
             }
         }

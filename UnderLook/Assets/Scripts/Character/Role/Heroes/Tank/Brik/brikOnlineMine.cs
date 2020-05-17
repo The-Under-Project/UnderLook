@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Player;
 
 public class brikOnlineMine : MonoBehaviour
 {
@@ -64,6 +65,7 @@ public class brikOnlineMine : MonoBehaviour
             colorBub = "RedBubble";
         if(owner != null)
             PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
+        time = owner.GetComponent<Brik>().timeofmine;
     }
 
 

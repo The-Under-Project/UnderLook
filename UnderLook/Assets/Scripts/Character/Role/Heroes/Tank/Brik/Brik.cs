@@ -24,6 +24,7 @@ namespace Player
         public GameObject skin;
 
         public float waitmarket = 1f;
+        public float timeofmine = 6;
 
         private void Start()
         {
@@ -160,6 +161,8 @@ namespace Player
         {
             hpmax += (int)upgrade.maxhp;
             canvasUI.GetComponent<UI>().maxHP = hpmax;
+            hp += (int)upgrade.maxhp;
+            canvasUI.GetComponent<UI>().CurrentHP = hp;
             // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
 
             canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
@@ -171,7 +174,7 @@ namespace Player
             GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
             shieldLifeMax *= (1 + upgrade.maxshield / 100);
             canvasUI.GetComponent<UI>().maxShield = shieldLifeMax;
-            mine.GetComponent<mineBrik>().time += upgrade.durationCap1;
+            timeofmine += upgrade.durationCap1;
 
 
         }

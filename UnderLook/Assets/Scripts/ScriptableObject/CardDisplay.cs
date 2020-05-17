@@ -12,7 +12,7 @@ public class CardDisplay : MonoBehaviour
     public Image artwork;
     void Start() //set ui
     {
-        nameText.text = card.cardName;
+        nameText.text = card.cardName; 
         descriptionText.text = card.description;
         artwork.sprite = card.artwork;
     }
