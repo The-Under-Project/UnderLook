@@ -984,7 +984,6 @@ GameObject:
   - component: {fileID: 3731651317806245549}
   - component: {fileID: 8862903109252281213}
   - component: {fileID: -3548512951664703597}
-  - component: {fileID: 5770622534528175864}
   - component: {fileID: 3326468724920401330}
   m_Layer: 0
   m_Name: Brik
@@ -1534,21 +1533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserPref: {fileID: 0}
-  sensibility: 0
-  cam: {fileID: 0}
---- !u!114 &5770622534528175864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6518287395082575993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9f6c7b81426d04e886d823ab9aed55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UserPref: {fileID: 5388788446997348977}
   sensibility: 0
   cam: {fileID: 0}
 --- !u!82 &3326468724920401330
@@ -2478,17 +2462,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5388788446997348977 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1897848632626155382, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
-    type: 3}
-  m_PrefabInstance: {fileID: 5809170506240560391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
