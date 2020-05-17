@@ -197,7 +197,7 @@ public class Moving : MonoBehaviour
     {
         GameObject player = PhotonView.Find(viewID).gameObject;
         player.GetComponent<AudioSource>().PlayOneShot(runAudio);
-        
+
         if (GetComponent<PhotonView>().isMine)
         {
             _view.RPC("playSoundPas", PhotonTargets.OthersBuffered, viewID);

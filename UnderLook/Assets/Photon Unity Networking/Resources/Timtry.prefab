@@ -1957,6 +1957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91da4ff95c61462438f7d1121c3e8a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Win: {fileID: 8300000, guid: 90b83b0762ab2604d97cb76989313b3b, type: 3}
+  Loose: {fileID: 8300000, guid: 59471f7398c4cc841ade7231f7e4e4ec, type: 3}
   payload: {fileID: 0}
   victory: {fileID: 7175022676702050628, guid: 1dde8499d42feed4fa6b306a693598c5, type: 3}
   defeat: {fileID: 598129384895267510, guid: f15ca70714e6fd64c9b3521088c3c40b, type: 3}
