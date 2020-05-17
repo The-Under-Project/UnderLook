@@ -1711,7 +1711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6976458381087422281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.65, z: 2.47}
+  m_LocalPosition: {x: 0, y: 3.02, z: 1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2714526127715270315}
@@ -2173,6 +2173,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
       objectReference: {fileID: 0}
+    - target: {fileID: 118795626437648745, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: capacityImage3
+      value: 
+      objectReference: {fileID: 21300000, guid: c91e1e58a1511c546a5643b03ff9dffb,
+        type: 3}
+    - target: {fileID: 118795626437648745, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: capacityImage1
+      value: 
+      objectReference: {fileID: 21300000, guid: ab9ef9d188a4fbb42995950d8c426ebb,
+        type: 3}
+    - target: {fileID: 118795626437648745, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: capacityImage2
+      value: 
+      objectReference: {fileID: 21300000, guid: 77b89df5f9da9064ebc5c59792a84abc,
+        type: 3}
     - target: {fileID: 118795626437648746, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
         type: 3}
       propertyPath: m_LocalPosition.x

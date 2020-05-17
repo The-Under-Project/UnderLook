@@ -1911,6 +1911,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
       objectReference: {fileID: 0}
+    - target: {fileID: 118795626437648745, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: capacityImage1
+      value: 
+      objectReference: {fileID: 21300000, guid: 3fa7d9b3641428b41a1bebb584ab5590,
+        type: 3}
+    - target: {fileID: 118795626437648745, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: capacityImage2
+      value: 
+      objectReference: {fileID: 21300000, guid: 2246e0231bd446642b2a255cd4ca664c,
+        type: 3}
     - target: {fileID: 118795626437648746, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
         type: 3}
       propertyPath: m_LocalPosition.x
