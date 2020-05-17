@@ -18,6 +18,7 @@ namespace Player
         public GameObject weaponHEAL;
 
         public float waitmarket = 1f;
+        public float jumpspeedup = 1f;
 
         private void Start()
         {
@@ -122,7 +123,7 @@ namespace Player
                 actualtime = cdtime;
                 canvasUI.GetComponent<UI>().cap("one");
                 this.GetComponent<Moving>().speed = speed * 2f;
-                this.GetComponent<Moving>().jumpspeed = jumpspeed * 2f;
+                this.GetComponent<Moving>().jumpspeed = jumpspeed * 2f * jumpspeedup;
             }
         }
 
@@ -143,8 +144,8 @@ namespace Player
         }
         public void ApllyCard(Card upgrade)
         {
-
-            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
+            hpmax = (int)upgrade.maxhp;
+            canvasUI.GetComponent<UI>().maxHP= hpmax;
             // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
 
             canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
@@ -154,7 +155,8 @@ namespace Player
             GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
             GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
             GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
-
+            jumpspeedup *= (1 + upgrade.damageCap1 / 100);
+            weaponHEAL.GetComponent<Weapon.WeaponSniper>().gunDamage =(int)(weaponHEAL.GetComponent<Weapon.WeaponSniper>().gunDamage*(1 + upgrade.damageCap2 / 100));
 
 
         }

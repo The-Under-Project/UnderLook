@@ -43,7 +43,7 @@ namespace Player
 
         public float actualtime = 0f;
         public float timeMax = 0f;
-
+        public float grenadeDamage = 10;
         public float waitmarket = 1f;
 
         private void Start()
@@ -265,8 +265,8 @@ namespace Player
         }
         public void ApllyCard(Card upgrade)
         {
-
-            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
+            hpmax = (int)upgrade.maxhp;
+            canvasUI.GetComponent<UI>().maxHP = hpmax;
             // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
 
             canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
@@ -276,9 +276,9 @@ namespace Player
             GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
             GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
             GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
-
-
-
+            timeMax += upgrade.durationCap2;
+            GetComponentInChildren<Weapon.WeaponSniper>().gunDamage = (int)(GetComponentInChildren<Weapon.WeaponSniper>().gunDamage*(1 + upgrade.ultimateDamge / 100));
+            grenadeDamage *= (1 + upgrade.damageCap3 / 100);
         }
         Sequence wait()
         {

@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using DG.Tweening;
 using Player;
 using UnityEngine;
-using DG.Tweening;
 
 namespace Player
 {
@@ -211,8 +210,8 @@ namespace Player
         }
         public void ApllyCard(Card upgrade)
         {
-
-            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
+            hpmax += (int)upgrade.maxhp;
+            canvasUI.GetComponent<UI>().maxHP += hpmax;
             // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
 
             canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);

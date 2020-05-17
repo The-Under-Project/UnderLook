@@ -42,7 +42,8 @@ namespace Player
         public float durationzoneofslowness; // look at end of file with sequence for more comprehension
         public float durationachievedslow = 0f;
         public bool zoneActivated = false; // if true the prefab slowzone is instanciated
-
+        public float slow = 3;
+        public float heal = 10;
         
 
         private void Start()
@@ -244,8 +245,8 @@ namespace Player
         }
         public void ApllyCard(Card upgrade)
         {
-
-            canvasUI.GetComponent<UI>().maxHP *= (1 + upgrade.maxhp / 100);
+            hpmax += (int)upgrade.maxhp;
+            canvasUI.GetComponent<UI>().maxHP = hpmax;
             // canvasUI.GetComponent<UI>().maxShield *= (1 + upgrade.maxshield / 100); maxshield private en UI mais pas maxHP?
 
             canvasUI.GetComponentInChildren<UI>().time1 *= (1 - upgrade.coolDownCap1 / 100);
@@ -255,6 +256,8 @@ namespace Player
             GetComponent<Moving>().jumpspeed *= (1 + (upgrade.jumpspeed / 100));
             GetComponent<Moving>().gravity *= (1 - upgrade.gravity / 100);
             GetComponent<Moving>().speed *= (1 + upgrade.speed / 100);
+            slow *=(1 + upgrade.damageCap2 / 100);
+            heal *= (1 + upgrade.damageCap1 / 100);
 
 
 

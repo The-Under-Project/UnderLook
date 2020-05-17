@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Player;
 
 public class TimtriOnlineMineSlow : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class TimtriOnlineMineSlow : MonoBehaviour
 
     public string enemieColor;
     public string colorBub;
+    public float slow = 1f;
 
     [HideInInspector] public Rigidbody rb;
     public float percentage = 0;
@@ -66,6 +68,8 @@ public class TimtriOnlineMineSlow : MonoBehaviour
             PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
         else
             Debug.Log("No owner");
+        slow = owner.GetComponent<Timtry>().slow;
+
     }
 
 
@@ -79,7 +83,7 @@ public class TimtriOnlineMineSlow : MonoBehaviour
             {
                 if(player.GetComponent<Moving>().speed == player.GetComponent<Moving>().originalSpeed)
                 {
-                    player.GetComponent<Moving>().speed /= 3;
+                    player.GetComponent<Moving>().speed /= owner.GetComponent<Timtry>().slow;
                 }
             }
         }

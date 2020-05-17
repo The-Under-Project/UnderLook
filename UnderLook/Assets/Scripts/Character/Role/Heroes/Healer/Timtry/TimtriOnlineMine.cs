@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Player;
 
 public class TimtriOnlineMine : MonoBehaviour
 {
@@ -65,6 +66,7 @@ public class TimtriOnlineMine : MonoBehaviour
             PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
         else
             Debug.Log("No owner");
+        heal = (int)owner.GetComponent<Timtry>().heal;
     }
 
 

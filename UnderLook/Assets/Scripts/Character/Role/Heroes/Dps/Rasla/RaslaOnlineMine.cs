@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Rendering.PostProcessing;
+using Player;
+
 public class RaslaOnlineMine : MonoBehaviour
 {
     [Header("Online")]
@@ -71,6 +73,7 @@ public class RaslaOnlineMine : MonoBehaviour
             PhotonNetwork.Instantiate(colorBub, this.transform.position, Quaternion.identity, 0);
         else
             Debug.Log("No owner");
+        dmg =  (int)owner.GetComponent<Rasla>().grenadeDamage; 
     }
 
 
