@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Sanick
   description: Increase BaseSpeed by 10 %
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: e355152836d6b4142850685b063de8cf, type: 3}
   maxhp: 0
   maxshield: 0
   speed: 10

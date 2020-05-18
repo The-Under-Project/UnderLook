@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Stalwart
   description: Increase life point by 150
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: a9096ce780ada4543ba71d7971fbd746, type: 3}
   maxhp: 150
   maxshield: 0
   speed: 0

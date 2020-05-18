@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: GlassCannon
   description: Decrease life point but increase damage
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: d5c126abb117f1443abfe5e3d3348734, type: 3}
   maxhp: -50
   maxshield: 0
   speed: 0

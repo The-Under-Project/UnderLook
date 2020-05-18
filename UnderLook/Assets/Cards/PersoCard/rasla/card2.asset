@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: TheRock
   description: Increase duration of indestructible by 1 sec
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 71a08d41c07bc584bb14410cdbb7a0c2, type: 3}
   maxhp: 0
   maxshield: 0
   speed: 0

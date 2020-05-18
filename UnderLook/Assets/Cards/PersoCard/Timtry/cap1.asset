@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Oogway
   description: Increase Slowgrenade efficiency by 25 %
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: f08903979d1bdc0419b836c817a6a0c1, type: 3}
   maxhp: 0
   maxshield: 0
   speed: 0
