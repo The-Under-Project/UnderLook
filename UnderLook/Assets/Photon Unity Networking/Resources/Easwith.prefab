@@ -2560,6 +2560,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: bf2afb47889eda9478b7dbb1989cdfae,
         type: 3}
+    - target: {fileID: 118795626437648745, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
+        type: 3}
+      propertyPath: soundofweaon
+      value: 
+      objectReference: {fileID: 3930254988813251528}
     - target: {fileID: 118795626437648746, guid: 1b7f0e8ac1817f341bdc01af9d92faff,
         type: 3}
       propertyPath: m_LocalPosition.x

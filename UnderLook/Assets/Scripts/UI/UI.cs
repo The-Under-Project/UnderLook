@@ -85,6 +85,7 @@ public class UI : MonoBehaviour
     public GameObject option;
     public bool showoption;
     public Image sound;
+    public AudioSource soundofweaon;
    
 
     private void Start()
@@ -108,6 +109,8 @@ public class UI : MonoBehaviour
         CurrentHP = maxHP;
         text.text = NameCharacter;
 
+        GetComponentInParent<AudioSource>().volume = sound.fillAmount;
+        soundofweaon.volume = sound.fillAmount;
 
         if (hasThreeCapacities)
         {
@@ -316,7 +319,11 @@ public class UI : MonoBehaviour
             sound.fillAmount += 0.1f;
         }
         else
-        { sound.fillAmount = 1; }
+        { 
+            sound.fillAmount = 1;
+        }
+        GetComponentInParent<AudioSource>().volume = sound.fillAmount;
+        soundofweaon.volume = sound.fillAmount;
     }
     public void Sounddown()
     {
@@ -326,5 +333,7 @@ public class UI : MonoBehaviour
         {
             sound.fillAmount = 0;
         }
+        GetComponentInParent<AudioSource>().volume = sound.fillAmount;
+        soundofweaon.volume = sound.fillAmount;
     }
 }
