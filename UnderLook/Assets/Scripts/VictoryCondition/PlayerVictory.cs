@@ -32,11 +32,14 @@ public class PlayerVictory : MonoBehaviour
             {
                 Instantiate(victory, Vector3.zero, Quaternion.identity);
                 audioSource.PlayOneShot(Win);
+                GetComponent<Basics.GenerateTXT>().Add(2, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+                GetComponent<Basics.GenerateTXT>().Add(3, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
             }
             else
             {
                 Instantiate(defeat, Vector3.zero, Quaternion.identity);
                 audioSource.PlayOneShot(Loose);
+                GetComponent<Basics.GenerateTXT>().Add(2, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
             }
             Destroy(this);
         }

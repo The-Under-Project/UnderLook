@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Health;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +67,24 @@ namespace Weapon
                     {
                         Vector2 send = new Vector2(hit.transform.GetComponent<PhotonView>().viewID, gunDamage);
                         hit.transform.GetComponent<PhotonView>().photonView.RPC("Dmg", PhotonTargets.All, send);
+
+                        if (hit.transform.GetComponent<Player.Cassie>() != null && hit.transform.GetComponent<PlayerManagerCassie>().Health <= gunDamage)
+                            hit.transform.GetComponent<Basics.GenerateTXT>().Add(4, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+                        else if (hit.transform.GetComponent<Player.Brik>() != null && hit.transform.GetComponent<PlayerManagerBrik>().Health <= gunDamage)
+                            hit.transform.GetComponent<Basics.GenerateTXT>().Add(4, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+                        else if (hit.transform.GetComponent<Player.Yalee>() != null && hit.transform.GetComponent<PlayerManagerYalee>().Health <= gunDamage)
+                            hit.transform.GetComponent<Basics.GenerateTXT>().Add(4, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+                        else if (hit.transform.GetComponent<Player.Timtry>() != null && hit.transform.GetComponent<PlayerManagerTimtry>().Health <= gunDamage)
+                            hit.transform.GetComponent<Basics.GenerateTXT>().Add(4, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+                        else if (hit.transform.GetComponent<Player.Easwith>() != null && hit.transform.GetComponent<PlayerManagerEaswith>().Health <= gunDamage)
+                            hit.transform.GetComponent<Basics.GenerateTXT>().Add(4, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+                        else if (hit.transform.GetComponent<Player.Roy>() != null && hit.transform.GetComponent<PlayerManagerRoy>().Health <= gunDamage)
+                            hit.transform.GetComponent<Basics.GenerateTXT>().Add(4, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+                        else if (hit.transform.GetComponent<Player.Rasla>() != null && hit.transform.GetComponent<PlayerManagerRasla>().Health <= gunDamage)
+                            hit.transform.GetComponent<Basics.GenerateTXT>().Add(4, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+
+
+
                         //photonView.RPC("Dmg", PhotonTargets.All, hit.transform.GetComponent<PhotonView>().viewID);
                     }
 

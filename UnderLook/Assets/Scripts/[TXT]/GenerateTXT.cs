@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 namespace Basics
 {
@@ -83,6 +84,38 @@ namespace Basics
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
+            }
+        }
+        public void Add(int line, string playerName)
+        {
+            if (line > 1 && line < 6) // pas overwrite le nom ou des valeurs end ehors du txt
+            {
+                int line_to_edit = line; // Warning: 1-based indexing!
+                string sourceFile = (@"TXTstats\stats_" + playerName + ".txt");
+                string destinationFile = sourceFile;
+
+                // Read the old file.
+                string[] lines = File.ReadAllLines(destinationFile);
+
+                // Write the new file over the old file.
+                using (StreamWriter writer = new StreamWriter(destinationFile))
+                {
+                    for (int currentLine = 1; currentLine <= lines.Length; ++currentLine)
+                    {
+                        if (currentLine == line_to_edit)
+                        {
+                            string[] split = lines[currentLine - 1].Split(new char[] { ' ' });
+                            int t = 0;
+                            Int32.TryParse(split[1], out t);
+                            t += 1;
+                            writer.WriteLine(split[0] + " " +  t);
+                        }
+                        else
+                        {
+                            writer.WriteLine(lines[currentLine - 1]);
+                        }
+                    }
+                }
             }
         }
     }

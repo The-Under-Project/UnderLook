@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class Moving : MonoBehaviour
 {
+    public bool firstTP;
+
     [Header("Audio")]
     [SerializeField] private AudioClip runAudio = null;
     private float time = 0f;
@@ -42,6 +44,7 @@ public class Moving : MonoBehaviour
 
     void Awake()
     {
+        firstTP = true;
         originalSpeed = speed;
         characterController = GetComponent<CharacterController>();
         animationPerso = body.GetComponent<Animator>();
@@ -73,10 +76,7 @@ public class Moving : MonoBehaviour
             if ((mvY != 0f || mvX != 0f) && time <= Time.time)
             {
                 playSoundPas(GetComponent<PhotonView>().viewID);
-                Debug.Log("Son se joue");
                 time = Time.time + 0.8f;
-                Debug.Log("Set time"+time);
-                Debug.Log(Time.time);
                 
             }
 
@@ -153,7 +153,6 @@ public class Moving : MonoBehaviour
     }
     public void TP(bool isBlue)
     {
-
         bluePos = GameObject.FindGameObjectWithTag("bluePos").transform.position;
         redPos = GameObject.FindGameObjectWithTag("redPos").transform.position;
         if (isBlue)
@@ -161,6 +160,12 @@ public class Moving : MonoBehaviour
         else
             DOTween.Play(Move(redPos));
         gameObject.GetComponent<TeamColor>().enabled = true;
+
+        if(!firstTP)
+            GetComponent<Basics.GenerateTXT>().Add(5, GameObject.FindGameObjectWithTag("PlayerPref").GetComponent<PlayerName>().playerName);
+
+        firstTP = false;
+
     }
     public void Teleport(Vector3 position)
     {
