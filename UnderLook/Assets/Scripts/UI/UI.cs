@@ -109,9 +109,7 @@ public class UI : MonoBehaviour
         CurrentHP = maxHP;
         text.text = NameCharacter;
 
-        GetComponentInParent<AudioSource>().volume = sound.fillAmount;
-        soundofweaon.volume = sound.fillAmount;
-
+        
         if (hasThreeCapacities)
         {
             percentageCooldown3 = 1;
@@ -137,6 +135,9 @@ public class UI : MonoBehaviour
         stat.SetActive(false);
         option.SetActive(false);
         sound.fillAmount = 0.5f;
+        GetComponentInParent<AudioSource>().volume = sound.fillAmount;
+        soundofweaon.volume = sound.fillAmount;
+
         #endregion
 
     }
