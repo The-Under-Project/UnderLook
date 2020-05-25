@@ -50,8 +50,10 @@ namespace Player
         {
 
             oldHPmax = hpmax;
-            this.GetComponent<Moving>().speed = speed;
-            this.GetComponent<Moving>().jumpspeed = jumpspeed;
+            GetComponent<Moving>().speed = speed;
+            GetComponent<Moving>().originalSpeed = speed;
+            GetComponent<Moving>().jumpspeed = jumpspeed;
+
 
             canvasUI.GetComponent<UI>().hasShield = false;
             canvasUI.GetComponent<UI>().hasThreeCapacities = true;

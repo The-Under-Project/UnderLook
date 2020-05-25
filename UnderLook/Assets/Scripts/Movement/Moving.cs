@@ -59,7 +59,8 @@ public class Moving : MonoBehaviour
             posEND_BLUE = GameObject.FindGameObjectWithTag("CannonBlueEnd");
             posEND_RED = GameObject.FindGameObjectWithTag("CannonRedEnd");
         }
-
+        if (originalSpeed == 0)
+            originalSpeed = speed;
 
     }
     void MovementPlayer()
@@ -102,6 +103,8 @@ public class Moving : MonoBehaviour
             if ((Input.GetButton("Jump") && characterController.isGrounded))
             {
                 moveZ = jumpspeed;
+                animationPerso.SetFloat("VelX", 0.42f);
+                animationPerso.SetFloat("VelY", 0.42f);
             }
             if (!characterController.isGrounded)
                 moveZ -= gravity * Time.deltaTime;

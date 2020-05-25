@@ -24,6 +24,7 @@ namespace Player
         {
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
+            GetComponent<Moving>().originalSpeed = speed;
 
             canvasUI.GetComponent<UI>().hasShield = false;
             canvasUI.GetComponent<UI>().hasThreeCapacities = false;

@@ -41,6 +41,7 @@ namespace Player
 
             this.GetComponent<Moving>().speed = speed;
             this.GetComponent<Moving>().jumpspeed = jumpspeed;
+            GetComponent<Moving>().originalSpeed = speed;
 
             cam = GetComponentInChildren<Camera>();
 

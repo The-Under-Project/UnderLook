@@ -48,8 +48,9 @@ namespace Player
 
         private void Start()
         {
-            this.GetComponent<Moving>().speed = speed;
-            this.GetComponent<Moving>().jumpspeed = jumpspeed;
+            GetComponent<Moving>().speed = speed;
+            GetComponent<Moving>().jumpspeed = jumpspeed;
+            GetComponent<Moving>().originalSpeed = speed;
 
             cam = GetComponentInChildren<Camera>();
             cameraFOV = cam.fieldOfView;

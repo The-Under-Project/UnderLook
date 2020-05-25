@@ -7,7 +7,7 @@ using Player;
 public class TimtriOnlineMineSlow : MonoBehaviour
 {
     [Header("Online")]
-    [Tooltip("Deactivate if you want it to be online")] public bool DEBUG_LOCAL;
+    //[Tooltip("Deactivate if you want it to be online")] public bool DEBUG_LOCAL;
     private bool start = true;
     private GameObject owner;
     public Vector3 direction;
@@ -85,7 +85,7 @@ public class TimtriOnlineMineSlow : MonoBehaviour
             {
                 if(player.GetComponent<Moving>().speed == player.GetComponent<Moving>().originalSpeed)
                 {
-                    player.GetComponent<Moving>().speed /= slow;
+                    player.GetComponent<Moving>().speed = player.GetComponent<Moving>().speed / slow;
                 }
             }
         }
